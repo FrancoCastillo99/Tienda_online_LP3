@@ -16,6 +16,8 @@ body {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 400px;
+    box-sizing: border-box;
+    position: relative;
   }
   
   h2 {
@@ -68,3 +70,5 @@ body {
     color: red;
     margin-top: 10px;
   }
+
+  
