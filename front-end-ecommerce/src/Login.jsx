@@ -34,7 +34,8 @@ function Login() {
       </div>
       <div className="form-section">
         <div className="form">
-          <h1 className="title">Bienvenido</h1>
+          <h1 className="restaurant-name">Buen Sabor</h1>
+          <h2 className="title">Bienvenido</h2>
 
           <div>
              <p className="subtitle">No tienes una cuenta? 
