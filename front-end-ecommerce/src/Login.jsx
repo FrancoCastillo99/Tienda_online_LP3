@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import './Login.css';
 
 function Login() {
@@ -25,30 +27,50 @@ function Login() {
   };
 
   return (
-    <div>
-      <h2>Iniciar Sesión</h2>
-      <form onSubmit={handleLogin}>
-        <div>
-          <label>Usuario:</label>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
+    <div className="login-container">
+      <div className="image-section">
+        <div className="overlay"></div>
+        <div className="logo-text">Buen Sabor</div>
+      </div>
+      <div className="form-section">
+        <div className="form">
+          <h1 className="title">Bienvenido</h1>
+
+          <div>
+             <p className="subtitle">No tienes una cuenta? 
+             <a className='registration-link' href="/register"> Regístrate gratis</a></p>
+          </div>
+
+          <form onSubmit={handleLogin}>
+            <input
+              className="input"
+              type="text"
+              placeholder="Usuario o Email"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+            <input
+              className="input"
+              type="password"
+              placeholder="Contraseña"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <button className="button" type="submit">Ingresar</button>
+            {error && <p style={{ color: 'red', textAlign: 'center', marginTop: '1rem' }}>{error}</p>}
+          </form>
+          
+          <p className="or-text">OR</p>
+
+          <button className="google-button">
+            <FontAwesomeIcon icon={faGoogle} className="google-icon" />
+            Ingresa con Google
+          </button>
+
         </div>
-        <div>
-          <label>Contraseña:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit">Entrar</button>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-      </form>
+      </div>
     </div>
   );
 }

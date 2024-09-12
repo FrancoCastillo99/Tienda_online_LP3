@@ -1,70 +1,127 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f2f5;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  form {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-  }
-  
-  h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333;
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 8px;
-    color: #555;
-    font-weight: bold;
-  }
-  
-  input[type="text"],
-  input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
-  
-  input[type="text"]:focus,
-  input[type="password"]:focus {
-    border-color: #007bff;
-    outline: none;
-  }
-  
-  button {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  p {
-    text-align: center;
-    color: red;
-    margin-top: 10px;
-  }
+@import url('https://fonts.googleapis.com/css2?family=Lobster+Two:wght@400;700&display=swap');
+
+
+.login-container {
+  display: flex;
+  height: 110vh;
+  font-family: Arial, sans-serif;
+}
+
+.image-section {
+  flex: 1.25; 
+  background-image: url("./assets/HamburguesaLogin.png");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.logo-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 3.5rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  font-family: 'Lobster Two';
+}
+
+.form-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background-color: white;
+}
+
+.form {
+  width: 100%;
+  max-width: 300px;
+}
+
+.title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: #666;
+}
+
+.input {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.input:hover {
+  border-color: black;
+}
+
+.button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #ff4757;
+  color: rgb(254, 254, 254);
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: .3s ease background-color;
+}
+
+.button:hover {
+  background-color: rgb(251, 33, 70);
+
+}
+
+.or-text {
+  font-size: 1rem;
+  text-align: center;
+  margin: 1rem 0;
+  color: black;
+}
+
+.registration-link {
+  color: rgb(51, 72, 210);
+  text-decoration: none; 
+  font-weight: bold; 
+}
+
+.google-button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.google-button:hover {
+  border: 1px solid black;
+}
+
+.google-icon {
+  margin-right: 2rem;
+}
