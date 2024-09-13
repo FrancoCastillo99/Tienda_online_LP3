@@ -1,11 +1,11 @@
 import React from 'react';
+import ProductCardHome from './ProductCardHome';
 
 function Home() {
   return (
-    <div>
-      <h2>Página Principal</h2>
-      <p>¡Bienvenido a la página principal!</p>
-    </div>
+    <body>
+        <ProductCardHome/>
+    </body>
   );
 }
 
