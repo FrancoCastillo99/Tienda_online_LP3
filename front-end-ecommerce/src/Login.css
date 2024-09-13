@@ -52,7 +52,11 @@
 .form {
   width: 100%;
   max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
 
 .title {
   font-size: 2rem;
@@ -84,6 +88,7 @@
 
 .button {
   width: 100%;
+  max-width: 300px;
   padding: 0.75rem;
   background-color: rgb(236, 190, 8);
   color: rgb(245, 245, 220);
@@ -93,10 +98,10 @@
   transition: .3s ease background-color;
   transition: transform 0.3s ease;
   margin-top: 1rem;
+  margin-left: 1rem;
 }
 
 .button:hover {
-  font-weight: bold;
   transform: scale(1.02);
 }
 
@@ -106,6 +111,7 @@
   margin: 1rem 0;
   color: rgb(245, 245, 220);
   font-weight: bold;
+  margin-left: 2rem;
 }
 
 .registration-link {
@@ -125,6 +131,7 @@
   justify-content: center;
   cursor: pointer;
   transition: transform 0.3s ease;
+  margin-left: 2rem;
 }
 
 .google-button:hover {
@@ -185,13 +192,22 @@
   }
 
   .or-text {
-    margin: 1.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    margin-left: 1rem;
     font-size: 0.8rem;
     font-weight: bold;
   }
 
-  .button, .google-button {
+  .button {
     padding: 0.75rem;
     font-size: 1rem;
+    margin-left: 0.6rem;
+  }
+
+  .google-button {
+    padding: 0.75rem;
+    font-size: 1rem;
+    margin-left: 1rem;
   }
 }

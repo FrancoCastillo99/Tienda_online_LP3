@@ -67,7 +67,7 @@ function Login() {
 
           <button className="google-button">
             <FontAwesomeIcon icon={faGoogle} className="google-icon" />
-            Ingresa con Google
+            Ingresar con Google
           </button>
 
         </div>
