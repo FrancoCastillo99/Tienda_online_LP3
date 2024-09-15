@@ -1,0 +1,243 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster+Two:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+/* Reinicio de márgenes, padding y definición de la fuente base */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif; /* Definimos Montserrat como fuente principal */
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Alinea el contenido vertical y horizontalmente */
+}
+
+/* Contenedor principal del formulario */
+.container-form {
+  display: flex;
+  height: 100vh; /* Asegura que ocupe toda la pantalla */
+  width: 100vw; /* Asegura que ocupe todo el ancho de la pantalla */
+  margin: 0;
+  transition: all 1s ease;
+}
+
+.information {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  background-image: url("/src/assets/images/hamburguesa.avif"); /* Imagen de fondo */
+  background-size: cover;
+  background-position: center;
+}
+
+.info-childs {
+  width: 100%;
+  padding: 0 30px;
+  color: #fff; /* Colores consistentes */
+  font-weight: bold;
+}
+
+.info-childs h1 {
+  font-size: 3.5rem;
+  font-family: 'Lobster Two', cursive; /* Fuente personalizada para el título */
+}
+
+.info-childs p {
+  margin: 15px 0; /* Separación entre párrafos */
+}
+
+.info-childs input {
+  font-weight: bold;
+  background-color: transparent;
+  outline: none;
+  border: 2px solid #fff;
+  border-radius: 20px;
+  padding: 10px 20px;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color .3s ease;
+}
+
+/* Efecto hover en botones solo para pantallas no táctiles */
+@media (hover: hover) {
+  .info-childs input:hover,
+  .form input[type="submit"]:hover,
+  .google-button:hover {
+    background-color: rgb(236, 190, 8);
+    border: none;
+    color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .1);
+    transform: scale(1.02); /* Efecto hover para dar sensación de clic */
+  }
+}
+
+/* Efecto para cuando se presiona el botón en dispositivos táctiles o al hacer clic */
+.info-childs input:active,
+.form input[type="submit"]:active,
+.google-button:active {
+  background-color: rgb(194, 157, 8);
+  transform: scale(0.98); /* Efecto visual de presión */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, .1);
+}
+
+.form-information {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  text-align: center;
+  background-color: #000;
+}
+
+.form-information-childs {
+  padding: 0 30px;
+  color: rgb(236, 190, 8); /* Color dorado */
+}
+
+.form-information-childs h2 {
+  font-size: 2rem;
+}
+
+.form-information-childs p {
+  font-size: 0.8rem;
+  margin: 1rem 0;
+  color: rgb(245, 245, 220); /* Color beige */
+  font-weight: 600;
+}
+
+.form {
+  margin: 30px 0 0 0;
+}
+
+/* Estilos generales para los inputs dentro del formulario */
+.form label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  border-radius: 20px;
+  padding: 0 10px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, .1);
+}
+
+.form label input {
+  width: 100%;
+  padding: 10px;
+  background-color: #fff;
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  color: #333;
+}
+
+.form label i {
+  color: #a7a7a7;
+}
+
+/* Estilo para el botón de enviar */
+.form input[type="submit"] {
+  background-color: rgb(236, 190, 8);
+  color: #fff;
+  border-radius: 20px;
+  border: none;
+  padding: 10px 90px;
+  cursor: pointer;
+  margin-top: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, .1);
+}
+
+/* Botón de Google con ícono */
+.google-button {
+  width: 100%;
+  padding: 10px;
+  background-color: rgb(245, 245, 220); /* Color beige */
+  border: none;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.google-icon {
+  margin-right: 1rem; /* Espacio entre el ícono y el texto */
+}
+
+/* Ocultar las alertas con una clase de utilidad */
+.hide {
+  position: absolute;
+  transform: translateY(-300%);
+}
+
+/* Estilos para las alertas de error y éxito */
+.alerta {
+  text-align: center;
+  border-radius: 7px;
+  margin-bottom: 10px;
+  font-size: 0.8rem;
+  color: #fff;
+}
+
+.alerta-error {
+  background-color: #f10000;
+  padding: 0.5rem 1rem;
+  margin-top: 20px;
+  font-weight: 500;
+}
+
+.alerta-exito {
+  background-color: #0ca828;
+  padding: 0.5rem 1rem;
+  margin-top: 20px;
+  font-weight: 500;
+}
+
+input, button {
+  /* Propiedades para eliminar el efecto de selección en móviles */
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Estilos responsivos para pantallas medianas */
+@media screen and (max-width: 750px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+/* Estilos responsivos para pantallas pequeñas */
+@media screen and (max-width: 580px) {
+  html, body {
+    height: 100%;
+    font-size: 15px;
+  }
+
+  .container-form {
+    flex-direction: column; /* Pila las secciones una debajo de la otra */
+  }
+
+  .information, .form-information {
+    width: 100%;
+    flex-grow: 1;
+    height: auto;
+    padding: 20px;
+  }
+
+  .information {
+    background-size: cover; /* Asegura que la imagen de fondo se ajuste bien */
+  }
+
+  .form-information {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
