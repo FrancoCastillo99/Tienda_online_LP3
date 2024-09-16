@@ -9,6 +9,10 @@
   font-family: 'Montserrat', sans-serif; /* Definimos Montserrat como fuente principal */
 }
 
+body {
+  background-color: #000;
+}
+
 .container {
   display: flex;
   align-items: center;
