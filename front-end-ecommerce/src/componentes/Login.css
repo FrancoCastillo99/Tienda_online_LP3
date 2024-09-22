@@ -12,7 +12,7 @@
 
 .image-section {
   flex: 1.25; 
-  background-image: url("./assets/HamburguesaLogin.png");
+  background-image: url("../assets/HamburguesaLogin.png");
   background-size: cover;
   background-position: center;
   position: relative;
