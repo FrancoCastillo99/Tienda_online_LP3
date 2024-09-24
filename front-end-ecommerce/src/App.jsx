@@ -1,20 +1,20 @@
-// src/App.jsx
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import Login from './pages/Login/Login';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Login from './componentes/Login';
+import Home from './componentes/Home';
+import { CartProvider } from './context/CartContext.jsx';
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        {/* Rutas para diferentes páginas */}
-        <Route path="/" element={<Login />} />
-        <Route path="/home" element={<Home />} />
-      </Routes>
-    </Router>
+    <CartProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/home" element={<Home />} />
+        </Routes>
+      </Router>
+    </CartProvider>
   );
 }
 
 export default App;
-
