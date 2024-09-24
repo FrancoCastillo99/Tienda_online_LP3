@@ -1,212 +1,252 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster+Two:wght@400;700&display=swap');
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lily+Script+One&display=swap');
 
-.login-container {
-  display: flex;
-  height: 100vh; 
-  font-family: "Inter", sans-serif;
+/* Reinicio de márgenes, padding y definición de la fuente base */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif; /* Definimos Montserrat como fuente principal */
 }
 
+body {
+  background-color: #ffffff;
+}
 
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Alinea el contenido vertical y horizontalmente */
+}
 
-.image-section {
-  flex: 1.25; 
-  background-image: url("../assets/HamburguesaLogin.png");
+/* Contenedor principal del formulario */
+.container-form {
+  display: flex;
+  height: 100vh; /* Asegura que ocupe toda la pantalla */
+  width: 100vw; /* Asegura que ocupe todo el ancho de la pantalla */
+  margin: 0;
+  transition: all 1s ease;
+}
+
+.information {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  background-image: url("/src/assets/video/login/gift\ 1.gif"); /* Gift de fondo */
   background-size: cover;
   background-position: center;
-  position: relative;
 }
 
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.4);
+.info-childs {
+  width: 100%;
+  padding: 0 30px;
+  color: rgb(255, 255, 255); /* Colores consistentes */
+  font-weight: 560;
 }
 
-.logo-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: rgb(245, 245, 220);
+.info-childs h1 {
   font-size: 3.5rem;
-  font-weight: bold;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-  font-family: 'Lobster Two', cursive;
+  font-family: 'Lily Script One'; /* Fuente personalizada para el título */
+  color: #ffffff;
+  font-weight: 500;
 }
 
-.form-section {
-  flex: 1;
+.info-childs p {
+  margin: 15px 0; /* Separación entre párrafos */
+}
+
+.info-childs input {
+  font-weight: bold;
+  background-color: transparent;
+  outline: none;
+  border: 2px solid #fff;
+  border-radius: 20px;
+  padding: 10px 20px;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color .3s ease;
+}
+
+/* Efecto hover en botones solo para pantallas no táctiles */
+@media (hover: hover) {
+  .info-childs input:hover,
+  .form input[type="submit"]:hover,
+  .google-button:hover {
+    background-color: rgb(0, 0, 0);
+    border: none;
+    color: #fff;
+    box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
+    transform: scale(1.02); /* Efecto hover para dar sensación de clic */
+  }
+}
+
+/* Efecto para cuando se presiona el botón en dispositivos táctiles o al hacer clic */
+.info-childs input:active,
+.form input[type="submit"]:active,
+.google-button:active {
+  background-color: rgb(0, 0, 0);
+  transform: scale(0.98); /* Efecto visual de presión */
+  box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
+}
+
+.form-information {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  padding: 2rem;
-  background-color: black;
+  justify-content: center;
+  width: 50%;
+  text-align: center;
+  background-color: #ffffff;
+}
+
+.form-information-childs {
+  padding: 0 30px;
+  color: rgb(0, 0, 0); /* Color dorado */
+}
+
+.form-information-childs h2 {
+  font-size: 2rem;
+}
+
+.form-information-childs p {
+  font-size: 0.8rem;
+  margin: 1rem 0;
+  color: rgb(0, 0, 0); /* Color beige */
+  font-weight: 500;
 }
 
 .form {
-  width: 100%;
-  max-width: 300px;
+  margin: 30px 0 0 0;
+}
+
+/* Estilos generales para los inputs dentro del formulario */
+.form label {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  margin-bottom: 15px;
+  padding: 0 10px;
+  background-color: #ffffff;
+  box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
+  min-width: 20vw; /* Ancho mínimo si quieres que sean más largos */
 }
 
-
-.title {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  text-align: center;
-  color: rgb(236, 190, 8);
-}
-
-.subtitle {
-  font-size: 0.9rem;
-  margin-bottom: 2rem;
-  text-align: center;
-  color: rgb(245, 245, 220);
-}
-
-.input {
+.form label input {
   width: 100%;
-  padding: 0.75rem;
-  margin-bottom: 1rem;
-  border: 2px solid rgb(245, 245, 220);
-  border-radius: 2px;
-  box-shadow: 2px 2px 5px rgb(245, 245, 220, 0.2);
-  background-color: rgb(245, 245, 220);
-}
-
-.input:hover {
-  border-color: rgb(236, 190, 8);
-}
-
-.button {
-  width: 100%;
-  max-width: 300px;
-  padding: 0.75rem;
-  background-color: rgb(236, 190, 8);
-  color: rgb(245, 245, 220);
+  padding: 10px;
+  background-color: #fff;
   border: none;
-  border-radius: 100px;
+  outline: none;
+  color: #333;
+}
+
+.form label i {
+  color: #a7a7a7;
+}
+
+/* Estilo para el botón de enviar */
+.form input[type="submit"] {
+  background-color: rgb(236, 190, 8);
+  color: #fff;
+  border-radius: 20px;
+  border: none;
+  padding: 10px 90px;
   cursor: pointer;
-  transition: .3s ease background-color;
-  transition: transform 0.3s ease;
-  margin-top: 1rem;
-  margin-left: 1rem;
+  margin-top: 10px;
+  box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
+  min-width: 20vw; /* Ancho mínimo si quieres que sean más largos */
 }
 
-.button:hover {
-  transform: scale(1.02);
-}
-
-.or-text {
-  font-size: 0.8rem;
-  text-align: center;
-  margin: 1rem 0;
-  color: rgb(245, 245, 220);
-  font-weight: bold;
-  margin-left: 2rem;
-}
-
-.registration-link {
-  color: rgb(236, 190, 8);
-  text-decoration: none; 
-  font-weight: bold; 
-}
-
+/* Botón de Google con ícono */
 .google-button {
   width: 100%;
-  padding: 0.75rem;
-  background-color: rgb(245, 245, 220);
-  border: 1px solid #ddd;
-  border-radius: 100px;
+  padding: 10px;
+  background-color: rgb(255, 255, 255); /* Color beige */
+  border: none;
+  border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: transform 0.3s ease;
-  margin-left: 2rem;
-}
-
-.google-button:hover {
-  border: 1px solid rgb(236, 190, 8);
-  transform: scale(1.02);
+  box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
+  min-width: 18vw; /* Ancho mínimo si quieres que sean más largos */
 }
 
 .google-icon {
-  margin-right: 2rem;
+  margin-right: 1rem; /* Espacio entre el ícono y el texto */
 }
 
-@media (max-width: 768px) {
-  .login-container {
-    flex-direction: column;
-    align-items: center;
+/* Ocultar las alertas con una clase de utilidad */
+.hide {
+  position: absolute;
+  transform: translateY(-300%);
+}
+
+/* Estilos para las alertas de error y éxito */
+.alerta {
+  text-align: center;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  font-size: 0.8rem;
+  color: #fff;
+}
+
+.alerta-error {
+  background-color: #f10000;
+  padding: 0.5rem 1rem;
+  margin-top: 20px;
+  font-weight: 500;
+}
+
+.alerta-exito {
+  background-color: #0ca828;
+  padding: 0.5rem 1rem;
+  margin-top: 20px;
+  font-weight: 500;
+}
+
+input, button {
+  /* Propiedades para eliminar el efecto de selección en móviles */
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Estilos responsivos para pantallas medianas */
+@media screen and (max-width: 750px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+/* Estilos responsivos para pantallas pequeñas */
+@media screen and (max-width: 580px) {
+  html, body {
+    height: 100%;
+    font-size: 15px;
   }
 
-  .restaurant-name {
-    color: rgb(245, 245, 220);
-    font-size: 3rem;
-    font-weight: bold;
-    position: relative;
-    margin: 0 auto;
-    text-align: center;
-    font-family: 'Lobster Two', cursive;
-  }
-  
-
-  .image-section {
-    display: none; /* Ocultar la imagen en móviles */
+  .container-form {
+    flex-direction: column; /* Pila las secciones una debajo de la otra */
   }
 
-  .form-section {
-    flex: 1;
+  .information, .form-information {
     width: 100%;
-    padding: 1rem;
+    flex-grow: 1;
+    height: auto;
+    padding: 20px;
+  }
+
+  .information {
+    background-size: cover; /* Asegura que la imagen de fondo se ajuste bien */
+  }
+
+  .form-information {
+    display: flex;
+    align-items: center;
     justify-content: center;
-  }
-
-  .form {
-    width: 80%;
-
-  }
-
-  .title {
-    font-size: 1.8rem;
-  }
-
-  .subtitle {
-    font-size: 0.8rem;
-    margin-bottom: 2.5rem;
-  }
-
-  .input {
-    padding: 0.5rem;
-    font-size: 1rem;
-  }
-
-  .or-text {
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
-    margin-left: 1rem;
-    font-size: 0.8rem;
-    font-weight: bold;
-  }
-
-  .button {
-    padding: 0.75rem;
-    font-size: 1rem;
-    margin-left: 0.6rem;
-  }
-
-  .google-button {
-    padding: 0.75rem;
-    font-size: 1rem;
-    margin-left: 1rem;
   }
 }

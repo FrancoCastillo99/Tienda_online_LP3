@@ -2,7 +2,7 @@ import React from 'react';
 import ProductCard from './ProductCard';
 
 // Importa las imágenes desde la carpeta assets
-import comboPolloCrispyImage from '/src/assets/ComboPolloCrispyCard.png';
+import comboPolloCrispyImage from '../assets/images/cards/ComboPolloCrispyCard.png';
 
 // Define el componente Home que contiene una lista de ProductCards
 function ProductCardHome() {
