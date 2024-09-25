@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Login from './componentes/Login';
-import Home from './componentes/Home';
+import Login from './components/Login';
+import Home from './components/Home';
 import { CartProvider } from './context/CartContext.jsx';
 
 function App() {

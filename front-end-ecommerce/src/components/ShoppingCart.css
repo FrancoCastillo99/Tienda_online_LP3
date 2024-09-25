@@ -1,14 +1,3 @@
-.container {
-  min-height: 100vh;
-  background-color: #f3f4f6;
-  padding: 2rem 0;
-}
-
-.content {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
 
 .card {
   background-color: white;
@@ -71,6 +60,7 @@
 .item-details {
   display: flex;
   align-items: center;
+  padding-right: 1rem;
 }
 
 .item-image {
@@ -136,12 +126,17 @@
 }
 
 .payment-section {
-  flex: 1;
+  flex: 1.5;
+  max-width: none;
   background-color: black;
-  max-width: 600px;
   color: white;
   border-radius: 0.5rem;
   overflow: hidden;
+}
+
+.flex {
+  display: flex;
+  gap: 1rem; /* Reduce el espacio entre las secciones del carrito y métodos de pago */
 }
 
 .payment-header {
@@ -246,4 +241,45 @@
     align-items: center;
   }
 
+  .payment-section {
+    width: 100%; /* Asegura que ocupe todo el ancho disponible en pantallas pequeñas */
+  }
+
+  .payment-content {
+    display: block; /* Cambia el layout a bloque para que los elementos se expandan hacia abajo */
+  }
+
+  .payment-method {
+    width: 100%; /* Ocupa el 100% del ancho en móviles */
+  }
+
+  .payment-form {
+    display: block; /* Mantiene la expansión hacia abajo en móviles */
+    margin-top: 1rem;
+  }
+
+  .back-link {
+    padding-left: 2rem; /* Alinea el enlace hacia la izquierda */
+  }
+
+  .cart-title {
+    text-align: center; /* Centra el título */
+  }
+
+  .cart-count {
+    text-align: center; /* Centra la cuenta de artículos */
+  }
+
+  .cart-section {
+    text-align: center; /* Centra el contenido del carrito */
+  }
+}
+
+.payment-method.selected {
+  display: block; /* Hace que se expanda hacia abajo cuando está seleccionado */
+}
+
+.payment-form {
+  margin-top: 1rem;
+  width: 100%;
 }

@@ -1,0 +1,308 @@
+/* ==========================
+  GLOBAL STYLES
+  ========================== */
+
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+  /* Estilos generales aplicados a todo el documento */
+  body {
+    margin: 0; /* Elimina el margen predeterminado del body */
+    font-family: "Inter", sans-serif; /* Define la fuente general */
+    background-color: #ffffff; /* Color de fondo blanco */
+  }
+  
+  body::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Contenedor principal de la página home */
+  .home-container {
+    min-height: 100vh; /* Asegura que ocupe toda la altura de la ventana */
+    display: flex;
+    flex-direction: column; /* Alinea los elementos en columna */
+  }
+  
+  /* ==========================
+    HEADER STYLES
+    ========================== */
+  
+  /* Estilos para la cabecera (header) */
+  .header {
+    display: flex; /* Alinea los elementos horizontalmente */
+    justify-content: center; /* Espacia los elementos a los lados del contenedor */
+    padding: 20px; /* Espaciado interno en los cuatro lados */
+    background-color: transparent; /* Fondo transparente */
+    position: absolute; /* Posiciona el header sobre el banner */
+    top: 0; /* Fija el header en la parte superior de la pantalla */
+    left: 0; /* Alinea a la izquierda */
+    right: 0; /* Alinea a la derecha */
+    z-index: 10; /* Asegura que el header esté por encima de otros elementos */
+  }
+  
+  /* Botón del carrito de compras */
+  .cart-button {
+    padding: 10px 20px; /* Espaciado interno */
+    font-size: 1.2rem; /* Tamaño del texto */
+    cursor: pointer; /* Cambia el cursor a puntero al pasar sobre el botón */
+    background-color: #0d0c0c; /* Color de fondo del botón */
+    border: none; /* Elimina el borde predeterminado */
+    color: white; /* Color del texto */
+    border-radius: 10px; /* Bordes redondeados */
+    margin-left: auto; /* Mueve el botón hacia la derecha */
+  }
+  
+  /* Efecto hover para el botón del carrito */
+  .cart-button:hover {
+    background-color: rgb(231, 64, 31); /* Cambia el color de fondo en hover */
+  }
+  
+  /* ==========================
+    CART MODAL STYLES
+    ========================== */
+  
+  /* Superposición que oscurece el fondo cuando el carrito está abierto */
+  .cart-overlay {
+    position: fixed; /* Fija la superposición en toda la pantalla */
+    top: 0; /* Desde el borde superior */
+    left: 0; /* Desde el borde izquierdo */
+    right: 0; /* Desde el borde derecho */
+    bottom: 0; /* Desde el borde inferior */
+    background-color: rgba(0, 0, 0, 0.5); /* Color de fondo semitransparente */
+    display: flex; /* Alinea los elementos en flexbox */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    z-index: 1000; /* Por encima de otros elementos */
+  }
+  
+  /* Modal del carrito */
+  .cart-modal {
+    background-color: white; /* Fondo blanco */
+    border-radius: 5px; /* Bordes redondeados */
+    max-width: 1000px; /* Ancho máximo del modal */
+    width: 90%; /* Ancho relativo a la pantalla */
+    max-height: 80vh; /* Altura máxima para evitar que se desborde */
+    overflow-y: scroll; /* Habilita desplazamiento vertical si es necesario */
+    position: relative; /* Relativo para posicionar el botón de cerrar */
+  }
+  
+  /* Oculta la barra de desplazamiento en navegadores WebKit */
+  .cart-modal::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Botón para cerrar el modal del carrito */
+  .close-cart-button {
+    position: absolute; /* Posiciona el botón dentro del modal */
+    top: 10px; /* Desde la parte superior */
+    right: 10px; /* Desde la parte derecha */
+    font-size: 1.5rem; /* Tamaño del texto del botón */
+    background: none; /* Sin fondo */
+    border: none; /* Sin borde */
+    cursor: pointer; /* Cambia el cursor a puntero */
+  }
+  
+  /* Efecto hover en el botón de cerrar */
+  .close-cart-button:hover {
+    color: #ff4500; /* Cambia el color del texto en hover */
+  }
+  
+  .no-scroll {
+    overflow: hidden;
+  }
+  
+  /* ==========================
+    BANNER STYLES
+    ========================== */
+  
+  /* Estilos del banner principal */
+  .banner {
+    background-image: url('../assets/images/home/home.jpg'); /* Imagen de fondo */
+    background-size: cover; /* La imagen cubre todo el contenedor */
+    background-position: center; /* Centra la imagen */
+    height: 100vh; /* Altura del banner igual a la pantalla visible */
+    display: flex; /* Alinea el contenido del banner */
+    align-items: center; /* Centra verticalmente el contenido */
+    justify-content: center; /* Centra horizontalmente el contenido */
+    position: relative; /* Relativo para gestionar el z-index */
+    z-index: 1; /* Asegura que el banner no sea cubierto por otros elementos */
+  }
+  
+  /* ==========================
+    MENU CONTENT
+    ========================== */
+    
+  /* Contenido principal del cuerpo */
+  .menu-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex: 1;
+    background-image: url('../assets/images/menu/FondoHamburguesa.jpg');
+    min-height: 100vh;
+    width: 100%;
+    background-size: contain; /* Ajusta la imagen para que se muestre completamente */
+    background-position: center;
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    padding-top: 30vh;
+    padding-bottom: 5vh; /* Añadir espacio en la parte inferior */
+  }
+  
+  
+  /* Título dentro del banner */
+  .content-banner h1 {
+    font-family: "Inter"; /* Fuente */
+    font-size: 8rem; /* Tamaño de la fuente */
+    font-weight: 900; /* Negrita */
+    line-height: 1.2; /* Altura de línea */
+    letter-spacing: -0.02em; /* Ajuste del espaciado de letras */
+    color: #F91D1D; /* Color del texto */
+  }
+  
+  /* Texto descriptivo debajo del título en el banner */
+  .content-banner p {
+    font-family: "Inter"; /* Fuente */
+    font-size: 3.2rem; /* Tamaño del texto basado en el título (h1/2.5) */
+    font-weight: 600; /* Semi-negrita */
+    line-height: 1.2; /* Altura de línea */
+    letter-spacing: -0.02em; /* Ajuste del espaciado de letras */
+    color: #ffffff; /* Texto blanco */
+  }
+  
+  
+  /* ==========================
+    SLIDER STYLES
+    ========================== */
+  
+    .slider-container {
+      position: relative;
+      width: 100%;
+      height: 100vh; /* Altura igual al tamaño de la pantalla */
+      overflow: hidden; /* Oculta el contenido que no esté visible en el área del slider */
+      background-color: #FFA602; /* Color de fondo de las secciones */
+    }
+    
+    .slider-section {
+      min-width: 100%; /* Ocupa todo el ancho del contenedor */
+      height: 100vh; /* Misma altura que el banner */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      font-weight: bold;
+      color: black;
+    }
+    
+    .slider-wrapper {
+      display: flex;
+      transition: transform 0.3s ease-in-out; /* Transición suave para el movimiento */
+    }
+    
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      padding: 10px;
+      font-size: 2rem;
+      cursor: pointer;
+      z-index: 10;
+    }
+    
+    .slider-arrow-left {
+      left: 10px; /* Flecha izquierda */
+    }
+    
+    .slider-arrow-right {
+      right: 10px; /* Flecha derecha */
+    }
+  
+    /* ==========================
+    MENU CONTENT
+    ========================== */
+  
+    /* Contenido principal del cuerpo */
+    .menu-content {
+      display: flex; /* Utiliza Flexbox para el diseño */
+      flex-wrap: wrap; /* Permite que los artículos se envuelvan en varias líneas */
+      justify-content: center;
+      flex: 1; /* Se expande para llenar el espacio restante */
+      background-image: url('../assets/images/menu/FondoHamburguesa.jpg'); /* Imagen de fondo */
+      height: 100vh; /* Altura del banner igual a la pantalla visible */
+      padding-top: 30vh ;
+      background-size: cover; /* La imagen cubre todo el contenedor */
+      background-position: center; /* Centra la imagen */
+    }
+  
+  /* ==========================
+    MEDIA QUERIES
+    ========================== */
+  
+    /* Estilos para pantallas medianas y tabletas */
+    @media (max-width: 1024px) {
+    .content-banner h1 {
+      font-size: 5.4rem; /* Ajuste de tamaño de texto */
+    }
+  
+    .content-banner p {
+      font-size: 2.16rem; /* Ajuste de tamaño de párrafo (h1/2.5) */
+    }
+  
+    .banner {
+      height: 60vh; /* Altura ajustada para pantallas medianas */
+    }
+  
+    .slider-container, .slider-section {
+      height: 60vh; /* Ajustamos el tamaño a 60vh */
+    }
+  
+    .menu-content {
+      height: auto; /* Ajuste para permitir que crezca según el contenido */
+      padding-top: 20vh; /* Reducir el espacio superior */
+      padding-bottom: 5vh; /* Espacio inferior ajustado */
+      background-size: cover; /* La imagen sigue cubriendo todo el contenedor */
+    }
+  }
+  
+  /* Estilos para pantallas pequeñas y móviles */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column; /* Los elementos del header se apilan verticalmente */
+    padding: 10px; /* Reducción del padding */
+  }
+
+  .cart-button {
+    font-size: 1rem; /* Ajuste de tamaño del botón */
+    padding: 8px 16px; /* Ajuste del espaciado interno */
+  }
+
+  .content-banner h1 {
+    font-size: 3.5rem; /* Ajuste de tamaño del título */
+  }
+
+  .content-banner p {
+    font-size: 1.4rem; /* Ajuste de tamaño del párrafo */
+  }
+  /* Ajustes al modal del carrito en pantallas pequeñas */
+  .cart-modal {
+    width: 95%; /* El modal del carrito ocupa el 95% del ancho de la pantalla */
+    max-width: none; /* Se elimina la restricción de ancho máximo */
+    height: auto; /* Permite que el modal crezca en altura según los productos */
+    max-height: 90vh; /* Límite en la altura para no desbordar */
+    overflow-y: auto; /* Habilita el scroll si se superan los 90vh */
+  }
+
+  /* Ajustes del botón de cerrar en pantallas pequeñas */
+  .close-cart-button {
+    font-size: 1.2rem; /* Ajuste del tamaño del botón de cerrar */
+    top: 5px; /* Alineación superior más ajustada */
+    right: 5px; /* Alineación derecha más ajustada */
+  }
+
+  .cart-overlay {
+    align-items: flex-end; /* Alinea el carrito en la parte inferior de la pantalla */
+    justify-content: center; /* Centra el carrito horizontalmente */
+    padding: 10px; /* Añade padding alrededor del carrito */
+  }
+}

@@ -34,6 +34,20 @@ function Login() {
 
   const handleLogin = async (event) => {
     event.preventDefault();
+
+    /*------------------------------------------------------------------------------------*/ 
+    // Validación para el usuario y contraseña de admin (quitar cuando ya no se necesite)
+    if (email === 'admin' && password === 'admin') {
+      setError('');
+      setShowSuccessAlert(true);
+      setTimeout(() => {
+        setShowSuccessAlert(false);
+        navigate('/home'); // Redirige a la página de administración o donde corresponda
+      }, 1000);
+      return; // Sale de la función sin intentar autenticarse con Firebase
+    }
+/*------------------------------------------------------------------------------------*/
+
     try {
       await signInWithEmailAndPassword(auth, email, password);
       setError('');
@@ -257,3 +271,4 @@ function Login() {
 }
 
 export default Login;
+
