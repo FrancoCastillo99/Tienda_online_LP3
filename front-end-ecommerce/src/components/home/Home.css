@@ -152,60 +152,6 @@ body::-webkit-scrollbar {
   justify-content: center; /* Centra el texto horizontalmente */
 }
 
-/* ==========================
-  SLIDER STYLES
-  ========================== */
-
-/* Contenedor principal del slider */
-.slider-container {
-  position: relative; /* Posiciona de forma relativa */
-  width: 100%; /* Ocupa todo el ancho disponible */
-  height: 100vh; /* Altura igual a la pantalla */
-  overflow: hidden; /* Oculta el contenido que desborda */
-  background-color: #FFA602; /* Color de fondo */
-}
-
-/* Secciones dentro del slider */
-.slider-section {
-  min-width: 100%; /* Cada sección ocupa todo el ancho del contenedor */
-  height: 100vh; /* Misma altura que el banner */
-  display: flex; /* Utiliza el modelo de caja flex */
-  justify-content: center; /* Centra el contenido horizontalmente */
-  align-items: center; /* Centra el contenido verticalmente */
-  font-size: 2rem; /* Tamaño de la fuente */
-  font-weight: bold; /* Peso de la fuente */
-  color: black; /* Color de la fuente */
-}
-
-/* Contenedor de las secciones del slider */
-.slider-wrapper {
-  display: flex; /* Disposición flex para las secciones del slider */
-  transition: transform 0.3s ease-in-out; /* Transición suave al mover las secciones */
-}
-
-/* Flechas del slider */
-.slider-arrow {
-  position: absolute; /* Posiciona las flechas en relación al slider */
-  top: 50%; /* Coloca las flechas en el centro vertical del slider */
-  transform: translateY(-50%); /* Ajusta la posición para centrar verticalmente */
-  background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
-  color: white; /* Color de las flechas */
-  border: none; /* Elimina el borde */
-  padding: 10px; /* Espaciado interno */
-  font-size: 2rem; /* Tamaño de la fuente */
-  cursor: pointer; /* Muestra el cursor pointer */
-  z-index: 10; /* Se asegura de que las flechas estén por encima del contenido */
-}
-
-/* Flecha izquierda del slider */
-.slider-arrow-left {
-  left: 10px; /* Posiciona la flecha a la izquierda */
-}
-
-/* Flecha derecha del slider */
-.slider-arrow-right {
-  right: 10px; /* Posiciona la flecha a la derecha */
-}
 
 /* ==========================
   MENU CONTENT
@@ -291,4 +237,3 @@ body::-webkit-scrollbar {
     padding: 10px; /* Espaciado interno reducido */
   }
 }
-

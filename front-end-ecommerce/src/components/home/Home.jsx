@@ -1,23 +1,20 @@
+// Home.jsx
+
 import React, { useState, useEffect } from 'react';
 import ProductCardHome from '../productcard/ProductCardHome';
 import ShoppingCart from '../shopping/ShoppingCart';
+import SliderSectionHome from '../sliderSection/SliderSectionHome'; // Importa tu componente Slider
 import './Home.css';
 
 export default function Home() {
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [currentSlide, setCurrentSlide] = useState(0);
 
-  // Manejar el estado del scroll en el body cuando el carrito está abierto o cerrado
   useEffect(() => {
     if (isCartOpen) {
-      // Añadir clase para deshabilitar el scroll
       document.body.classList.add('no-scroll');
     } else {
-      // Remover clase para habilitar el scroll
       document.body.classList.remove('no-scroll');
     }
-
-    // Limpiar el efecto cuando el componente se desmonte
     return () => {
       document.body.classList.remove('no-scroll');
     };
@@ -25,16 +22,6 @@ export default function Home() {
 
   const toggleCart = () => {
     setIsCartOpen(!isCartOpen);
-  };
-
-  const sections = [1, 2, 3, 4]; // Representa las secciones del slider
-
-  const handleNextSlide = () => {
-    setCurrentSlide((prev) => (prev === sections.length - 1 ? 0 : prev + 1)); // Mueve a la siguiente sección o vuelve al inicio
-  };
-
-  const handlePrevSlide = () => {
-    setCurrentSlide((prev) => (prev === 0 ? sections.length - 1 : prev - 1)); // Mueve a la sección anterior o a la última
   };
 
   return (
@@ -64,27 +51,8 @@ export default function Home() {
       </section>
 
       {/* Slider Section */}
-      <section className="slider-container">
-        <article
-          className="slider-wrapper"
-          style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-        >
-          {sections.map((section, index) => (
-            <div key={index} className="slider-section">
-              Sección {section}
-            </div>
-          ))}
-        </article>
-
-        {/* Flechas de navegación */}
-        <button className="slider-arrow slider-arrow-left" onClick={handlePrevSlide}>
-          &lt;
-        </button>
-        <button className="slider-arrow slider-arrow-right" onClick={handleNextSlide}>
-          &gt;
-        </button>
-      </section>
-
+      <SliderSectionHome />
+  
       <section className="menu-content">
         <ProductCardHome className="card" />
       </section>
