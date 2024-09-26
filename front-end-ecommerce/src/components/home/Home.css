@@ -116,7 +116,7 @@
   
   /* Estilos del banner principal */
   .banner {
-    background-image: url('../assets/images/home/home.jpg'); /* Imagen de fondo */
+    background-image: url('../../assets/images/home/home.jpg'); /* Imagen de fondo */
     background-size: cover; /* La imagen cubre todo el contenedor */
     background-position: center; /* Centra la imagen */
     height: 100vh; /* Altura del banner igual a la pantalla visible */
@@ -127,27 +127,6 @@
     z-index: 1; /* Asegura que el banner no sea cubierto por otros elementos */
   }
   
-  /* ==========================
-    MENU CONTENT
-    ========================== */
-    
-  /* Contenido principal del cuerpo */
-  .menu-content {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    flex: 1;
-    background-image: url('../assets/images/menu/FondoHamburguesa.jpg');
-    min-height: 100vh;
-    width: 100%;
-    background-size: contain; /* Ajusta la imagen para que se muestre completamente */
-    background-position: center;
-    background-repeat: no-repeat; /* Evita que la imagen se repita */
-    padding-top: 30vh;
-    padding-bottom: 5vh; /* Añadir espacio en la parte inferior */
-  }
-  
-  
   /* Título dentro del banner */
   .content-banner h1 {
     font-family: "Inter"; /* Fuente */
@@ -156,6 +135,8 @@
     line-height: 1.2; /* Altura de línea */
     letter-spacing: -0.02em; /* Ajuste del espaciado de letras */
     color: #F91D1D; /* Color del texto */
+    display: flex; /* Alinea el contenido del banner */
+    justify-content: center; /* Centra horizontalmente el contenido */
   }
   
   /* Texto descriptivo debajo del título en el banner */
@@ -166,6 +147,8 @@
     line-height: 1.2; /* Altura de línea */
     letter-spacing: -0.02em; /* Ajuste del espaciado de letras */
     color: #ffffff; /* Texto blanco */
+    display: flex; /* Alinea el contenido del banner */
+    justify-content: center; /* Centra horizontalmente el contenido */
   }
   
   
@@ -217,24 +200,24 @@
     .slider-arrow-right {
       right: 10px; /* Flecha derecha */
     }
-  
-    /* ==========================
+
+      /* ==========================
     MENU CONTENT
     ========================== */
-  
+    
     /* Contenido principal del cuerpo */
-    .menu-content {
-      display: flex; /* Utiliza Flexbox para el diseño */
-      flex-wrap: wrap; /* Permite que los artículos se envuelvan en varias líneas */
-      justify-content: center;
-      flex: 1; /* Se expande para llenar el espacio restante */
-      background-image: url('../assets/images/menu/FondoHamburguesa.jpg'); /* Imagen de fondo */
-      height: 100vh; /* Altura del banner igual a la pantalla visible */
-      padding-top: 30vh ;
-      background-size: cover; /* La imagen cubre todo el contenedor */
-      background-position: center; /* Centra la imagen */
-    }
-  
+  /* Contenido principal del cuerpo */
+  .menu-content {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1;
+    background-image: url('../../assets/images/cards/fondoCards.jpg');
+    background-size: cover; /* Asegura que la imagen cubra todo el contenedor */
+    background-position: center;
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    padding-top: 20vh;
+    padding-bottom: 5vh;
+  }
   /* ==========================
     MEDIA QUERIES
     ========================== */

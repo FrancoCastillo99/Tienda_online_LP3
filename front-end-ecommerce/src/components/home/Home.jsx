@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import ProductCardHome from './ProductCardHome';
-import ShoppingCart from './ShoppingCart';
+import ProductCardHome from '../productcard/ProductCardHome';
+import ShoppingCart from '../shopping/ShoppingCart';
 import './Home.css';
 
 export default function Home() {
