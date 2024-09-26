@@ -15,10 +15,8 @@ body {
     display: flex; /* Utiliza Flexbox para el diseño */
     flex-wrap: wrap; /* Permite que los artículos se envuelvan en varias líneas */
     margin: 0 auto; /* Centra el contenedor de artículos */
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
     justify-content: center; /* Centra los artículos horizontalmente */
-    max-width: 1300px; /* Ancho máximo del contenedor */
+    max-width: auto; /* Ancho máximo del contenedor */
     gap: 3rem; /* Espacio entre los artículos */
 }
 
