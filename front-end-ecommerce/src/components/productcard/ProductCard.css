@@ -21,7 +21,7 @@ body {
 }
 
 .articles article {
-    width: 375px; /* Ancho fijo del artículo */
+    width: 368px; /* Ancho fijo del artículo */
     height: 650px; /* Alto fijo del artículo */
     display: flex; /* Utiliza Flexbox para el diseño interno */
     flex-direction: column; /* Coloca los elementos en columna */
@@ -127,4 +127,12 @@ body {
     background-color: var(--button-hover);
     transform: scale(0.9); /* Opcional: añade un efecto sutil al presionar */
     transition: all 0.2s ease-in-out; /* Transición suave para cambios */
+}
+
+/* Estilos para pantallas pequeñas y móviles */
+@media (max-width: 480px) {
+    .articles article {
+        width: 90%; /* Ancho fijo del artículo */
+    }
+
 }
