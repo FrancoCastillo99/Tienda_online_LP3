@@ -1,0 +1,239 @@
+/* ==========================
+  GLOBAL STYLES
+  ========================== */
+
+/* Importa la fuente Inter de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+/* Estilos generales aplicados a todo el documento */
+body {
+  margin: 0; /* Elimina el margen predeterminado del body */
+  font-family: "Inter", sans-serif; /* Define la fuente general */
+  background-color: #ffffff; /* Color de fondo blanco */
+}
+
+/* Oculta la barra de desplazamiento en navegadores WebKit */
+body::-webkit-scrollbar {
+  display: none; /* No muestra la barra de desplazamiento */
+}
+
+/* Contenedor principal de la página home */
+.home-container {
+  min-height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la ventana */
+  display: flex; /* Utiliza el modelo de caja flex */
+  flex-direction: column; /* Alinea los elementos hijos en columna */
+}
+
+/* ==========================
+  HEADER STYLES
+  ========================== */
+
+/* Estilos para la cabecera (header) */
+.header {
+  display: flex; /* Alinea los elementos hijos de forma horizontal */
+  justify-content: center; /* Centra los elementos horizontalmente en el header */
+  padding: 20px; /* Espaciado interno alrededor del contenido */
+  background-color: transparent; /* Fondo transparente */
+  position: absolute; /* Posiciona el header en relación al primer elemento no posicionado */
+  top: 0; /* Ubica el header en la parte superior */
+  left: 0; /* Alinea el header a la izquierda */
+  right: 0; /* Alinea el header a la derecha */
+  z-index: 10; /* Asegura que el header se mantenga por encima de otros elementos */
+}
+
+/* Botón del carrito de compras */
+.cart-button {
+  padding: 10px 20px; /* Espaciado interno del botón */
+  font-size: 1.2rem; /* Tamaño de la fuente */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+  background-color: #0d0c0c; /* Color de fondo negro */
+  border: none; /* Elimina el borde predeterminado */
+  color: white; /* Texto blanco */
+  border-radius: 10px; /* Bordes redondeados */
+  margin-left: auto; /* Empuja el botón hacia la derecha */
+}
+
+/* Efecto hover para el botón del carrito */
+.cart-button:hover {
+  background-color: rgb(231, 64, 31); /* Cambia el color de fondo cuando se pasa el mouse */
+}
+
+/* ==========================
+  CART MODAL STYLES
+  ========================== */
+
+/* Superposición que oscurece el fondo cuando el carrito está abierto */
+.cart-overlay {
+  position: fixed; /* Se fija sobre la pantalla completa */
+  top: 0; /* Ocupa desde la parte superior */
+  left: 0; /* Ocupa desde la parte izquierda */
+  right: 0; /* Ocupa hasta la parte derecha */
+  bottom: 0; /* Ocupa hasta la parte inferior */
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente oscuro */
+  display: flex; /* Contenedor flex */
+  justify-content: center; /* Centra el contenido horizontalmente */
+  align-items: center; /* Centra el contenido verticalmente */
+  z-index: 1000; /* Se asegura de que esté sobre otros elementos */
+}
+
+/* Modal del carrito */
+.cart-modal {
+  background-color: white; /* Fondo blanco */
+  border-radius: 5px; /* Bordes redondeados */
+  max-width: 1000px; /* Ancho máximo del modal */
+  width: 90%; /* Ancho relativo al contenedor */
+  max-height: 80vh; /* Altura máxima del modal */
+  overflow-y: scroll; /* Permite desplazamiento vertical si el contenido excede el alto */
+  position: relative; /* Posiciona de forma relativa al contenedor */
+}
+
+/* Oculta la barra de desplazamiento en navegadores WebKit */
+.cart-modal::-webkit-scrollbar {
+  display: none; /* No muestra la barra de desplazamiento */
+}
+
+/* Botón para cerrar el modal del carrito */
+.close-cart-button {
+  position: absolute; /* Posiciona el botón en relación al modal */
+  top: 10px; /* Coloca el botón cerca del borde superior */
+  right: 10px; /* Coloca el botón cerca del borde derecho */
+  font-size: 1.5rem; /* Tamaño de la fuente */
+  background: none; /* Elimina el fondo del botón */
+  border: none; /* Elimina el borde del botón */
+  cursor: pointer; /* Muestra un cursor pointer al pasar sobre el botón */
+}
+
+/* Efecto hover en el botón de cerrar */
+.close-cart-button:hover {
+  color: #ff4500; /* Cambia el color del botón cuando se pasa el mouse */
+}
+
+/* Clase que deshabilita el scroll cuando el carrito está abierto */
+.no-scroll {
+  overflow: hidden; /* Evita el desplazamiento de la página */
+}
+
+/* ==========================
+  BANNER STYLES
+  ========================== */
+
+/* Estilos del banner principal */
+.banner {
+  background-image: url('../../assets/images/home/home.jpg'); /* Establece la imagen de fondo del banner */
+  background-size: cover; /* Asegura que la imagen cubra todo el área del banner */
+  background-position: center; /* Centra la imagen en el banner */
+  height: 100vh; /* El banner ocupa toda la altura de la ventana */
+  display: flex; /* Utiliza el modelo de caja flex */
+  align-items: center; /* Alinea los elementos hijos verticalmente en el centro */
+  justify-content: center; /* Centra los elementos hijos horizontalmente */
+  position: relative; /* Posiciona de forma relativa a otros elementos */
+  z-index: 1; /* Se asegura de que esté sobre otros elementos */
+}
+
+/* Título dentro del banner */
+.content-banner h1 {
+  font-size: 8rem; /* Tamaño de la fuente grande */
+  font-weight: 900; /* Peso de la fuente grueso */
+  line-height: 1.2; /* Altura de línea */
+  letter-spacing: -0.02rem; /* Ajusta el espaciado entre letras */
+  color: #F91D1D; /* Color rojo */
+  display: flex; /* Contenedor flex */
+  justify-content: center; /* Centra el texto horizontalmente */
+  padding-bottom: 1.5rem; /* Espaciado inferior */
+}
+
+/* Texto descriptivo debajo del título en el banner */
+.content-banner p {
+  font-size: 3.2rem; /* Tamaño de la fuente */
+  font-weight: 600; /* Peso de la fuente */
+  line-height: 1.2; /* Altura de línea */
+  color: #ffffff; /* Color blanco */
+  display: flex; /* Contenedor flex */
+  justify-content: center; /* Centra el texto horizontalmente */
+}
+
+
+/* ==========================
+  MENU CONTENT
+  ========================== */
+
+/* Contenido principal del cuerpo */
+.menu-content {
+  display: flex; /* Disposición flex */
+  flex-wrap: wrap; /* Permite que el contenido se ajuste en varias líneas si es necesario */
+  flex: 1; /* El contenido ocupa el espacio restante */
+  background-image: url('../../assets/images/cards/fondoCards.jpg'); /* Imagen de fondo */
+  background-size: cover; /* Cubre todo el contenedor */
+  background-position: center; /* Centra la imagen de fondo */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+  padding-top: 20vh; /* Espaciado superior */
+  padding-bottom: 5vh; /* Espaciado inferior */
+}
+
+/* ==========================
+  MEDIA QUERIES
+  ========================== */
+
+/* Estilos para pantallas medianas y tabletas */
+@media (max-width: 1024px) {
+  .content-banner h1 {
+    font-size: 5.4rem; /* Tamaño de fuente reducido */
+    text-align: center; /* Centra el texto */
+  }
+
+  .content-banner p {
+    font-size: 2.16rem; /* Tamaño de fuente reducido */
+    text-align: center; /* Centra el texto */
+  }
+
+  .menu-content {
+    height: auto; /* Permite que la altura se ajuste según el contenido */
+    padding-top: 20vh; /* Espaciado superior */
+    padding-bottom: 5vh; /* Espaciado inferior */
+    background-size: cover; /* La imagen de fondo cubre el contenedor */
+  }
+}
+
+/* Estilos para pantallas pequeñas y móviles */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column; /* Alinea los elementos del header en columna */
+    padding: 10px; /* Espaciado reducido */
+  }
+
+  .content-banner h1 {
+    font-size: 3.8rem; /* Tamaño de fuente reducido */
+    text-align: center; /* Centra el texto */
+    justify-content: center; /* Asegura que el texto esté centrado */
+  }
+
+  .content-banner p {
+    font-size: 1.8rem; /* Tamaño de fuente reducido */
+    text-align: center; /* Centra el texto */
+    justify-content: center; /* Asegura que el texto esté centrado */
+  }
+  .cart-button {
+    font-size: 1rem; /* Tamaño de fuente reducido */
+    padding: 8px 16px; /* Espaciado interno reducido */
+  }
+
+  .cart-modal {
+    width: 100%; /* El modal ocupa todo el ancho de la pantalla */
+    max-width: none; /* Elimina el ancho máximo */
+    height: auto; /* Ajusta la altura automáticamente */
+    max-height: 90vh; /* Altura máxima */
+    overflow-y: auto; /* Permite desplazamiento vertical si el contenido es mayor */
+  }
+
+  .close-cart-button {
+    font-size: 1.2rem; /* Tamaño de fuente reducido */
+    top: 5px; /* Ajuste de posición superior */
+    right: 5px; /* Ajuste de posición derecha */
+  }
+
+  .cart-overlay {
+    align-items: flex-end; /* Alinea los elementos al final del contenedor */
+    justify-content: center; /* Centra el contenido horizontalmente */
+    padding: 10px; /* Espaciado interno reducido */
+  }
+}

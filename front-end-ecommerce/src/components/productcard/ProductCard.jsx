@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { CartContext } from '../context/CartContext.jsx';
+import { CartContext } from '../../context/CartContext';
 import './ProductCard.css';
 
 function ProductCard({ product }) {
@@ -13,10 +13,13 @@ function ProductCard({ product }) {
       <div className="article-preview">
         <h2>{product.title}</h2>
         <p>{product.description}</p>
-      </div>
-      <div className="article-buy">
+
+        <div className="article-buy">
         <div className="article-price">${product.price}</div>
         <button className="article-btn" onClick={() => addItemToCart(product)}>🛒 Agregar</button>
+        
+      </div>
+
       </div>
     </article>
   );

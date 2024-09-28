@@ -1,39 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
 :root {
     --background: #f8f8ff; /* Define el color de fondo */
     --text: #2c2c2c; /* Define el color del texto */
-    --button-hover: #ecbe08; /* Define el color del botón al pasar el mouse */
-}
-
-html {
-    scroll-behavior: smooth; /* Suaviza el desplazamiento en la página */
-}
-
-/* Reset de márgenes, rellenos y box-sizing para todos los elementos */
-* {
-    margin: 0; 
-    padding: 0; 
+    --button-hover: #F91D1D;
+    ; /* Define el color del botón al pasar el mouse */
 }
 
 body {
-    font-size: 16px; /* Tamaño base de la fuente */
-    font-family: sans-serif; /* Fuente sans-serif para todo el texto */
-    height: 0%; /* Altura del body, no es efectiva al estar en 0% */
-    background: #2c2c2c; /* Aplica el color de fondo */
+    font-family: 'Inter', sans-serif;
 }
 
 .articles {
-    padding: 2rem 2rem; /* Espacio interno del body */
     display: flex; /* Utiliza Flexbox para el diseño */
     flex-wrap: wrap; /* Permite que los artículos se envuelvan en varias líneas */
     margin: 0 auto; /* Centra el contenedor de artículos */
     justify-content: center; /* Centra los artículos horizontalmente */
-    max-width: 1200px; /* Ancho máximo del contenedor */
-    gap: 1.5rem; /* Espacio entre los artículos */
+    max-width: auto; /* Ancho máximo del contenedor */
+    gap: 3rem; /* Espacio entre los artículos */
 }
 
 .articles article {
-    max-width: 300px; /* Ancho máximo de cada artículo */
-    width: 100%; /* Ancho del artículo para que se ajuste al contenedor */
+    width: 368px; /* Ancho fijo del artículo */
+    height: 650px; /* Alto fijo del artículo */
     display: flex; /* Utiliza Flexbox para el diseño interno */
     flex-direction: column; /* Coloca los elementos en columna */
     align-items: center; /* Centra los elementos horizontalmente */
@@ -41,65 +30,77 @@ body {
     transition: all 0.4s ease-in-out; /* Transición suave para cambios */
     overflow: hidden; /* Oculta el contenido que sobresale */
     border-radius: 16px; /* Bordes redondeados */
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; /* Sombra para los artículos */
     background: var(--background); /* Aplica el color de fondo */
 }
 
 .articles article h2 {
+    font-family: 'Inter';
+    text-transform: uppercase;
+    font-size: 1.6rem;
+    font-weight: 800;
+    line-height: 24px;
+    letter-spacing: -0.02em;
     margin: 0 0 0.5rem 0; /* Márgenes para el título */
-    font-size: 1.6rem; /* Tamaño de la fuente del título */
     color: var(--text); /* Color del texto del título */
     transition: color 0.3s ease-out; /* Transición suave para el color */
     text-align: center; /*Centrat Texto*/
 }
 
 .articles article p {
-    margin: 1rem 0 0.5rem 0; /* Márgenes para el párrafo */
+    font-family: 'Inter';
+    text-transform: uppercase;
+    font-weight: 700;
     font-size: 1rem; /* Tamaño de la fuente del párrafo */
-    color: var(--text); /* Color del texto del párrafo */
     text-align: center; /*Centrat Texto*/
+    color: var(--text); /* Color del texto del párrafo */
+    margin: 1rem 0 0.5rem 0; /* Márgenes para el párrafo */
 }
 
 .articles article img {
-    max-width: 100%; /* Ancho máximo de la imagen */
+    width: 100%; /* Asegura que la figura ocupe el 100% del ancho del artículo */
+    height: 100%; /* Altura de la imagen */
     transform-origin: center; /* Origen de la transformación para la escala */
     transition: transform 0.4s ease-in-out; /* Transición suave para la escala */
-    height: 100%; /* Altura de la imagen */
     aspect-ratio: 16 / 9; /* Relación de aspecto de la imagen */
-    overflow: hidden; /* Oculta cualquier contenido que sobresalga */
-    object-fit: cover; /* Ajusta la imagen para cubrir el contenedor */
+    overflow: hidden; /* Oculta cualquier contenido que sobresalga */    
 }
 
 .articles article:hover img {
-    transform: scale(1.5); /* Escala la imagen al pasar el mouse */
+    transform: scale(1.1); /* Escala la imagen al pasar el mouse */
 }
 
 .article-preview {
-    padding: 1.5rem; /* Espacio interno del contenedor de previsualización */
+    height: 50%;
+    padding: 2rem 1rem 0.2rem 1rem; /* Espacio interno del contenedor de previsualización */
 }
 
 .articles figure {
-    width: 100%; /* Ancho del contenedor de la figura */
-    height: 14rem; /* Altura del contenedor de la figura */
+    width: 100%; /* Asegura que la figura ocupe el 100% del ancho del artículo */
+    height: 60%; /* Ajusta la altura de la imagen al 60% del contenedor */
     overflow: hidden; /* Oculta el contenido que sobresale */
 }
 
 .article-price {
+    font-family: 'Inter';
+    text-transform: uppercase;
+    font-weight: 700;
     color: var(--text); /* Color del texto del precio */
-    font-weight: bold; /* Fuente en negrita */
-    margin-bottom: 1.2rem; /* Margen inferior */
+    margin-top: 0.5rem;
+    margin-bottom: 1rem; /* Margen inferior */
     font-size: 1.2rem; /* Tamaño de la fuente del precio */
 }
 
 .article-buy {
-    margin-top: -0.25rem; /* Margen superior negativo para ajuste */
+    margin-top: 1.25rem; /* Margen superior negativo para ajuste */
     display: flex; /* Flexbox para el diseño */
     flex-direction: column; /* Coloca los elementos en columna */
     align-items: center; /* Centra los elementos horizontalmente */
 }
 
 .article-btn {
-    margin: 0.25rem 1rem 2rem 1rem; /* Márgenes alrededor del botón */
+    font-family: 'Inter';
+    text-transform: uppercase;
+    margin: 0.25rem 1rem 1rem 1rem; /* Márgenes alrededor del botón */
     background: #2c2c2c; /* Color de fondo del botón */
     color:  #f8f8ff; /* Color del texto del botón */
     font-family: inherit; /* Usa la fuente heredada */
@@ -126,4 +127,12 @@ body {
     background-color: var(--button-hover);
     transform: scale(0.9); /* Opcional: añade un efecto sutil al presionar */
     transition: all 0.2s ease-in-out; /* Transición suave para cambios */
+}
+
+/* Estilos para pantallas pequeñas y móviles */
+@media (max-width: 480px) {
+    .articles article {
+        width: 90%; /* Ancho fijo del artículo */
+    }
+
 }

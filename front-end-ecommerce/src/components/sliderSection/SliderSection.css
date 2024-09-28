@@ -1,0 +1,278 @@
+/* ==========================
+    FONT IMPORT
+   ========================== */
+
+/* Importa la fuente Inter de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+/* ==========================
+    BODY STYLES
+   ========================== */
+
+/* Estilos generales aplicados a todo el documento */
+body {
+  font-family: "Inter", sans-serif; /* Define la fuente general */
+}
+
+/* ==========================
+    SLIDER CONTAINER STYLES
+   ========================== */
+
+/* Contenedor principal del slider */
+.slider-container {
+    position: relative; /* Posiciona de forma relativa */
+    width: 100%; /* Ocupa todo el ancho disponible */
+    height: 100vh; /* Altura igual a la pantalla */
+    overflow: hidden; /* Oculta el contenido que desborda */
+    background-color: #FFA602; /* Color de fondo */
+}
+
+/* Contenedor de las secciones del slider */
+.slider-wrapper {
+    display: flex; /* Disposición flex para las secciones del slider */
+    transition: transform 0.3s ease-in-out; /* Transición suave al mover las secciones */
+}
+
+
+/* Flechas del slider (comunes para izquierda y derecha) */
+/* ==========================
+    SLIDER ARROW STYLES
+   ========================== */
+
+.slider-arrow {
+    position: absolute; /* Posiciona las flechas en relación al slider */
+    top: 50%; /* Coloca las flechas en el centro vertical del slider */
+    transform: translateY(-50%); /* Ajusta la posición para centrar verticalmente */
+    background-color: black; /* Fondo negro */
+    color: white; /* Color de las flechas */
+    border: none; /* Elimina el borde */
+    width: 50px; /* Tamaño uniforme del botón */
+    height: 50px; /* Tamaño uniforme del botón */
+    font-size: 1.5rem; /* Tamaño de la flecha */
+    cursor: pointer; /* Muestra el cursor pointer */
+    z-index: 10; /* Asegura que las flechas estén por encima del contenido */
+    border-radius: 50%; /* Hace que el botón sea completamente redondo */
+    display: flex; /* Centra la flecha dentro del botón */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    padding: 0; /* Elimina el padding para centrar mejor la flecha */
+}
+
+/* Flecha izquierda del slider */
+.slider-arrow-left {
+    left: 40px; /* Posiciona la flecha a la izquierda */
+}
+
+/* Flecha derecha del slider */
+.slider-arrow-right {
+    right: 40px; /* Posiciona la flecha a la derecha */
+}
+
+
+/* ==========================
+    SLIDER SECTION STYLES
+   ========================== */
+
+/* Cada sección del slider */
+.slider-section {
+    position: relative; /* Posiciona elementos hijos de forma relativa */
+    min-width: 100%; /* Cada sección ocupa el 100% del contenedor */
+    height: 100vh; /* Altura igual a la pantalla */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra verticalmente */
+    align-items: center; /* Centra horizontalmente */
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: black;
+}
+
+/* ==========================
+    HEADER CONTAINER STYLES
+   ========================== */
+
+/* Contenedor del título y la imagen */
+.header-container {
+    display: flex;
+    flex-direction: column; /* Alinea verticalmente los elementos */
+    align-items: center; /* Centra horizontalmente */
+    margin-bottom: 20px; /* Espaciado entre el título y la imagen */
+    position: relative; /* Permite que el título e imagen se superpongan */
+}
+
+/* Título principal de cada sección */
+.section-title {
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    position: absolute; /* Permite superponer el título sobre la imagen */
+    top: 5%; /* Ajusta la posición vertical */
+    left: 50%; /* Centra horizontalmente */
+    transform: translateX(-50%); /* Compensa el centrado del título */
+    color: white; /* Color del texto del título */
+    font-size: 10rem; /* Tamaño del texto */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra para mejorar legibilidad */
+    white-space: nowrap; /* Evita que el texto se divida en líneas */
+    z-index: -1; /* Coloca el título detrás de la imagen */
+}
+
+/* Imagen de cada sección */
+.section-image {
+    max-width: 74%; /* Limita el ancho de la imagen */
+    height: auto; /* Mantiene la proporción */
+    z-index: 1; /* Imagen frente al título */
+}
+
+/* ==========================
+    SUBHEADER STYLES
+   ========================== */
+
+/* Contenedor del subtítulo */
+.subheader-container {
+    position: absolute; /* Permite posicionar el subtítulo */
+    bottom: 8%; /* Posicionado en la parte inferior izquierda */
+    left: 8%; /* Alineado a la izquierda */
+    color: white; /* Color del subtítulo */
+    z-index: 2; /* Asegura que esté por encima de otros elementos */
+    font-size: 3.5rem; /* Tamaño del texto */
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+/* ==========================
+    PARAGRAPH STYLES
+   ========================== */
+
+
+/* Contenedor de los párrafos */
+.paragraphs-container {
+    position: absolute; /* Permite posicionar el contenedor */
+    bottom: 50px; /* Posición a 10px del borde inferior */
+    right: 80px; /* Posición a 10px del borde derecho */
+    text-align: right; /* Alinea el texto a la derecha */
+    max-width: 300px; /* Limita el ancho de los párrafos */
+    line-height: 1.5; /* Mejora la legibilidad */
+    font-family: "Inter";
+    font-size: 1.2rem; /* Tamaño del texto */
+}
+
+/* Estilo para el primer párrafo */
+.paragraphs-container p:first-of-type {
+    color: black; /* Color negro */
+    text-decoration: underline; /* Subrayado */
+    text-transform: uppercase; /* Texto en mayúsculas */
+}
+
+/* Estilo para el segundo párrafo */
+.paragraphs-container p:nth-of-type(2) {
+    color: white; /* Color blanco */
+    text-transform: uppercase; /* Texto en mayúsculas */
+}
+
+/* =============================
+   PARA TABLETAS Y PANTALLAS MEDIANAS
+   (Anchura entre 768px y 1024px)
+   ============================= */
+   @media (max-width: 1024px) {
+    .slider-arrow {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+
+    .slider-arrow-left {
+        left: 20px; /* Ajusta la posición a pantallas más pequeñas */
+    }
+
+    .slider-arrow-right {
+        right: 20px; /* Ajusta la posición a pantallas más pequeñas */
+    }
+
+    .section-title {
+        font-size: 5rem; /* Reduce el tamaño del título */
+    }
+
+    .subheader-container {
+        font-size: 2rem; /* Ajusta el tamaño del subtítulo */
+    }
+
+    .paragraphs-container {
+        bottom: 30px;
+        right: 40px;
+        font-size: 1rem; /* Ajusta el tamaño del texto */
+    }
+}
+
+/* =============================
+   PARA DISPOSITIVOS MÓVILES
+   (Pantallas menores a 768px)
+   ============================= */
+@media (max-width: 768px) {
+    .slider-arrow {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+
+    .slider-arrow-left {
+        left: 10px; /* Ajusta la posición para pantallas más pequeñas */
+    }
+
+    .slider-arrow-right {
+        right: 10px; /* Ajusta la posición para pantallas más pequeñas */
+    }
+
+    .section-title {
+        font-size: 3rem; /* Reduce aún más el tamaño del título */
+    }
+
+    .subheader-container {
+        font-size: 1.5rem; /* Reduce el tamaño del subtítulo */
+    }
+
+    .paragraphs-container {
+        bottom: 20px;
+        right: 20px;
+        font-size: 0.9rem; /* Ajusta el tamaño del texto */
+    }
+
+    .section-image {
+        max-width: 90%; /* Reduce el tamaño de la imagen */
+    }
+}
+
+/* =============================
+   PARA PANTALLAS GRANDES
+   (Pantallas mayores a 1024px)
+   ============================= */
+@media (min-width: 1024px) {
+    .slider-arrow {
+        width: 60px;
+        height: 60px;
+        font-size: 1.8rem;
+    }
+
+    .slider-arrow-left {
+        left: 50px; /* Posiciona más lejos en pantallas grandes */
+    }
+
+    .slider-arrow-right {
+        right: 50px; /* Posiciona más lejos en pantallas grandes */
+    }
+
+    .section-title {
+        font-size: 8rem; /* Tamaño grande para pantallas grandes */
+    }
+
+    .subheader-container {
+        font-size: 3rem;
+    }
+
+    .paragraphs-container {
+        bottom: 50px;
+        right: 50px;
+        font-size: 1.2rem;
+    }
+}
