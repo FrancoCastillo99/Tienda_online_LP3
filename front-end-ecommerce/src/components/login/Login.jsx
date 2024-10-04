@@ -41,6 +41,9 @@ function Login() {
 
     try {
       await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
+      const user = userCredential.user;
+      // const token = await user.getIdToken(); // Obtener el token
+      // localStorage.setItem('userToken', token); // Almacenar el token
       setError('');
       setShowSuccessAlert(true);
       setTimeout(() => {
@@ -71,8 +74,11 @@ function Login() {
       await setDoc(doc(db, 'usuarios', user.uid), {
         email: registerEmail,
         username: registerUsername,
-        creada: new Date()
+        creada: new Date(),
+        rol: "user"
       });
+      // const token = await user.getIdToken(); // Obtener el token
+      // localStorage.setItem('userToken', token); // Almacenar el token
       setShowErrorAlert(false);
       setShowSuccessAlert(true);
       setTimeout(() => {
@@ -105,8 +111,11 @@ function Login() {
       await setDoc(doc(db, 'usuarios', user.uid), {
         email: user.email,
         username: user.displayName || 'Sin Nombre',
-        loginConGoogle: new Date()
+        loginConGoogle: new Date(),
+        rol: "user"
       });
+      // const token = await user.getIdToken(); // Obtener el token
+      // localStorage.setItem('userToken', token); // Almacenar el token
       setShowSuccessAlert(true);
       setTimeout(() => {
         setShowSuccessAlert(false);
@@ -138,8 +147,11 @@ function Login() {
         await setDoc(doc(db, 'usuarios', user.uid), {
           email: user.email,
           username: user.displayName || 'Sin Nombre',
-          creadaConGoogle: new Date()
+          creadaConGoogle: new Date(),
+          rol: "user"
         });
+        // const token = await user.getIdToken(); // Obtener el token
+        // localStorage.setItem('userToken', token); // Almacenar el token
         setShowSuccessAlert(true);
         setTimeout(() => {
           setShowSuccessAlert(false);

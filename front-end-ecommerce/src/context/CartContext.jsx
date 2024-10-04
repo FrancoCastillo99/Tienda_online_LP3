@@ -1,30 +1,38 @@
-import { createContext, useState } from 'react';
+import { createContext, useState, useEffect } from 'react';
 
 export const CartContext = createContext();
 
 export function CartProvider({ children }) {
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState(() => {
+    const savedCartItems = localStorage.getItem('cartItems');
+    return savedCartItems ? JSON.parse(savedCartItems) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+  }, [cartItems]);
 
   const addItemToCart = (product) => {
     setCartItems((prevItems) => {
-      const itemExists = prevItems.find(item => item.title === product.title);
+      const itemExists = prevItems.find(item => item.titulo === product.titulo); // Cambiado a titulo
       if (itemExists) {
         return prevItems.map(item => 
-          item.title === product.title ? { ...item, quantity: item.quantity + 1 } : item
+          item.titulo === product.titulo ? { ...item, cantidad: item.cantidad + 1 } : item // Cambiado a cantidad
         );
       }
-      return [...prevItems, { ...product, quantity: 1 }];
+      return [...prevItems, { ...product, cantidad: 1 }]; // Cambiado a cantidad
     });
   };
 
-  const removeItem = (title) => {
-    setCartItems((prevItems) => prevItems.filter(item => item.title !== title));
+  const removeItem = (titulo) => { // Cambiado a titulo
+    setCartItems((prevItems) => prevItems.filter(item => item.titulo !== titulo)); // Cambiado a titulo
   };
 
-  const updateQuantity = (title, newQuantity) => {
+  const updateQuantity = (titulo, newQuantity) => { // Cambiado a titulo
+    if (newQuantity < 0) return; // Evitar cantidades negativas
     setCartItems((prevItems) =>
       prevItems.map(item =>
-        item.title === title ? { ...item, quantity: newQuantity } : item
+        item.titulo === titulo ? { ...item, cantidad: newQuantity } : item // Cambiado a cantidad
       )
     );
   };

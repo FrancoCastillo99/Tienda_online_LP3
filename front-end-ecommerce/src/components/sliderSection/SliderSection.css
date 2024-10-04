@@ -104,7 +104,7 @@ body {
 /* Título principal de cada sección */
 .section-title {
     text-transform: uppercase;
-    font-weight: 800;
+    font-weight: 900;
     letter-spacing: -0.02em;
     position: absolute; /* Permite superponer el título sobre la imagen */
     top: 5%; /* Ajusta la posición vertical */
@@ -172,10 +172,10 @@ body {
 }
 
 /* =============================
-   PARA TABLETAS Y PANTALLAS MEDIANAS
-   (Anchura entre 768px y 1024px)
+    PARA TABLETAS Y PANTALLAS MEDIANAS
+    (Anchura entre 768px y 1024px)
    ============================= */
-   @media (max-width: 1024px) {
+@media (max-width: 1024px) {
     .slider-arrow {
         width: 40px;
         height: 40px;
@@ -206,8 +206,8 @@ body {
 }
 
 /* =============================
-   PARA DISPOSITIVOS MÓVILES
-   (Pantallas menores a 768px)
+    PARA DISPOSITIVOS MÓVILES
+    (Pantallas menores a 768px)
    ============================= */
 @media (max-width: 768px) {
     .slider-arrow {
@@ -244,8 +244,8 @@ body {
 }
 
 /* =============================
-   PARA PANTALLAS GRANDES
-   (Pantallas mayores a 1024px)
+    PARA PANTALLAS GRANDES
+    (Pantallas mayores a 1024px)
    ============================= */
 @media (min-width: 1024px) {
     .slider-arrow {
