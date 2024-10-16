@@ -3,10 +3,10 @@
 import React, { useState } from 'react';
 import SliderSection from './sliderSelection';
 
-import s1 from '../../assets/images/slider/hamburguesa1.png';
-import s2 from '../../assets/images/slider/hamburguesa2.png';
-import s3 from '../../assets/images/slider/hamburguesa3.png';
-import s4 from '../../assets/images/slider/hamburguesa4.png';
+import s1 from '../../assets/images/slider/hamburguesaOne.png';
+import s2 from '../../assets/images/slider/hamburguesaTwo.png';
+import s3 from '../../assets/images/slider/hamburguesaThree.png';
+import s4 from '../../assets/images/slider/hamburguesaFour.png';
 
 export default function SliderSectionHome() {
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -65,10 +65,8 @@ export default function SliderSectionHome() {
             </article>
 
             <button className="slider-arrow slider-arrow-left" onClick={handlePrevSlide}>
-                &lt;
             </button>
             <button className="slider-arrow slider-arrow-right" onClick={handleNextSlide}>
-                &gt;
             </button>
         </section>
     );
