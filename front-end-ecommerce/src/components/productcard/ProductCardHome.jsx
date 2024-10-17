@@ -1,37 +1,43 @@
-import React, { useEffect, useState } from 'react'; // Asegúrate de importar useState
+import React, { useEffect, useState } from 'react';
 import ProductCard from './ProductCard';
-import { db } from '../../config/firebaseConfig';
-import { collection, getDocs} from 'firebase/firestore';
-// Define el componente Home que contiene una lista de ProductCards
 
 function ProductCardHome() {
     const [products, setProducts] = useState([]);
-    const [error, setError] = useState(null); // Estado para manejar los errores
+    const [error, setError] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
 
-    useEffect (() => {
+    useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const productsCollections = collection(db, "Productos");
-                const productSnapshot = await getDocs(productsCollections);
-                const productList = productSnapshot.docs.map(doc => ({
-                    id: doc.id,
-                    ...doc.data(),
-                }));
-                console.log(productList);
-                setProducts(productList);
+                const response = await fetch('http://localhost:8080/api/productos');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                setProducts(data);
             } catch (error) {
                 setError("Error al cargar los productos");
                 console.error("Error buscando productos: ", error);
+            } finally {
+                setIsLoading(false);
             }
         }
         
         fetchProducts();
-    }, [])
+    }, []);
+
+    if (isLoading) {
+        return <div>Cargando productos...</div>;
+    }
+
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
 
     return (
         <div className="articles"> 
             {products.map((product) => (
-                <ProductCard key={product.id} product={product}/>
+                <ProductCard key={product.id} product={product} />
             ))}
         </div>
     );

@@ -6,20 +6,20 @@ export default function ShoppingCart() {
   const { cartItems, removeItem, updateQuantity } = useContext(CartContext);
   const [paymentMethod, setPaymentMethod] = useState(null);
 
-  const handleDecreaseQuantity = (titulo, cantidad) => { // Cambiado a titulo y cantidad
+  const handleDecreaseQuantity = (nombre, cantidad) => { 
     if (cantidad > 1) {
-      updateQuantity(titulo, cantidad - 1);
+      updateQuantity(nombre, cantidad - 1);
     } else {
-      removeItem(titulo);
+      removeItem(nombre);
     }
   };
 
-  const handleIncreaseQuantity = (titulo, cantidad) => { // Cambiado a titulo y cantidad
-    updateQuantity(titulo, cantidad + 1);
+  const handleIncreaseQuantity = (nombre, cantidad) => { 
+    updateQuantity(nombre, cantidad + 1);
   };
 
   // Asegúrate de que estás utilizando el nombre correcto del campo de precio
-  const total = cartItems.reduce((sum, item) => sum + item.precio * item.cantidad, 0); // Cambiado a precio y cantidad
+  const total = cartItems.reduce((sum, item) => sum + item.precio * item.cantidad, 0); 
 
   return (
     <div className="card-content">
@@ -32,28 +32,27 @@ export default function ShoppingCart() {
           <h2 className="cart-title">Carrito de Compras</h2>
           <p className="cart-count">Tienes {cartItems.length} artículos en tu carrito</p>
           {cartItems.map((item) => (
-            <div key={item.titulo} className="cart-item"> {/* Cambiado a titulo */}
+            <div key={item.nombre} className="cart-item"> 
               <div className="item-details">
-                <img src={item.imagen} alt={item.titulo} className="item-image" /> {/* Cambiado a imagen */}
+                <img src={item.imagenUrl} alt={item.nombre} className="item-image" /> 
                 <div>
-                  <h3 className="item-name">{item.titulo}</h3> {/* Cambiado a titulo */}
-                  <p className="item-description">{item.descripcion}</p> {/* Cambiado a descripcion */}
+                  <h3 className="item-name">{item.nombre}</h3> 
                 </div>
               </div>
               <div className="item-actions">
                 <div className="quantity-control">
                   <button 
                     className="quantity-button"
-                    onClick={() => handleDecreaseQuantity(item.titulo, item.cantidad)}
-                    aria-label={`Disminuir cantidad de ${item.titulo}`} // Cambiado a titulo
+                    onClick={() => handleDecreaseQuantity(item.nombre, item.cantidad)}
+                    aria-label={`Disminuir cantidad de ${item.nombre}`} 
                   >
                     -
                   </button>
-                  <span className="quantity">{item.cantidad}</span> {/* Cambiado a cantidad */}
+                  <span className="quantity">{item.cantidad}</span> 
                   <button 
                     className="quantity-button"
-                    onClick={() => handleIncreaseQuantity(item.titulo, item.cantidad)} 
-                    aria-label={`Aumentar cantidad de ${item.titulo}`} // Cambiado a titulo
+                    onClick={() => handleIncreaseQuantity(item.nombre, item.cantidad)} 
+                    aria-label={`Aumentar cantidad de ${item.nombre}`} 
                   >
                     +
                   </button>
@@ -61,8 +60,8 @@ export default function ShoppingCart() {
                 <p className="item-price">${(item.precio * item.cantidad).toFixed(2)}</p> {/* Asegúrate de que el campo precio sea correcto */}
                 <button 
                   className="remove-button"
-                  onClick={() => removeItem(item.titulo)}
-                  aria-label={`Eliminar ${item.titulo} del carrito`} // Cambiado a titulo
+                  onClick={() => removeItem(item.nombre)}
+                  aria-label={`Eliminar ${item.nombre} del carrito`} // Cambiado a titulo
                 >
                   ×
                 </button>
