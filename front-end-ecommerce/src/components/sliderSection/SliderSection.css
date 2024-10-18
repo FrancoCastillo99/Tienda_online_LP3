@@ -174,20 +174,6 @@ body {
     MEDIA QUERIES
    ========================== */
 
-/* Large Desktops and TVs */
-@media screen and (min-width: 1400px) {
-    .section-title {
-        font-size: 12rem;
-    }
-    .subheader-container {
-        font-size: 5rem;
-    }
-    .paragraphs-container {
-        font-size: 1.8rem;
-        max-width: 400px;
-    }
-}
-
 /* Desktops and Laptops */
 @media screen and (max-width: 1399px) and (min-width: 1024px) {
     .section-title {
