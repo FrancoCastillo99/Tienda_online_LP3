@@ -99,7 +99,7 @@ body {
     font-weight: 900;
     letter-spacing: -0.02em;
     position: absolute; 
-    top: 5%; 
+    top: 10%; 
     left: 50%; 
     transform: translateX(-50%);
     color: #FFFFFF;
@@ -170,4 +170,171 @@ body {
     margin-left: auto;
 }
 
+/* ==========================
+    MEDIA QUERIES
+   ========================== */
+
+/* Large Desktops and TVs */
+@media screen and (min-width: 1400px) {
+    .section-title {
+        font-size: 12rem;
+    }
+    .subheader-container {
+        font-size: 5rem;
+    }
+    .paragraphs-container {
+        font-size: 1.8rem;
+        max-width: 400px;
+    }
+}
+
+/* Desktops and Laptops */
+@media screen and (max-width: 1399px) and (min-width: 1024px) {
+    .section-title {
+        font-size: 12rem;
+        top: 3%; 
+
+    }
+    .subheader-container {
+        font-size: 3.5rem;
+    }
+    .paragraphs-container {
+        font-size: 1.3rem;
+        max-width: 300px;
+    }
+}
+
+/* Tablets and Small Laptops */
+@media screen and (max-width: 1023px) and (min-width: 768px) {
+    .slider-container {
+        height: 100vh;
+    }
+    .section-title {
+        font-size: 6rem;
+    }
+    .subheader-container {
+        font-size: 3rem;
+        bottom: 15%;
+    }
+    .paragraphs-container {
+        font-size: 1.2rem;
+        max-width: 250px;
+        bottom: 40px;
+        right: 40px;
+    }
+    .section-image {
+        max-width: 80vw;
+    }
+}
+
+/* Large Smartphones */
+@media screen and (max-width: 767px) and (min-width: 480px) {
+    .slider-container {
+        height: auto;
+        min-height: 100vh;
+    }
+    .section-title {
+        font-size: 4rem;
+    }
+    .subheader-container {
+        font-size: 2.5rem;
+        bottom: 20%;
+        left: 5%;
+    }
+    .paragraphs-container {
+        font-size: 1rem;
+        max-width: 200px;
+        bottom: 30px;
+        right: 30px;
+    }
+    .section-image {
+        max-width: 90vw;
+    }
+    .slider-arrow {
+        width: 6vw;
+        height: 6vw;
+    }
+}
+
+/* Small Smartphones */
+@media screen and (max-width: 479px) {
+    .slider-container {
+        height: auto;
+        min-height: 100vh;
+        padding-top: 4vh;
+    }
+    .section-title {
+        font-size: 3rem;
+    }
+    .subheader-container {
+        font-size: 2rem;
+        bottom: 25%;
+        left: 5%;
+    }
+    .paragraphs-container {
+        font-size: 0.9rem;
+        max-width: 180px;
+        bottom: 20px;
+        right: 20px;
+    }
+    .section-image {
+        max-width: 95vw;
+    }
+    .slider-arrow {
+        width: 8vw;
+        height: 8vw;
+    }
+    .slider-arrow-left {
+        left: 2vw;
+    }
+    .slider-arrow-right {
+        right: 2vw;
+    }
+}
+
+/* Portrait Orientation for Tablets and Phones */
+@media screen and (max-width: 1023px) and (orientation: portrait) {
+    .slider-container {
+        height: auto;
+        min-height: 100vh;
+    }
+    .header-container {
+        margin-bottom: 5vh;
+    }
+    .subheader-container {
+        bottom: auto;
+        top: 70%;
+        left: 5%;
+        text-align: left;
+    }
+    .paragraphs-container {
+        bottom: 5vh;
+        right: 5vw;
+    }
+}
+
+/* Landscape Orientation for Phones */
+@media screen and (max-width: 767px) and (orientation: landscape) {
+    .slider-container {
+        height: auto;
+        min-height: 100vh;
+    }
+    .section-title {
+        font-size: 3rem;
+    }
+    .subheader-container {
+        font-size: 2rem;
+        bottom: 10%;
+        left: 5%;
+    }
+    .paragraphs-container {
+        font-size: 0.8rem;
+        max-width: 150px;
+        bottom: 10px;
+        right: 10px;
+    }
+    .section-image {
+        max-width: 60vw;
+    }
+}
 
