@@ -9,7 +9,7 @@ function ProductCardHome() {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await fetch('http://localhost:8080/api/productos');
+                const response = await fetch('http://localhost:8080/api/productos/categoria/Papas');
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }

@@ -1,47 +1,39 @@
 /* ==========================
-    FONT IMPORT
-   ========================== */
-
-/* Importa la fuente Inter de Google Fonts */
+FONT IMPORT
+========================== */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
 /* ==========================
     BODY STYLES
-   ========================== */
-
-/* Estilos generales aplicados a todo el documento */
+    ========================== */
 body {
-  font-family: "Inter", sans-serif; /* Define la fuente general */
+    font-family: "Inter", sans-serif;
 }
 
 /* ==========================
     SLIDER CONTAINER STYLES
-   ========================== */
-
-/* Contenedor principal del slider */
+    ========================== */
 .slider-container {
     position: relative;
-    width: 100vw; /* Ancho del viewport */
-    height: 110vh; /* Altura igual al viewport */
+    width: 100vw;
+    height: 110vh;
     overflow: hidden;
     background-color: #FFA602;
-    padding-top: 8vh; /* Proporcional al viewport */
+    padding-top: 8vh;
 }
 
-/* Contenedor de las secciones del slider */
 .slider-wrapper {
     display: flex;
     transition: transform 0.3s ease-in-out;
 }
 
-/* Flechas del slider */
 .slider-arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     background-color: transparent;
     border: none;
-    width: 4vw; /* Usar viewport width */
+    width: 4vw;
     height: 4vw;
     cursor: pointer;
     z-index: 10;
@@ -50,13 +42,11 @@ body {
     background-position: center;
 }
 
-/* Flecha izquierda */
 .slider-arrow-left {
     left: 5vw;
     background-image: url('../../assets/images/slider/LeftArrow.png');
 }
 
-/* Flecha derecha */
 .slider-arrow-right {
     right: 5vw;
     background-image: url('../../assets/images/slider/RightArrow.png');
@@ -64,8 +54,7 @@ body {
 
 /* ==========================
     SLIDER SECTION STYLES
-   ========================== */
-
+    ========================== */
 .slider-section {
     position: relative;
     min-width: 100vw;
@@ -75,16 +64,14 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    font-size: 4vw; /* Ajuste proporcional */
+    font-size: 4vw;
     font-weight: bold;
     color: black;
 }
 
 /* ==========================
     HEADER CONTAINER STYLES
-   ========================== */
-
-/* Contenedor del título y la imagen */
+    ========================== */
 .header-container {
     display: flex;
     flex-direction: column;
@@ -93,23 +80,21 @@ body {
     position: relative;
 }
 
-/* Título principal de cada sección */
 .section-title {
     text-transform: uppercase;
     font-weight: 900;
     letter-spacing: -0.02em;
-    position: absolute; 
-    top: 10%; 
-    left: 50%; 
+    position: absolute;
+    top: 10%;
+    left: 50%;
     transform: translateX(-50%);
     color: #FFFFFF;
-    font-size: 10rem; /* Aumentamos el tamaño del título H1 */
+    font-size: 10rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     white-space: nowrap;
     z-index: -1;
 }
 
-/* Imagen de cada sección */
 .section-image {
     max-width: 70vw;
     height: auto;
@@ -118,15 +103,14 @@ body {
 
 /* ==========================
     SUBHEADER STYLES
-   ========================== */
-
+    ========================== */
 .subheader-container {
     position: absolute;
-    bottom: 10%; /* Lo subimos un poco más */
-    left: 8%; 
+    bottom: 10%;
+    left: 8%;
     color: white;
     z-index: 2;
-    font-size: 4rem; /* Aumentamos el tamaño del subtítulo */
+    font-size: 4rem;
     text-transform: uppercase;
     font-weight: 800;
     letter-spacing: -0.02em;
@@ -134,17 +118,16 @@ body {
 
 /* ==========================
     PARAGRAPH STYLES
-   ========================== */
-
+    ========================== */
 .paragraphs-container {
     position: absolute;
-    bottom: 60px; /* Lo subimos un poco */
-    right: 60px; /* Lo ajustamos para alinearlo mejor */
+    bottom: 60px;
+    right: 60px;
     text-align: right;
-    max-width: 350px; /* Aumentamos el ancho del contenedor de párrafos */
+    max-width: 350px;
     line-height: 1.5;
     font-family: "Inter";
-    font-size: 1.5rem; /* Aumentamos el tamaño del texto en los párrafos */
+    font-size: 1.5rem;
 }
 
 .paragraphs-container p:first-of-type {
@@ -159,7 +142,6 @@ body {
     text-transform: uppercase;
 }
 
-/* Línea horizontal entre párrafos */
 .paragraphs-container p:first-of-type::after {
     content: '';
     display: block;
@@ -172,108 +154,111 @@ body {
 
 /* ==========================
     MEDIA QUERIES
-   ========================== */
+    ========================== */
 
 /* Desktops and Laptops */
 @media screen and (max-width: 1399px) and (min-width: 1024px) {
     .section-title {
-        font-size: 12rem;
-        top: 3%; 
-
+        font-size: 8rem;
+        top: 8%;
+    }
+    .section-image {
+        max-width: 65vw;
     }
     .subheader-container {
         font-size: 3.5rem;
+        bottom: 12%;
     }
     .paragraphs-container {
-        font-size: 1.3rem;
-        max-width: 300px;
+        font-size: 1.4rem;
+        max-width: 320px;
+        bottom: 50px;
+        right: 50px;
     }
 }
 
 /* Tablets and Small Laptops */
 @media screen and (max-width: 1023px) and (min-width: 768px) {
     .slider-container {
-        height: 100vh;
+        height: 110vh;
+        padding-top: 6vh;
     }
     .section-title {
-        font-size: 6rem;
+        font-size: 7rem;
+        top: 7%;
+    }
+    .section-image {
+        max-width: 75vw;
     }
     .subheader-container {
         font-size: 3rem;
-        bottom: 15%;
+        bottom: 12%;
+        left: 7%;
     }
     .paragraphs-container {
-        font-size: 1.2rem;
-        max-width: 250px;
-        bottom: 40px;
-        right: 40px;
-    }
-    .section-image {
-        max-width: 80vw;
+        font-size: 1.3rem;
+        max-width: 300px;
+        bottom: 45px;
+        right: 45px;
     }
 }
 
 /* Large Smartphones */
 @media screen and (max-width: 767px) and (min-width: 480px) {
     .slider-container {
-        height: auto;
-        min-height: 100vh;
+        height: 110vh;
+        padding-top: 5vh;
     }
     .section-title {
-        font-size: 4rem;
-    }
-    .subheader-container {
-        font-size: 2.5rem;
-        bottom: 20%;
-        left: 5%;
-    }
-    .paragraphs-container {
-        font-size: 1rem;
-        max-width: 200px;
-        bottom: 30px;
-        right: 30px;
+        font-size: 5rem;
+        top: 6%;
     }
     .section-image {
-        max-width: 90vw;
+        max-width: 85vw;
+    }
+    .subheader-container {
+        font-size: 2.8rem;
+        bottom: 15%;
+        left: 6%;
+    }
+    .paragraphs-container {
+        font-size: 1.2rem;
+        max-width: 280px;
+        bottom: 40px;
+        right: 40px;
     }
     .slider-arrow {
-        width: 6vw;
-        height: 6vw;
+        width: 5vw;
+        height: 5vw;
     }
 }
 
 /* Small Smartphones */
 @media screen and (max-width: 479px) {
     .slider-container {
-        height: auto;
-        min-height: 100vh;
+        height: 110vh;
         padding-top: 4vh;
     }
     .section-title {
-        font-size: 3rem;
+        font-size: 4rem;
+        top: 5%;
+    }
+    .section-image {
+        max-width: 90vw;
     }
     .subheader-container {
-        font-size: 2rem;
-        bottom: 20%;
+        font-size: 2.5rem;
+        bottom: 15%;
         left: 5%;
     }
     .paragraphs-container {
-        font-size: 0.9rem;
-        max-width: 180px;
-        bottom: 40px;
-        right: 20px;
-    }
-    .section-image {
-        max-width: 95vw;
+        font-size: 1.1rem;
+        max-width: 250px;
+        bottom: 35px;
+        right: 35px;
     }
     .slider-arrow {
-        width: 8vw;
-        height: 8vw;
-    }
-    .slider-arrow-left {
-        left: 2vw;
-    }
-    .slider-arrow-right {
-        right: 2vw;
+        width: 6vw;
+        height: 6vw;
     }
 }
