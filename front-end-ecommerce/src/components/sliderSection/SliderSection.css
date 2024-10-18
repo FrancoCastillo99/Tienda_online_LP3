@@ -254,13 +254,13 @@ body {
     }
     .subheader-container {
         font-size: 2rem;
-        bottom: 25%;
+        bottom: 20%;
         left: 5%;
     }
     .paragraphs-container {
         font-size: 0.9rem;
         max-width: 180px;
-        bottom: 20px;
+        bottom: 40px;
         right: 20px;
     }
     .section-image {
@@ -277,50 +277,3 @@ body {
         right: 2vw;
     }
 }
-
-/* Portrait Orientation for Tablets and Phones */
-@media screen and (max-width: 1023px) and (orientation: portrait) {
-    .slider-container {
-        height: auto;
-        min-height: 100vh;
-    }
-    .header-container {
-        margin-bottom: 5vh;
-    }
-    .subheader-container {
-        bottom: auto;
-        top: 70%;
-        left: 5%;
-        text-align: left;
-    }
-    .paragraphs-container {
-        bottom: 5vh;
-        right: 5vw;
-    }
-}
-
-/* Landscape Orientation for Phones */
-@media screen and (max-width: 767px) and (orientation: landscape) {
-    .slider-container {
-        height: auto;
-        min-height: 100vh;
-    }
-    .section-title {
-        font-size: 3rem;
-    }
-    .subheader-container {
-        font-size: 2rem;
-        bottom: 10%;
-        left: 5%;
-    }
-    .paragraphs-container {
-        font-size: 0.8rem;
-        max-width: 150px;
-        bottom: 10px;
-        right: 10px;
-    }
-    .section-image {
-        max-width: 60vw;
-    }
-}
-

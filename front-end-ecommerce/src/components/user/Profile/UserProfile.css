@@ -1,13 +1,32 @@
+/* ================================= 
+1. VARIABLES
+================================= */
+
+:root {
+  --primary-color-user: #ff0000;
+  --secondary-color-user: #ddd;
+  --text-color-user: #888;
+  --highlight-color-user: hsl(39, 100%, 50%);
+}
+
+/* ================================= 
+2. CONTAINER STYLES
+================================= */
+
 .user-profile-container {
   background-color: #f4f4f4;
-  min-height: 100vh;
+  height: 110vh;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+/* ================================= 
+3. HEADER STYLES
+================================= */
+
 .profile-header-container {
-  background-color: #ff0000;
+  background-color: var(--primary-color-user);
   color: white;
   padding: 10px 20px;
   width: 100%;
@@ -29,10 +48,14 @@
   margin-left: 20px;
 }
 
+/* ================================= 
+4. MENU STYLES
+================================= */
+
 .profile-menu-item {
   display: flex;
   align-items: center;
-  color: hsl(39, 100%, 50%);
+  color: var(--highlight-color-user);
 }
 
 .profile-menu-icon {
@@ -43,6 +66,10 @@
   font-size: 1.5em;
   margin-right: 20px;
 }
+
+/* ================================= 
+5. CONTENT STYLES
+================================= */
 
 .profile-content-container {
   margin-top: 80px;
@@ -55,7 +82,7 @@
   height: 150px;
   margin: 0 auto 15px;
   border-radius: 50%;
-  background-color: #ddd;
+  background-color: var(--secondary-color-user);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -66,13 +93,17 @@
 }
 
 .profile-birthday {
-  color: #888;
+  color: var(--text-color-user);
 }
 
 .profile-name {
   font-size: 35px;
   margin-top: 10px;
 }
+
+/* ================================= 
+6. STATS STYLES
+================================= */
 
 .profile-stats-container {
   display: flex;
@@ -88,15 +119,10 @@
   font-weight: normal;
 }
 
-.profile-birthday {
-  font-size: 15px;
-  margin-top: 5px;
-}
-
 .profile-stat-text {
   font-size: 14px;
   margin-top: 8px;
-  color: #888;
+  color: var(--text-color-user);
 }
 
 .profile-stat-item {
@@ -110,14 +136,19 @@
   background-color: #383838;
 }
 
+/* ================================= 
+7. ACTIONS STYLES
+================================= */
+
 .profile-actions-container {
   display: flex;
-  justify-content: center; /* Alinea ambos botones al centro */
-  gap: 30px; /* Añade espacio entre los botones */
+  justify-content: center;
+  gap: 30px;
   margin-top: 20px;
 }
 
-.profile-edit-button, .profile-settings-button {
+.profile-edit-button,
+.profile-settings-button {
   padding: 12px 30px;
   height: 45px;
   font-size: 16px;
@@ -127,131 +158,89 @@
   text-align: center;
   text-decoration: none;
   max-width: 250px; /* Ancho máximo del botón */
-  flex: 1; /* Los botones ahora compartirán el espacio disponible */
-
+  flex: 1; /* Los botones compartirán el espacio disponible */
   display: inline-flex; /* Asegura que el texto se mantenga centrado */
   align-items: center; /* Centra el contenido verticalmente */
   justify-content: center; /* Centra el contenido horizontalmente */
 }
+
 .profile-edit-button {
-  background-color: #ff0000;
-  border: 1px solid #ff0000;
+  background-color: var(--primary-color-user);
+  border: 1px solid var(--primary-color-user);
   color: white;
 }
 
 .profile-settings-button {
   background-color: white;
-  border: 1px solid #ff0000;
-  color: #ff0000;
+  border: 1px solid var(--primary-color-user);
+  color: var(--primary-color-user);
 }
 
-/* Media Queries */
+/* ================================= 
+8. MEDIA QUERIES
+================================= */
+
 @media (max-width: 768px) {
   .profile-nav-items {
-      font-size: 16px;
+    font-size: 16px;
   }
 
   .profile-stat-count {
-      font-size: 24px;
+    font-size: 24px;
   }
 
   .profile-stat-text {
-      font-size: 12px;
+    font-size: 12px;
   }
 
-  .profile-actions-container {
-    justify-content: center;
-  }
-
-  .profile-edit-button, .profile-settings-button {
-    max-width: 150px;
-  }
-}
-
-@media (max-width: 480px) {
-  .profile-nav-items {
-      font-size: 14px;
-  }
-
-  .profile-stat-count {
-      font-size: 20px;
-  }
-
-  .profile-stat-text {
-      font-size: 10px;
-  }
-
-  .profile-actions-container {
-    justify-content: center;
-  }
-
-  .profile-edit-button, .profile-settings-button {
-    max-width: 150px;
-  }
-
-  @media (max-width: 480px) {
-    .profile-actions-container {
-      justify-content: center;
-      gap: 20px;
-    }
-  
-    .profile-edit-button, .profile-settings-button {
-      max-width: 150px;
-    }
-  }
-
-/* Estilos para pantallas grandes (escritorio o portátiles) */
-@media (min-width: 769px) {
-  .profile-actions-container {
-    justify-content: center;
-    gap: 50px; /* Espacio más amplio entre los botones en pantallas grandes */
-  }
-
-  .profile-edit-button, .profile-settings-button {
-    padding: 15px 40px; /* Aumenta el relleno para pantallas grandes */
-    font-size: 18px; /* Aumenta el tamaño de la fuente para pantallas grandes */
-    max-width: 300px; /* Aumenta el ancho máximo de los botones */
-  }
-}
-
-/* Estilos para pantallas grandes (escritorio o portátiles) */
-@media (min-width: 769px) {
-  .profile-actions-container {
-    justify-content: center;
-    gap: 50px; /* Espacio más amplio entre los botones en pantallas grandes */
-  }
-
-  .profile-edit-button, .profile-settings-button {
-    padding: 15px 40px; /* Aumenta el relleno para pantallas grandes */
-    font-size: 18px; /* Aumenta el tamaño de la fuente para pantallas grandes */
-    max-width: 300px; /* Aumenta el ancho máximo de los botones */
-  }
-}
-
-/* Media Queries para pantallas más pequeñas */
-@media (max-width: 768px) {
   .profile-actions-container {
     justify-content: center;
     gap: 20px;
   }
 
-  .profile-edit-button, .profile-settings-button {
+  .profile-edit-button,
+  .profile-settings-button {
     padding: 10px 25px; /* Relleno moderado para pantallas medianas */
     max-width: 200px; /* Ajuste del tamaño de los botones */
   }
 }
 
 @media (max-width: 480px) {
+  .profile-nav-items {
+    font-size: 14px;
+  }
+
+  .profile-stat-count {
+    font-size: 20px;
+  }
+
+  .profile-stat-text {
+    font-size: 10px;
+  }
+
   .profile-actions-container {
     justify-content: center;
     gap: 20px;
   }
 
-  .profile-edit-button, .profile-settings-button {
+  .profile-edit-button,
+  .profile-settings-button {
     padding: 8px 20px; /* Relleno más pequeño para móviles */
     max-width: 150px;
     font-size: 14px; /* Tamaño de fuente adecuado para móviles */
   }
 }
 
+@media (min-width: 769px) {
+  .profile-actions-container {
+    justify-content: center;
+    gap: 50px; /* Espacio más amplio entre los botones en pantallas grandes */
+  }
+
+  .profile-edit-button,
+  .profile-settings-button {
+    padding: 15px 40px; /* Aumenta el relleno para pantallas grandes */
+    font-size: 18px; /* Aumenta el tamaño de la fuente para pantallas grandes */
+    max-width: 300px; /* Aumenta el ancho máximo de los botones */
+  }
 }

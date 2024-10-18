@@ -87,7 +87,7 @@ export default function ShoppingCart() {
             >
               <span className="payment-icon">₿</span>
               Bitcoin
-            </button>
+            </button> 
             {paymentMethod === 'mercadopago' && (
               <form className="payment-form">
                 <input className="input" placeholder="Número de tarjeta" />
@@ -100,10 +100,10 @@ export default function ShoppingCart() {
             )}
             {paymentMethod === 'bitcoin' && (
               <div className="payment-form">
-                <input className="input" placeholder="Dirección de Bitcoin" />
                 <p style={{ fontSize: '0.875rem', marginTop: '1rem' }}>
                   Envía el pago a la siguiente dirección de Bitcoin: 
                 </p>
+                <input className="input" placeholder="Dirección de Bitcoin" />
               </div>
             )}
             <div className="total-section">

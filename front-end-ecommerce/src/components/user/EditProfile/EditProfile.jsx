@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Para redirigir al usuario
+import { useNavigate } from 'react-router-dom';
+import NavBar from '../../navBar/NavBar';
 import './EditProfile.css';
 
 const EditProfile = () => {
@@ -30,15 +31,7 @@ const EditProfile = () => {
 
   return (
     <div className="edit-profile-container">
-      <header className="profile-header">
-        <div className="nav-items">
-          <span className="nav-item">HOME</span>
-          <span className="nav-item menu-item">
-            MENU <span className="menu-icon">☰</span>
-          </span>
-          <span className="cart-icon">🍔</span>
-        </div>
-      </header>
+      <NavBar/>
       <div className="content-container">
         <div className="profile-section">
           <h2 className="profile-title">Perfil</h2>
@@ -50,11 +43,12 @@ const EditProfile = () => {
         </div>
         <div className="form-section">
           <form onSubmit={handleSubmit} className="profile-form">
-            <h3 className="section-title">INFORMACIÓN BÁSICA</h3>
+            <h3 className="section-title-profile">INFORMACIÓN BÁSICA</h3>
             <div className="form-row">
               <div className="form-group">
-                <label htmlFor="firstName">NOMBRE</label>
+                <label className="form-label" htmlFor="firstName">NOMBRE</label>
                 <input
+                  className="form-input"
                   type="text"
                   id="firstName"
                   name="firstName"
@@ -63,8 +57,9 @@ const EditProfile = () => {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="lastName">APELLIDO</label>
+                <label className="form-label" htmlFor="lastName">APELLIDO</label>
                 <input
+                  className="form-input"
                   type="text"
                   id="lastName"
                   name="lastName"
@@ -74,8 +69,9 @@ const EditProfile = () => {
               </div>
             </div>
             <div className="form-group">
-              <label htmlFor="birthDate">FECHA DE NACIMIENTO</label>
+              <label className="form-label" htmlFor="birthDate">FECHA DE NACIMIENTO</label>
               <input
+                className="form-input"
                 type="date"
                 id="birthDate"
                 name="birthDate"
@@ -84,8 +80,9 @@ const EditProfile = () => {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="email">EMAIL</label>
+              <label className="form-label" htmlFor="email">EMAIL</label>
               <input
+                className="form-input"
                 type="email"
                 id="email"
                 name="email"

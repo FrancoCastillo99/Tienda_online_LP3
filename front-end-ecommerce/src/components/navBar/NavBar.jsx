@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ShoppingCart from '../shopping/ShoppingCart';
 import menuIcon from '../../assets/images/navBar/menuIcon.png';
+import cancelIcon from '../../assets/images/navBar/cancel.png';
 import ShopIcon from '../../assets/images/navBar/ShopIcon.png';
 import './NavBar.css';
 
@@ -48,12 +49,20 @@ const NavBar = () => {
         setIsMenuOpen(!isMenuOpen);
     };
 
+    // Función para manejar el clic en "Home"
+    const handleHomeClick = () => {
+        if (location.pathname === '/home') {
+            // Si ya estamos en la ruta /home, hacemos scroll al inicio de la página
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    };
+
     return (
         <>
             <nav className="navbar">
                 <div className="navbar-content">
                     <div className="navbar-section left">
-                        <Link to="/home" className="home-text">HOME</Link>
+                        <Link to="/home" className="home-text" onClick={handleHomeClick}>HOME</Link>
                     </div>
                     <div className="navbar-section center">
                         <button onClick={toggleMenu} className="menu-button">
@@ -76,12 +85,16 @@ const NavBar = () => {
                     style={{ top: `${navbarHeight}px` }}
                 >
                     <div className="menu-modal">
-                        <button onClick={toggleMenu} className="close-menu-button">Cerrar &times;</button>
+                        <button onClick={toggleMenu} className="close-menu-button">
+                            <span className="close-text">CERRAR</span>
+                            <img src={cancelIcon} alt="close Icon" className="close-menu" />
+                        </button>
                         <ul>
-                            <li><Link to="/" onClick={toggleMenu}>Perfil</Link></li>
-                            <li><Link to="/productos" onClick={toggleMenu}>Home</Link></li>
-                            <li><Link to="/contacto" onClick={toggleMenu}>Menu</Link></li>
-                            <li><Link to="/contacto" onClick={toggleMenu}>Nosotros</Link></li>
+                            <li><Link to="/profile" onClick={toggleMenu}>PERFIL</Link></li>
+                            <li><Link to="/Home" onClick={toggleMenu}>HOME</Link></li>
+                            <li><Link to="/Menu" onClick={toggleMenu}>MENU</Link></li>
+                            <li><Link to="/Menu" onClick={toggleMenu}>CARRITO</Link></li>
+                            <li><Link to="/Nosotros" onClick={toggleMenu}>NOSTROS</Link></li>
                         </ul>
                     </div>
                 </div>

@@ -13,12 +13,12 @@
     1. VARIABLES Y CONFIGURACIÓN GLOBAL
    ================================= */
 :root {
-    --navbar-bg-color: #7f0218;
-    --menu-text-color: #ECBE08;
-    --overlay-bg-color: rgba(0, 0, 0, 0.8);
-    --cart-overlay-bg: rgba(0, 0, 0, 0.5);
-    --close-button-hover: #ff4500;
-    --navbar-height: 60px;
+    --navbar-bg-color-nav: #7f0218;
+    --menu-text-color-nav: #ECBE08;
+    --overlay-bg-color-nav: rgba(127, 2, 24, 0.8);
+    --cart-overlay-bg-nav: rgba(0, 0, 0, 0.5);
+    --close-button-hover-nav: #ff4500;
+    --navbar-height-nav: 60px;
 }
 
 /* =================================
@@ -30,7 +30,7 @@
     left: 0;
     right: 0;
     z-index: 1000;
-    background-color: var(--navbar-bg-color);
+    background-color: var(--navbar-bg-color-nav);
     transition: background-color 0.3s;
 }
 
@@ -39,7 +39,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    height: var(--navbar-height);
+    height: var(--navbar-height-nav);
 }
 
 /* =================================
@@ -62,7 +62,7 @@
 
 /* Sección central */
 .menu-text {
-    color: var(--menu-text-color);
+    color: var(--menu-text-color-nav);
     font-family: 'Inter', sans-serif;
     font-size: 28px;
     font-weight: 700;
@@ -84,6 +84,7 @@
     background: transparent;
     cursor: pointer;
 }
+
 .menu-icon {
     width: 25px;
     height: 25px;
@@ -103,8 +104,8 @@
     position: fixed;
     right: 0;
     width: 300px;
-    height: calc(100vh - var(--navbar-height));
-    background-color: var(--overlay-bg-color);
+    height: calc(100vh - var(--navbar-height-nav));
+    background-color: var(--overlay-bg-color-nav);
     z-index: 999;
     transition: transform 0.3s ease-in-out;
 }
@@ -114,35 +115,64 @@
     color: white;
 }
 
+
+/* Botón de cierre */
+.close-menu-button {
+    display: flex; /* Alinea el texto y el ícono en el mismo eje */
+    align-items: center; /* Centra verticalmente el texto y el ícono */
+    justify-content: flex-end; /* Alinea ambos al final del contenedor (a la derecha) */
+    font-size: 1rem;
+    color: white;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    width: 100%; /* Ocupa toda la anchura del contenedor */
+    padding-bottom: 10px; /* Elimina cualquier relleno predeterminado */
+    margin-bottom: 20px; /* Añade un poco de margen debajo */
+}
+
+/* Estilos para el texto "CERRAR" */
+.close-text {
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    margin-right: 10px; /* Añade espacio entre el texto y el ícono */
+}
+
+/* Estilos para el ícono de cierre */
+.close-menu {
+    width: 25px;
+    height: 25px;
+}
+
+/* Alineación de la lista y sus elementos */
 .menu-modal ul {
     list-style: none;
     padding: 0;
     margin: 0;
+    text-align: left; /* Alinea los elementos de la lista a la izquierda */
+    width: 100%; /* Asegura que los enlaces ocupen toda la anchura */
 }
 
 .menu-modal li {
-    margin: 20px 0;
+    margin: 40px 0;
+    text-align:right; /* Alinea el texto de cada elemento a la izquierda */
 }
 
 .menu-modal a {
     color: white;
     text-decoration: none;
-    font-size: 1.5rem;
+    font-size: 2rem;
     transition: color 0.3s;
+    font-weight: 800;
+    display: block; /* Hace que el enlace ocupe toda la anchura del contenedor */
 }
 
 .menu-modal a:hover {
-    color: var(--menu-text-color);
+    color: var(--menu-text-color-nav);
 }
 
-.close-menu-button {
-    font-size: 2rem;
-    color: white;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    float: right;
-}
 
 /* =================================
     5. CARRITO DE COMPRAS
@@ -153,7 +183,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: var(--cart-overlay-bg);
+    background-color: var(--cart-overlay-bg-nav);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -185,7 +215,7 @@
 }
 
 .close-cart-button:hover {
-    color: var(--close-button-hover);
+    color: var(--close-button-hover-nav);
 }
 
 .no-scroll {
