@@ -1,0 +1,257 @@
+.user-profile-container {
+  background-color: #f4f4f4;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-header-container {
+  background-color: #ff0000;
+  color: white;
+  padding: 10px 20px;
+  width: 100%;
+}
+
+.profile-nav-items {
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 96%;
+  margin: 0 auto;
+}
+
+.profile-nav-item {
+  font-weight: 700;
+  margin-left: 20px;
+}
+
+.profile-menu-item {
+  display: flex;
+  align-items: center;
+  color: hsl(39, 100%, 50%);
+}
+
+.profile-menu-icon {
+  margin-left: 5px;
+}
+
+.profile-cart-icon {
+  font-size: 1.5em;
+  margin-right: 20px;
+}
+
+.profile-content-container {
+  margin-top: 80px;
+  padding: 20px;
+  text-align: center;
+}
+
+.profile-avatar-container {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  background-color: #ddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-avatar-placeholder {
+  font-size: 3em;
+}
+
+.profile-birthday {
+  color: #888;
+}
+
+.profile-name {
+  font-size: 35px;
+  margin-top: 10px;
+}
+
+.profile-stats-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 80px;
+  padding: 20px;
+  width: 100%;
+}
+
+.profile-stat-count {
+  font-size: 35px;
+  font-weight: normal;
+}
+
+.profile-birthday {
+  font-size: 15px;
+  margin-top: 5px;
+}
+
+.profile-stat-text {
+  font-size: 14px;
+  margin-top: 8px;
+  color: #888;
+}
+
+.profile-stat-item {
+  text-align: center;
+  flex: 1;
+}
+
+.profile-stat-separator {
+  width: 1px;
+  height: 80px;
+  background-color: #383838;
+}
+
+.profile-actions-container {
+  display: flex;
+  justify-content: center; /* Alinea ambos botones al centro */
+  gap: 30px; /* Añade espacio entre los botones */
+  margin-top: 20px;
+}
+
+.profile-edit-button, .profile-settings-button {
+  padding: 12px 30px;
+  height: 45px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  max-width: 250px; /* Ancho máximo del botón */
+  flex: 1; /* Los botones ahora compartirán el espacio disponible */
+
+  display: inline-flex; /* Asegura que el texto se mantenga centrado */
+  align-items: center; /* Centra el contenido verticalmente */
+  justify-content: center; /* Centra el contenido horizontalmente */
+}
+.profile-edit-button {
+  background-color: #ff0000;
+  border: 1px solid #ff0000;
+  color: white;
+}
+
+.profile-settings-button {
+  background-color: white;
+  border: 1px solid #ff0000;
+  color: #ff0000;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .profile-nav-items {
+      font-size: 16px;
+  }
+
+  .profile-stat-count {
+      font-size: 24px;
+  }
+
+  .profile-stat-text {
+      font-size: 12px;
+  }
+
+  .profile-actions-container {
+    justify-content: center;
+  }
+
+  .profile-edit-button, .profile-settings-button {
+    max-width: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-nav-items {
+      font-size: 14px;
+  }
+
+  .profile-stat-count {
+      font-size: 20px;
+  }
+
+  .profile-stat-text {
+      font-size: 10px;
+  }
+
+  .profile-actions-container {
+    justify-content: center;
+  }
+
+  .profile-edit-button, .profile-settings-button {
+    max-width: 150px;
+  }
+
+  @media (max-width: 480px) {
+    .profile-actions-container {
+      justify-content: center;
+      gap: 20px;
+    }
+  
+    .profile-edit-button, .profile-settings-button {
+      max-width: 150px;
+    }
+  }
+
+/* Estilos para pantallas grandes (escritorio o portátiles) */
+@media (min-width: 769px) {
+  .profile-actions-container {
+    justify-content: center;
+    gap: 50px; /* Espacio más amplio entre los botones en pantallas grandes */
+  }
+
+  .profile-edit-button, .profile-settings-button {
+    padding: 15px 40px; /* Aumenta el relleno para pantallas grandes */
+    font-size: 18px; /* Aumenta el tamaño de la fuente para pantallas grandes */
+    max-width: 300px; /* Aumenta el ancho máximo de los botones */
+  }
+}
+
+/* Estilos para pantallas grandes (escritorio o portátiles) */
+@media (min-width: 769px) {
+  .profile-actions-container {
+    justify-content: center;
+    gap: 50px; /* Espacio más amplio entre los botones en pantallas grandes */
+  }
+
+  .profile-edit-button, .profile-settings-button {
+    padding: 15px 40px; /* Aumenta el relleno para pantallas grandes */
+    font-size: 18px; /* Aumenta el tamaño de la fuente para pantallas grandes */
+    max-width: 300px; /* Aumenta el ancho máximo de los botones */
+  }
+}
+
+/* Media Queries para pantallas más pequeñas */
+@media (max-width: 768px) {
+  .profile-actions-container {
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .profile-edit-button, .profile-settings-button {
+    padding: 10px 25px; /* Relleno moderado para pantallas medianas */
+    max-width: 200px; /* Ajuste del tamaño de los botones */
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-actions-container {
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .profile-edit-button, .profile-settings-button {
+    padding: 8px 20px; /* Relleno más pequeño para móviles */
+    max-width: 150px;
+    font-size: 14px; /* Tamaño de fuente adecuado para móviles */
+  }
+}
+
+}
