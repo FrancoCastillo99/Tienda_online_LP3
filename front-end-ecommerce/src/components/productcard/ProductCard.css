@@ -11,6 +11,22 @@ body {
     font-family: 'Inter', sans-serif;
 }
 
+
+/* ==========================
+    MENU CONTENT
+  ========================== */
+/* Contenido principal del cuerpo */
+.menu-content {
+    flex: 1; /* El contenido ocupa el espacio restante */
+    background-image: url('../../assets/images/cards/fondoCards.jpg'); /* Imagen de fondo */
+    background-size: cover; /* Cubre todo el contenedor */
+    background-position: center; /* Centra la imagen de fondo */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    padding-top: 20vh; /* Espaciado superior */
+    padding-bottom: 5vh; /* Espaciado inferior */
+}
+
+
 .articles {
     display: flex; /* Utiliza Flexbox para el diseño */
     flex-wrap: wrap; /* Permite que los artículos se envuelvan en varias líneas */
@@ -18,6 +34,7 @@ body {
     justify-content: center; /* Centra los artículos horizontalmente */
     max-width: auto; /* Ancho máximo del contenedor */
     gap: 3rem; /* Espacio entre los artículos */
+    align-items: center; /* Centra los elementos horizontalmente */
 }
 
 .articles article {
@@ -129,10 +146,28 @@ body {
     transition: all 0.2s ease-in-out; /* Transición suave para cambios */
 }
 
+
+/* ==========================
+    MEDIA QUERIES
+  ========================== */
+
+/* Estilos para pantallas medianas y tabletas */
+@media (max-width: 1024px) {
+    .menu-content {
+        height: auto; /* Permite que la altura se ajuste según el contenido */
+        padding-top: 20vh; /* Espaciado superior */
+        padding-bottom: 5vh; /* Espaciado inferior */
+        background-size: cover; /* La imagen de fondo cubre el contenedor */
+    }
+}
+
+
+
 /* Estilos para pantallas pequeñas y móviles */
 @media (max-width: 480px) {
     .articles article {
         width: 90%; /* Ancho fijo del artículo */
     }
-
 }
+
+

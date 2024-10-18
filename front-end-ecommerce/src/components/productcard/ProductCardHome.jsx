@@ -35,11 +35,15 @@ function ProductCardHome() {
     }
 
     return (
-        <div className="articles"> 
-            {products.map((product) => (
-                <ProductCard key={product.id} product={product} />
-            ))}
-        </div>
+        <section className='menu-content'>
+            <div className='card'>
+                <div className="articles"> 
+                    {products.map((product) => (
+                        <ProductCard key={product.id} product={product} />
+                    ))}
+                </div>
+            </div>
+        </section>
     );
 }
 

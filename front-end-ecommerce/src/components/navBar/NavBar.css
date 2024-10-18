@@ -1,0 +1,262 @@
+/* =================================
+    TABLE OF CONTENTS
+    =================================
+    1. Variables y configuración global
+    2. Navbar principal
+    3. Secciones del navbar
+    4. Menú lateral
+    5. Carrito de compras
+    6. Media queries
+   ================================= */
+
+/* =================================
+    1. VARIABLES Y CONFIGURACIÓN GLOBAL
+   ================================= */
+:root {
+    --navbar-bg-color: #7f0218;
+    --menu-text-color: #ECBE08;
+    --overlay-bg-color: rgba(0, 0, 0, 0.8);
+    --cart-overlay-bg: rgba(0, 0, 0, 0.5);
+    --close-button-hover: #ff4500;
+    --navbar-height: 60px;
+}
+
+/* =================================
+    2. NAVBAR PRINCIPAL
+   ================================= */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: var(--navbar-bg-color);
+    transition: background-color 0.3s;
+}
+
+.navbar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    height: var(--navbar-height);
+}
+
+/* =================================
+    3. SECCIONES DEL NAVBAR
+   ================================= */
+.navbar-section {
+    display: flex;
+    align-items: center;
+}
+
+/* Sección izquierda */
+.navbar-section.left a,
+.home-text {
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+/* Sección central */
+.menu-text {
+    color: var(--menu-text-color);
+    font-family: 'Inter', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    margin-right: 10px;
+}
+
+.menu-button {
+    display: flex;
+    align-items: center;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.cart-button {
+    display: flex;
+    align-items: center;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+.menu-icon {
+    width: 25px;
+    height: 25px;
+    margin-left: 5px;
+}
+
+/* Sección derecha */
+.shop-icon {
+    width: 45px;
+    cursor: pointer;
+}
+
+/* =================================
+    4. MENÚ LATERAL
+   ================================= */
+.menu-overlay {
+    position: fixed;
+    right: 0;
+    width: 300px;
+    height: calc(100vh - var(--navbar-height));
+    background-color: var(--overlay-bg-color);
+    z-index: 999;
+    transition: transform 0.3s ease-in-out;
+}
+
+.menu-modal {
+    padding: 20px;
+    color: white;
+}
+
+.menu-modal ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-modal li {
+    margin: 20px 0;
+}
+
+.menu-modal a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+    transition: color 0.3s;
+}
+
+.menu-modal a:hover {
+    color: var(--menu-text-color);
+}
+
+.close-menu-button {
+    font-size: 2rem;
+    color: white;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    float: right;
+}
+
+/* =================================
+    5. CARRITO DE COMPRAS
+   ================================= */
+.cart-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--cart-overlay-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.cart-modal {
+    background-color: white;
+    border-radius: 5px;
+    max-width: 1000px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: scroll;
+    position: relative;
+}
+
+.cart-modal::-webkit-scrollbar {
+    display: none;
+}
+
+.close-cart-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.close-cart-button:hover {
+    color: var(--close-button-hover);
+}
+
+.no-scroll {
+    overflow: hidden;
+}
+
+/* =================================
+    6. MEDIA QUERIES
+   ================================= */
+@media (max-width: 768px) {
+    :root {
+        --navbar-height: 50px;
+    }
+
+    .navbar{
+        align-items: center;
+    }
+
+    .navbar-section.left {
+        order: 2;
+        justify-content: center;
+    }
+
+    .navbar-section.center {
+        order: 1;
+        justify-content: flex-start;
+    }
+
+    .navbar-section.right{
+        order: 3;
+        margin-top: 1vh;
+    }
+
+    .menu-text {
+        display: none;
+    }
+
+    .home-text {
+        font-size: 1.5rem;
+    }
+
+    .menu-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    .shop-icon {
+        width: 35px;
+    }
+
+    .menu-overlay {
+        width: 250px;
+    }
+
+    /* Ajustes del carrito modal */
+    .cart-modal {
+        width: 100%;
+        max-width: none;
+        height: auto;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+
+    .close-cart-button {
+        font-size: 1.2rem;
+        top: 5px;
+        right: 5px;
+    }
+
+    .cart-overlay {
+        justify-content: center;
+        padding: 10px;
+    }
+}
