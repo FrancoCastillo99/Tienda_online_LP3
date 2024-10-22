@@ -10,4 +10,5 @@ public class Producto {
     private String descripcion;
     private String imagenUrl;
     private String categoria;  // "HAMBURGUESA", "ACOMPANAMIENTO", "BEBIDA", etc.
+    private int stock;
 }
