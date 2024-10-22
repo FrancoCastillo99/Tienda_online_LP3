@@ -1,19 +1,56 @@
+/* =================================
+TABLE OF CONTENTS
+1. Variables
+2. Global Styles
+3. Layout
+4. Cart Section
+5. Cart Items
+6. Payment Section
+7. Payment Methods
+8. Payment Form
+9. Total Section
+10. Buttons
+11. Media Queries
+================================= */
 
+/* =================================
+1. Variables
+================================= */
+:root {
+  --background-color-cart: #ffffff;
+  --text-color-cart: #000000;
+  --text-light-cart: #6b7280;
+  --border-color-cart: #e5e7eb;
+  --hover-color-cart: #f3f4f6;
+  --error-color-cart: #ef4444;
+  --card-shadow-cart: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --border-radius-cart: 0.5rem;
+  --transition-speed-cart: 0.2s;
+}
+
+/* =================================
+2. Global Styles
+================================= */
 .card {
-  background-color: white;
-  border-radius: 0.5rem;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  border-radius: var(--border-radius-cart);
+  box-shadow: var(--card-shadow-cart);
 }
 
 .card-content {
   padding: 1.5rem;
 }
 
+/* =================================
+3. Layout
+================================= */
 .flex {
   display: flex;
-  gap: 2rem;
+  gap: 1rem;
 }
 
+/* =================================
+4. Cart Section
+================================= */
 .cart-section {
   flex: 1.25;
   max-width: 800px;
@@ -23,13 +60,13 @@
   display: flex;
   align-items: center;
   margin-bottom: 1rem;
-  color: black;
+  color: var(--text-color-cart);
   text-decoration: none;
   font-size: 0.875rem;
 }
 
 .back-link:hover {
-  color: #1d4ed8;
+  color: var(--text-color-cart);
 }
 
 .back-icon {
@@ -43,17 +80,20 @@
 }
 
 .cart-count {
-  color: #6b7280;
+  color: var(--text-light-cart);
   margin-bottom: 1rem;
 }
 
+/* =================================
+5. Cart Items
+================================= */
 .cart-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
   margin-bottom: 1rem;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--border-color-cart);
   border-radius: 0.375rem;
 }
 
@@ -77,7 +117,7 @@
 
 .item-description {
   font-size: 0.875rem;
-  color: #6b7280;
+  color: var(--text-light-cart);
 }
 
 .item-actions {
@@ -92,7 +132,7 @@
 }
 
 .quantity-button {
-  background-color: #f3f4f6;
+  background-color: var(--hover-color-cart);
   border: none;
   border-radius: 0.25rem;
   padding: 0.25rem 0.5rem;
@@ -100,7 +140,7 @@
 }
 
 .quantity-button:hover {
-  background-color: #e5e7eb;
+  background-color: var(--border-color-cart);
 }
 
 .quantity {
@@ -118,25 +158,23 @@
   background: none;
   border: none;
   cursor: pointer;
-  color: #6b7280;
+  color: var(--text-light-cart);
 }
 
 .remove-button:hover {
-  color: #ef4444;
+  color: var(--error-color-cart);
 }
 
+/* =================================
+6. Payment Section
+================================= */
 .payment-section {
   flex: 1.5;
   max-width: none;
-  background-color: black;
-  color: white;
-  border-radius: 0.5rem;
+  background-color: var(--text-color-cart);
+  color: var(--background-color-cart);
+  border-radius: var(--border-radius-cart);
   overflow: hidden;
-}
-
-.flex {
-  display: flex;
-  gap: 1rem; /* Reduce el espacio entre las secciones del carrito y métodos de pago */
 }
 
 .payment-header {
@@ -153,6 +191,9 @@
   padding: 1.5rem;
 }
 
+/* =================================
+7. Payment Methods
+================================= */
 .payment-method {
   display: block;
   width: 100%;
@@ -162,9 +203,9 @@
   border-radius: 0.375rem;
   padding: 0.75rem 1rem;
   margin-bottom: 1rem;
-  color: white;
+  color: var(--background-color-cart);
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color var(--transition-speed-cart);
 }
 
 .payment-method:hover {
@@ -173,30 +214,39 @@
 
 .payment-method.selected {
   background-color: rgba(255, 255, 255, 0.3);
+  display: block;
 }
 
 .payment-icon {
   margin-right: 0.5rem;
 }
 
+/* =================================
+8. Payment Form
+================================= */
 .payment-form {
   margin-top: 1rem;
+  width: 100%;
 }
 
 .input {
   width: 100%;
+  margin-top: 0.5rem;
   padding: 0.5rem;
   margin-bottom: 1rem;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 0.25rem;
   background-color: rgba(255, 255, 255, 0.1);
-  color: white;
+  color: var(--background-color-cart);
 }
 
 .input::placeholder {
   color: rgba(255, 255, 255, 0.6);
 }
 
+/* =================================
+9. Total Section
+================================= */
 .total-section {
   margin-top: 1.5rem;
 }
@@ -214,20 +264,23 @@
   border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+/* =================================
+10. Buttons
+================================= */
 .checkout-button {
   width: 100%;
-  background-color: white;
-  color: #3b82f6;
+  background-color: var(--background-color-cart);
+  color: var(--text-color-cart);
   border: none;
   border-radius: 0.375rem;
   padding: 0.75rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color var(--transition-speed-cart);
 }
 
 .checkout-button:hover {
-  background-color: #f3f4f6;
+  background-color: var(--hover-color-cart);
 }
 
 .checkout-button:disabled {
@@ -235,6 +288,9 @@
   cursor: not-allowed;
 }
 
+/* =================================
+11. Media Queries
+================================= */
 @media (max-width: 768px) {
   .flex {
     flex-direction: column;
@@ -242,44 +298,29 @@
   }
 
   .payment-section {
-    width: 100%; /* Asegura que ocupe todo el ancho disponible en pantallas pequeñas */
+    width: 100%;
   }
 
   .payment-content {
-    display: block; /* Cambia el layout a bloque para que los elementos se expandan hacia abajo */
+    display: block;
   }
 
   .payment-method {
-    width: 100%; /* Ocupa el 100% del ancho en móviles */
+    width: 100%;
   }
 
   .payment-form {
-    display: block; /* Mantiene la expansión hacia abajo en móviles */
+    display: block;
     margin-top: 1rem;
   }
 
   .back-link {
-    padding-left: 2rem; /* Alinea el enlace hacia la izquierda */
+    padding-left: 2rem;
   }
 
-  .cart-title {
-    text-align: center; /* Centra el título */
-  }
-
-  .cart-count {
-    text-align: center; /* Centra la cuenta de artículos */
-  }
-
+  .cart-title,
+  .cart-count,
   .cart-section {
-    text-align: center; /* Centra el contenido del carrito */
+    text-align: center;
   }
-}
-
-.payment-method.selected {
-  display: block; /* Hace que se expanda hacia abajo cuando está seleccionado */
-}
-
-.payment-form {
-  margin-top: 1rem;
-  width: 100%;
 }

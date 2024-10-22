@@ -1,32 +1,76 @@
+/* =================================
+    TABLE OF CONTENTS
+    1. Imports
+    2. CSS Variables
+    3. Global Styles
+    4. Container Styles
+    5. Information Section
+    6. Form Section
+    7. Button Styles
+    8. Alert Styles
+    9. Utility Classes
+    10. Media Queries
+   ================================= */
+
+/* =================================
+    1. IMPORTS
+   ================================= */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lily+Script+One&display=swap');
 
-body {
-  background-color: #ffffff;
+/* =================================
+    2. CSS VARIABLES 
+   ================================= */
+:root {
+  --primary-color: rgb(236, 190, 8);
+  --text-color: #000;
+  --background-color: #ffffff;
+  --button-text-color: #fff;
+  --input-background: #fff;
+  --input-text-color: #333;
+  --icon-color: #a7a7a7;
+  --error-color: #f51414;
+  --success-color: #0ca828;
+  --box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
+  --border-radius: 20px;
+  --transition-speed: 0.3s;
 }
 
+/* =================================
+    3. CONFIGURACIÓN GLOBAL
+   ================================= */
+body {
+  background-color: var(--background-color);
+  font-family: 'Inter', sans-serif;
+}
+
+/* =================================
+    4. CONTAINER STYLES
+   ================================= */
 .container {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh; /* Alinea el contenido vertical y horizontalmente */
+  height: 100vh;
 }
 
-/* Contenedor principal del formulario */
 .container-form {
   display: flex;
-  height: 100vh; /* Asegura que ocupe toda la pantalla */
-  width: 100vw; /* Asegura que ocupe todo el ancho de la pantalla */
+  height: 100vh;
+  width: 100vw;
   margin: 0;
   transition: all 1s ease;
 }
 
+/* =================================
+    5. INFORMATION SECTION
+   ================================= */
 .information {
   width: 50%;
   display: flex;
   align-items: center;
   text-align: center;
-  background-image: url("/src/assets/video/login/gift\ 1.gif"); /* Gift de fondo */
+  background-image: url("/src/assets/video/login/gift\ 1.gif");
   background-size: cover;
   background-position: center;
 }
@@ -34,62 +78,31 @@ body {
 .info-childs {
   width: 100%;
   padding: 0 30px;
-  color: rgb(255, 255, 255); /* Colores consistentes */
+  color: var(--button-text-color);
   font-weight: 560;
 }
 
 .info-childs h1 {
   font-size: 3.5rem;
-  font-family: 'Lily Script One'; /* Fuente personalizada para el título */
-  color: #ffffff;
+  font-family: 'Lily Script One', cursive;
+  color: var(--button-text-color);
   font-weight: 500;
 }
 
 .info-childs p {
-  margin: 15px 0; /* Separación entre párrafos */
+  margin: 15px 0;
 }
 
-.info-childs input {
-  font-weight: bold;
-  background-color: transparent;
-  outline: none;
-  border: 2px solid #fff;
-  border-radius: 20px;
-  padding: 10px 20px;
-  color: #fff;
-  cursor: pointer;
-  transition: background-color .3s ease;
-}
-
-/* Efecto hover en botones solo para pantallas no táctiles */
-@media (hover: hover) {
-  .info-childs input:hover,
-  .form input[type="submit"]:hover,
-  .google-button:hover {
-    background-color: rgb(0, 0, 0);
-    border: none;
-    color: #fff;
-    box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
-    transform: scale(1.02); /* Efecto hover para dar sensación de clic */
-  }
-}
-
-/* Efecto para cuando se presiona el botón en dispositivos táctiles o al hacer clic */
-.info-childs input:active,
-.form input[type="submit"]:active,
-.google-button:active {
-  background-color: rgb(0, 0, 0);
-  transform: scale(0.98); /* Efecto visual de presión */
-  box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
-}
-
+/* =================================
+    6. FORM SECTION
+   ================================= */
 .form-information {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 50%;
   text-align: center;
-  background-color: #ffffff;
+  background-color: var(--background-color);
 }
 
 .form-information-childs {
@@ -98,137 +111,152 @@ body {
 
 .form-information-childs h2 {
   font-size: 2rem;
-  color: #000
+  color: var(--text-color);
 }
 
 .form-information-childs p {
   font-size: 0.8rem;
   margin: 1rem 0;
   font-weight: 500;
-  color: #000;
+  color: var(--text-color);
 }
 
 .form {
   margin: 30px 0 0 0;
 }
 
-/* Estilos generales para los inputs dentro del formulario */
 .form label {
   display: flex;
   align-items: center;
   margin-bottom: 15px;
   padding: 0 10px;
-  background-color: #ffffff;
-  box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
-  min-width: 20rem; /* Ancho mínimo si quieres que sean más largos */
+  background-color: var(--input-background);
+  box-shadow: var(--box-shadow);
+  min-width: 20rem;
 }
 
 .form label input {
   width: 100%;
   padding: 10px;
-  background-color: #fff;
+  background-color: var(--input-background);
   border: none;
   outline: none;
-  color: #333;
+  color: var(--input-text-color);
 }
 
 .form label i {
-  color: #a7a7a7;
+  color: var(--icon-color);
 }
 
-/* Estilo al estar focus de los botones a enviar */
-.form label:focus-within{
-  border: 1px solid rgb(236, 190, 8);
-  box-shadow: 0 4px 12px rgb(236, 190, 8,0.25); 
+.form label:focus-within {
+  border: 1px solid var(--primary-color);
+  box-shadow: 0 4px 12px rgba(236, 190, 8, 0.25);
   padding: 0 5px;
 }
 
-/* Estilo para el botón de enviar */
-.form input[type="submit"] {
-  background-color: rgb(236, 190, 8);
-  color: #fff;
-  border-radius: 20px;
-  border: none;
-  padding: 10px 90px;
+/* =================================
+    7. BUTTON STYLES
+   ================================= */
+.info-childs input,
+.form input[type="submit"],
+.google-button {
+  font-weight: bold;
+  border-radius: var(--border-radius);
+  padding: 10px 20px;
   cursor: pointer;
-  margin-top: 10px;
-  box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
-  min-width: 20rem; /* Ancho mínimo si quieres que sean más largos */
+  transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease;
+  min-width: 20rem;
 }
 
-/* Botón de Google con ícono */
+.info-childs input {
+  background-color: transparent;
+  border: 2px solid var(--button-text-color);
+  color: var(--button-text-color);
+}
+
+.form input[type="submit"] {
+  background-color: var(--primary-color);
+  color: var(--button-text-color);
+  border: none;
+  padding: 10px 90px;
+  margin-top: 10px;
+  box-shadow: var(--box-shadow);
+}
+
 .google-button {
   width: 100%;
-  padding: 10px;
-  color: #000;
-  background-color: rgb(255, 255, 255); /* Color beige */
+  color: var(--text-color);
+  background-color: var(--background-color);
   border: none;
-  border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
-  min-width: 20rem; /* Ancho mínimo si quieres que sean más largos */
+  box-shadow: var(--box-shadow);
 }
 
 .google-icon {
-  margin-right: 1rem; /* Espacio entre el ícono y el texto */
+  margin-right: 1rem;
 }
 
-/* Ocultar las alertas con una clase de utilidad */
+/* =================================
+    8. ALERT STYLES
+   ================================= */
+.alerta {
+  text-align: center;
+  border-radius: var(--border-radius);
+  margin-bottom: 10px;
+  font-size: 0.8rem;
+  color: var(--button-text-color);
+  padding: 0.5rem 1rem;
+  margin-top: 20px;
+  font-weight: 500;
+}
+
+.alerta-error {
+  background-color: var(--error-color);
+}
+
+.alerta-exito {
+  background-color: var(--success-color);
+}
+
+/* =================================
+    9. UTILITY CLASSE
+   ================================= */
 .hide {
   position: absolute;
   transform: translateY(-300%);
 }
 
-/* Estilos para las alertas de error y éxito */
-.alerta {
-  text-align: center;
-  border-radius: 20px;
-  margin-bottom: 10px;
-  font-size: 0.8rem;
-  color: #fff;
+/* =================================
+    9. MEDIA QUERIES
+   ================================= */
+@media (hover: hover) {
+  .info-childs input:hover,
+  .form input[type="submit"]:hover,
+  .google-button:hover {
+    background-color: var(--text-color);
+    border: none;
+    color: var(--button-text-color);
+    box-shadow: var(--box-shadow);
+    transform: scale(1.02);
+  }
 }
 
-.alerta-error {
-  background-color: #f51414;
-  padding: 0.5rem 1rem;
-  margin-top: 20px;
-  font-weight: 500;
+.info-childs input:active,
+.form input[type="submit"]:active,
+.google-button:active {
+  background-color: var(--text-color);
+  transform: scale(0.98);
+  box-shadow: var(--box-shadow);
 }
 
-.alerta-exito {
-  background-color: #0ca828;
-  padding: 0.5rem 1rem;
-  margin-top: 20px;
-  font-weight: 500;
-}
-
-input, button {
-  /* Propiedades para eliminar el efecto de selección en móviles */
-  -webkit-tap-highlight-color: transparent;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  user-select: none;
-}
-
-/* Estilos responsivos para pantallas medianas */
 @media screen and (max-width: 750px) {
   html {
     font-size: 12px;
   }
-
-  .google-button:active {
-  background-color: rgb(0, 0, 0);
-  color: #fff;
-  transform: scale(0.98); /* Efecto visual de presión */
-  box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
-  }
 }
 
-/* Estilos responsivos para pantallas pequeñas */
 @media screen and (max-width: 580px) {
   html, body {
     height: 100%;
@@ -236,7 +264,7 @@ input, button {
   }
 
   .container-form {
-    flex-direction: column; /* Pila las secciones una debajo de la otra */
+    flex-direction: column;
   }
 
   .information, .form-information {
@@ -247,19 +275,12 @@ input, button {
   }
 
   .information {
-    background-size: cover; /* Asegura que la imagen de fondo se ajuste bien */
+    background-size: cover;
   }
 
   .form-information {
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-
-  .google-button:active {
-  background-color: rgb(0, 0, 0);
-  color: #fff;
-  transform: scale(0.98); /* Efecto visual de presión */
-  box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
   }
 }

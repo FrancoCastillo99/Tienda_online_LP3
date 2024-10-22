@@ -6,7 +6,7 @@ import productosIcon from '../../../assets/images/iconos/productosIcon.png';
 import usuariosIcon from '../../../assets/svgs/usuariosIcon.svg';
 import analitycsIcon from '../../../assets/images/iconos/analitycsIcon.png';
 import flechaDerecha from '../../../assets/svgs/flechaDerecha.svg';
-import adminImg from '../../../assets/images/avatar/pito.jpeg';
+import adminImg from '../../../assets/images/avatar/Administrador.jpeg';
 import "./SideBar.css";
 import Avatar from "../../avatar/Avatar";
 

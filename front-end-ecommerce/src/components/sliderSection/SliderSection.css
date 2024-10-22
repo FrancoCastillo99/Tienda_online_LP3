@@ -1,47 +1,39 @@
 /* ==========================
-    FONT IMPORT
-   ========================== */
-
-/* Importa la fuente Inter de Google Fonts */
+FONT IMPORT
+========================== */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
 /* ==========================
     BODY STYLES
-   ========================== */
-
-/* Estilos generales aplicados a todo el documento */
+    ========================== */
 body {
-  font-family: "Inter", sans-serif; /* Define la fuente general */
+    font-family: "Inter", sans-serif;
 }
 
 /* ==========================
     SLIDER CONTAINER STYLES
-   ========================== */
-
-/* Contenedor principal del slider */
+    ========================== */
 .slider-container {
     position: relative;
-    width: 100vw; /* Ancho del viewport */
-    height: 100vh; /* Altura igual al viewport */
+    width: 100vw;
+    height: 110vh;
     overflow: hidden;
     background-color: #FFA602;
-    padding-top: 5vh; /* Proporcional al viewport */
+    padding-top: 8vh;
 }
 
-/* Contenedor de las secciones del slider */
 .slider-wrapper {
     display: flex;
     transition: transform 0.3s ease-in-out;
 }
 
-/* Flechas del slider */
 .slider-arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     background-color: transparent;
     border: none;
-    width: 4vw; /* Usar viewport width */
+    width: 4vw;
     height: 4vw;
     cursor: pointer;
     z-index: 10;
@@ -50,13 +42,11 @@ body {
     background-position: center;
 }
 
-/* Flecha izquierda */
 .slider-arrow-left {
     left: 5vw;
     background-image: url('../../assets/images/slider/LeftArrow.png');
 }
 
-/* Flecha derecha */
 .slider-arrow-right {
     right: 5vw;
     background-image: url('../../assets/images/slider/RightArrow.png');
@@ -64,8 +54,7 @@ body {
 
 /* ==========================
     SLIDER SECTION STYLES
-   ========================== */
-
+    ========================== */
 .slider-section {
     position: relative;
     min-width: 100vw;
@@ -75,16 +64,14 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    font-size: 4vw; /* Ajuste proporcional */
+    font-size: 4vw;
     font-weight: bold;
     color: black;
 }
 
 /* ==========================
     HEADER CONTAINER STYLES
-   ========================== */
-
-/* Contenedor del título y la imagen */
+    ========================== */
 .header-container {
     display: flex;
     flex-direction: column;
@@ -93,23 +80,21 @@ body {
     position: relative;
 }
 
-/* Título principal de cada sección */
 .section-title {
     text-transform: uppercase;
     font-weight: 900;
     letter-spacing: -0.02em;
-    position: absolute; 
-    top: 5%; /* Lo subimos más para evitar que toque la hamburguesa */
-    left: 50%; 
+    position: absolute;
+    top: 10%;
+    left: 50%;
     transform: translateX(-50%);
     color: #FFFFFF;
-    font-size: 12rem !important; /* Aumentamos el tamaño del título H1 */
+    font-size: 10rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     white-space: nowrap;
     z-index: -1;
 }
 
-/* Imagen de cada sección */
 .section-image {
     max-width: 70vw;
     height: auto;
@@ -118,15 +103,14 @@ body {
 
 /* ==========================
     SUBHEADER STYLES
-   ========================== */
-
+    ========================== */
 .subheader-container {
     position: absolute;
-    bottom: 10%; /* Lo subimos un poco más */
-    left: 8%; 
+    bottom: 10%;
+    left: 8%;
     color: white;
     z-index: 2;
-    font-size: 4rem; /* Aumentamos el tamaño del subtítulo */
+    font-size: 4rem;
     text-transform: uppercase;
     font-weight: 800;
     letter-spacing: -0.02em;
@@ -134,17 +118,16 @@ body {
 
 /* ==========================
     PARAGRAPH STYLES
-   ========================== */
-
+    ========================== */
 .paragraphs-container {
     position: absolute;
-    bottom: 60px; /* Lo subimos un poco */
-    right: 60px; /* Lo ajustamos para alinearlo mejor */
+    bottom: 60px;
+    right: 60px;
     text-align: right;
-    max-width: 350px; /* Aumentamos el ancho del contenedor de párrafos */
+    max-width: 350px;
     line-height: 1.5;
     font-family: "Inter";
-    font-size: 1.5rem; /* Aumentamos el tamaño del texto en los párrafos */
+    font-size: 1.5rem;
 }
 
 .paragraphs-container p:first-of-type {
@@ -159,7 +142,6 @@ body {
     text-transform: uppercase;
 }
 
-/* Línea horizontal entre párrafos */
 .paragraphs-container p:first-of-type::after {
     content: '';
     display: block;
@@ -170,168 +152,113 @@ body {
     margin-left: auto;
 }
 
+/* ==========================
+    MEDIA QUERIES
+    ========================== */
 
+/* Desktops and Laptops */
+@media screen and (max-width: 1399px) and (min-width: 1024px) {
+    .section-title {
+        font-size: 8rem;
+        top: 8%;
+    }
+    .section-image {
+        max-width: 65vw;
+    }
+    .subheader-container {
+        font-size: 3.5rem;
+        bottom: 12%;
+    }
+    .paragraphs-container {
+        font-size: 1.4rem;
+        max-width: 320px;
+        bottom: 50px;
+        right: 50px;
+    }
+}
 
-/* =============================
-    ADAPTACIÓN PROPORCIONAL
-   ============================= */
+/* Tablets and Small Laptops */
+@media screen and (max-width: 1023px) and (min-width: 768px) {
+    .slider-container {
+        height: 110vh;
+        padding-top: 6vh;
+    }
+    .section-title {
+        font-size: 7rem;
+        top: 7%;
+    }
+    .section-image {
+        max-width: 75vw;
+    }
+    .subheader-container {
+        font-size: 3rem;
+        bottom: 12%;
+        left: 7%;
+    }
+    .paragraphs-container {
+        font-size: 1.3rem;
+        max-width: 300px;
+        bottom: 45px;
+        right: 45px;
+    }
+}
 
-@media (max-width: 768px) {
-    
+/* Large Smartphones */
+@media screen and (max-width: 767px) and (min-width: 480px) {
+    .slider-container {
+        height: 110vh;
+        padding-top: 5vh;
+    }
+    .section-title {
+        font-size: 5rem;
+        top: 6%;
+    }
+    .section-image {
+        max-width: 85vw;
+    }
+    .subheader-container {
+        font-size: 2.8rem;
+        bottom: 15%;
+        left: 6%;
+    }
+    .paragraphs-container {
+        font-size: 1.2rem;
+        max-width: 280px;
+        bottom: 40px;
+        right: 40px;
+    }
+    .slider-arrow {
+        width: 5vw;
+        height: 5vw;
+    }
+}
+
+/* Small Smartphones */
+@media screen and (max-width: 479px) {
+    .slider-container {
+        height: 110vh;
+        padding-top: 4vh;
+    }
+    .section-title {
+        font-size: 4rem;
+        top: 5%;
+    }
+    .section-image {
+        max-width: 90vw;
+    }
+    .subheader-container {
+        font-size: 2.5rem;
+        bottom: 15%;
+        left: 5%;
+    }
+    .paragraphs-container {
+        font-size: 1.1rem;
+        max-width: 250px;
+        bottom: 35px;
+        right: 35px;
+    }
     .slider-arrow {
         width: 6vw;
         height: 6vw;
     }
-
-    .section-title {
-        font-size: 8vw;
-        top: 8%;
-    }
-
-    .section-image {
-        max-width: 90vw;
-    }
-
-    .subheader-container {
-        bottom: 10vh;
-        font-size: 4vw;
-    }
-
-    .paragraphs-container {
-        font-size: 2vw;
-        max-width: 50vw;
-    }
 }
-
-/* =============================
-    PARA DISPOSITIVOS MÓVILES
-    (Pantallas menores a 800px)
-   ============================= */
-@media (max-width: 800px) {
-    .slider-section {
-        height: 80vh;
-    }
-
-    /* Ajuste del Título H1 */
-    .section-title {
-        font-size: 3.5rem !important; /* Reduce el tamaño del título H1 considerablemente */
-        top: 10%; /* Ajusta la posición vertical para que no toque la hamburguesa */
-    }
-
-    /* Ajuste del Título H2 */
-    .subheader-container {
-        bottom: 35px; /* Mueve el subtítulo H2 un poco hacia arriba */
-        font-size: 2.1rem; /* Aumenta el tamaño del subtítulo H2 */
-    }
-
-    /* Ajuste de los párrafos */
-    .paragraphs-container {
-        bottom: 0px; /* Mueve los párrafos un poco hacia arriba */
-        right: 30px; /* Ajusta la alineación a la derecha */
-        font-size: 1.1rem; /* Aumenta el tamaño de los párrafos */
-        max-width: 220px; /* Ajusta el ancho máximo del contenedor */
-    }
-
-    /* Ajuste de las flechas */
-    .slider-arrow {
-        width: 45px; /* Aumenta un poco el tamaño de las flechas */
-        height: 45px;
-    }
-
-    /* Imagen de cada sección */
-    .section-image {
-        max-width: 100vw;
-        height: auto;
-        z-index: 1;
-    }
-}
-
-
-/* =============================
-    PARA TABLETAS
-    (Pantallas entre 801px y 1024px)
-   ============================= */
-@media (min-width: 801px) and (max-width: 1024px) {
-    .slider-section {
-        height: 80vh;
-    }
-
-    /* Ajuste del Título H1 */
-    .section-title {
-        font-size: 7.5rem !important; /* Reduce el tamaño del título H1 considerablemente */
-        top: 10%; /* Ajusta la posición vertical para que no toque la hamburguesa */
-    }
-
-    /* Ajuste del Título H2 */
-    .subheader-container {
-        bottom: 30px; /* Mueve el subtítulo H2 un poco hacia arriba */
-        font-size: 3.5rem; /* Aumenta el tamaño del subtítulo H2 */
-    }
-
-    /* Ajuste de los párrafos */
-    .paragraphs-container {
-        bottom: 0px; /* Mueve los párrafos un poco hacia arriba */
-        right: 60px; /* Ajusta la alineación a la derecha */
-        font-size: 1.8rem; /* Aumenta el tamaño de los párrafos */
-        max-width: 450px; /* Ajusta el ancho máximo del contenedor */
-    }
-
-    /* Ajuste de las flechas */
-    .slider-arrow {
-        width: 75px; /* Aumenta un poco el tamaño de las flechas */
-        height: 75px;
-    }
-
-    /* Imagen de cada sección */
-    .section-image {
-        max-width: 100vw;
-        height: auto;
-        z-index: 1;
-    }
-}
-
-/* =============================
-    PARA DISPOSITIVOS DE 320x568
-   ============================= */
-@media only screen and (max-width: 320px) and (max-height: 568px) {
-
-    .slider-section {
-        height: 80vh;
-    }
-
-    /* Ajuste del Título H1 */
-    .section-title {
-        font-size: 3.2rem !important; /* Reduce el tamaño del título H1 considerablemente */
-        top: 8%; /* Ajusta la posición vertical para que no toque la hamburguesa */
-    }
-
-    /* Ajuste del Título H2 */
-    .subheader-container {
-        bottom: 35px; /* Mueve el subtítulo H2 un poco hacia arriba */
-        font-size: 2rem; /* Aumenta el tamaño del subtítulo H2 */
-    }
-
-    /* Ajuste de los párrafos */
-    .paragraphs-container {
-        bottom: 0px; /* Mueve los párrafos un poco hacia arriba */
-        right: 30px; /* Ajusta la alineación a la derecha */
-        font-size: 1rem; /* Aumenta el tamaño de los párrafos */
-        max-width: 220px; /* Ajusta el ancho máximo del contenedor */
-    }
-
-    /* Ajuste de las flechas */
-    .slider-arrow {
-        width: 45px; /* Aumenta un poco el tamaño de las flechas */
-        height: 45px;
-    }
-
-    /* Imagen de cada sección */
-    .section-image {
-        max-width: 90vw;
-        height: auto;
-        z-index: 1;
-    }
-}
-
-
-

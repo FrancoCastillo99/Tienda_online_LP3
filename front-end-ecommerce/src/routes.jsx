@@ -9,6 +9,9 @@ import Menu from "./components/admin/Menu/Menu"
 import Productos from "./components/admin/Productos/Productos"
 import Usuarios from "./components/admin/Usuarios/Usuarios"
 import Analitycs from "./components/admin/Analitycs/Analitycs"
+import UserProfile from "./components/user/Profile/UserProfile"
+import EditProfile from "./components/user/EditProfile/EditProfile"
+
 
 const RoutesConfig = () => {
     return(
@@ -25,6 +28,8 @@ const RoutesConfig = () => {
                 <Route path="usuarios" element={<Usuarios />}/>
                 <Route path="analitycs" element={<Analitycs />}/>
             </Route>
+            <Route path="/profile" element={<UserProfile/>}/>
+            <Route path="/edit-profile" element={<EditProfile/>}/>
         </Routes>
     )
 };
