@@ -7,7 +7,7 @@ body {
 .slider-container {
     position: relative;
     width: 100vw;
-    height: 110vh;
+    height: 100vh;
     overflow: hidden;
     background-color: #FFA602;
     padding-top: 10%;
@@ -99,19 +99,21 @@ body {
     max-width: 350px;
     line-height: 1.5;
     font-family: "Inter";
-    font-size: 1.5rem;
 }
 
 .paragraphs-container p:first-of-type {
+    font-weight: 800;
     color: black;
     text-transform: uppercase;
     position: relative;
     margin-bottom: 10px;
+    font-size: 1.4rem;
 }
 
 .paragraphs-container p:nth-of-type(2) {
     color: white;
     text-transform: uppercase;
+    font-size: 1.2rem;
 }
 
 .paragraphs-container p:first-of-type::after {
@@ -184,11 +186,11 @@ body {
 @media screen and (max-width: 428px) {
 
     .section-title {
-        font-size: 3.5rem;
+        font-size:3.6rem;
     }
 
     .subheader-container {
-        font-size: 1.8rem;
+        font-size: 2rem;
     }
 
     .paragraphs-container {
@@ -203,10 +205,31 @@ body {
     .slider-wrapper {
         height: 40%;
     }
+
+    .paragraphs-container p:first-of-type {
+        font-size: 1rem;
+    }
+    
+    .paragraphs-container p:nth-of-type(2) {
+        font-size: 0.8rem;
+    }
+    
 }
 
 @media screen and (max-width: 320px) {
     .section-title {
         font-size: 3.2rem;
+    }
+
+    .subheader-container {
+        font-size: 1.8rem;
+    }
+
+    .paragraphs-container p:first-of-type {
+        font-size: 1rem;
+    }
+    
+    .paragraphs-container p:nth-of-type(2) {
+        font-size: 0.8rem;
     }
 }
