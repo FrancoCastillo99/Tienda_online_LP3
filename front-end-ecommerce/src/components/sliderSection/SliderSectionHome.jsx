@@ -1,7 +1,5 @@
-// SliderSectionHome.jsx
-
 import React, { useState } from 'react';
-import SliderSection from './sliderSelection';
+import './SliderSection.css';
 
 import s1 from '../../assets/images/slider/hamburguesaOne.png';
 import s2 from '../../assets/images/slider/hamburguesaTwo.png';
@@ -10,6 +8,7 @@ import s4 from '../../assets/images/slider/hamburguesaFour.png';
 
 export default function SliderSectionHome() {
     const [currentSlide, setCurrentSlide] = useState(0);
+    
     const sections = [
         {
             id: 1,
@@ -17,7 +16,7 @@ export default function SliderSectionHome() {
             image: s1,
             subtitle: '#1',
             paragraph1: 'ingredientes',
-            paragraph2: 'Jamon,  cebolla , cheddar, triple carne',
+            paragraph2: 'Jamon, cebolla, cheddar, triple carne',
         },
         {
             id: 2,
@@ -25,7 +24,7 @@ export default function SliderSectionHome() {
             image: s2,
             subtitle: '#2',
             paragraph1: 'ingredientes',
-            paragraph2: 'Jamon,  cebolla , cheddar, triple carne',
+            paragraph2: 'Jamon, cebolla, cheddar, triple carne',
         },
         {
             id: 3,
@@ -33,7 +32,7 @@ export default function SliderSectionHome() {
             image: s3,
             subtitle: '#3',
             paragraph1: 'ingredientes',
-            paragraph2: 'Jamon,  cebolla , cheddar, triple carne',
+            paragraph2: 'Jamon, cebolla, cheddar, triple carne',
         },
         {
             id: 4,
@@ -41,7 +40,7 @@ export default function SliderSectionHome() {
             image: s4,
             subtitle: '#4',
             paragraph1: 'ingredientes',
-            paragraph2: 'Jamon,  cebolla , cheddar, triple carne',
+            paragraph2: 'Jamon, cebolla, cheddar, triple carne',
         },
     ];
 
@@ -53,21 +52,59 @@ export default function SliderSectionHome() {
         setCurrentSlide((prev) => (prev === 0 ? sections.length - 1 : prev - 1));
     };
 
+    const SliderSection = ({ content }) => {
+        return (
+            <div className="slider-section">
+                <div className="center-container">
+                    <div className="title-image-container">
+                        <h1 className="section-title">{content.title}</h1>
+                        <img 
+                            src={content.image} 
+                            alt={content.title} 
+                            className="section-image" 
+                        />
+                    </div>
+                </div>
+
+                <div className="bottom-container">
+                    <div className="subheader-container">
+                        <h2>{content.subtitle}</h2>
+                    </div>
+
+                    <div className="paragraphs-container">
+                        <p>{content.paragraph1}</p>
+                        <p>{content.paragraph2}</p>
+                    </div>
+                </div>
+            </div>
+        );
+    };
+
     return (
         <section className="slider-container">
             <article
                 className="slider-wrapper"
-                style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+                style={{ transform: `translateX(-${currentSlide * 100}vw)` }}
             >
                 {sections.map((section) => (
                     <SliderSection key={section.id} content={section} />
                 ))}
             </article>
 
-            <button className="slider-arrow slider-arrow-left" onClick={handlePrevSlide}>
-            </button>
-            <button className="slider-arrow slider-arrow-right" onClick={handleNextSlide}>
-            </button>
+            <div className="arrows-container">
+                <button 
+                    className="slider-arrow slider-arrow-left" 
+                    onClick={handlePrevSlide}
+                    aria-label="Previous slide"
+                >
+                </button>
+                <button 
+                    className="slider-arrow slider-arrow-right" 
+                    onClick={handleNextSlide}
+                    aria-label="Next slide"
+                >
+                </button>
+            </div>
         </section>
     );
 }

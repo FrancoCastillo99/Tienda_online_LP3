@@ -1,128 +1,100 @@
-/* ==========================
-FONT IMPORT
-========================== */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
-/* ==========================
-    BODY STYLES
-    ========================== */
 body {
     font-family: "Inter", sans-serif;
 }
 
-/* ==========================
-    SLIDER CONTAINER STYLES
-    ========================== */
 .slider-container {
     position: relative;
     width: 100vw;
     height: 110vh;
     overflow: hidden;
     background-color: #FFA602;
-    padding-top: 8vh;
+    padding-top: 10%;
+    display: flex;
+    align-items: center;
+    
 }
 
 .slider-wrapper {
     display: flex;
     transition: transform 0.3s ease-in-out;
+    width: 400%; /* 100% por cada sección */
+    height: 80% !important;
 }
 
-.slider-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: transparent;
-    border: none;
-    width: 4vw;
-    height: 4vw;
-    cursor: pointer;
-    z-index: 10;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-.slider-arrow-left {
-    left: 5vw;
-    background-image: url('../../assets/images/slider/LeftArrow.png');
-}
-
-.slider-arrow-right {
-    right: 5vw;
-    background-image: url('../../assets/images/slider/RightArrow.png');
-}
-
-/* ==========================
-    SLIDER SECTION STYLES
-    ========================== */
 .slider-section {
     position: relative;
     min-width: 100vw;
-    height: 100vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    text-align: center;
-    font-size: 4vw;
-    font-weight: bold;
     color: black;
 }
 
-/* ==========================
-    HEADER CONTAINER STYLES
-    ========================== */
-.header-container {
+.center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    flex-grow: 1;
+    width: 100%;
+    height: 70%;
+}
+
+.title-image-container {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 0;
-    position: relative;
+    justify-content: center;
+    width: fit-content;
 }
 
 .section-title {
+    position: absolute;
     text-transform: uppercase;
     font-weight: 900;
     letter-spacing: -0.02em;
-    position: absolute;
-    top: 10%;
-    left: 50%;
-    transform: translateX(-50%);
     color: #FFFFFF;
     font-size: 10rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     white-space: nowrap;
-    z-index: -1;
+    z-index: 1;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .section-image {
-    max-width: 70vw;
+    max-width: 65vw;
     height: auto;
-    z-index: 1;
+    z-index: 2;
+    position: relative;
 }
 
-/* ==========================
-    SUBHEADER STYLES
-    ========================== */
+.bottom-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 2rem 5vw;
+    padding-top: 0;
+    padding-bottom: 0;
+    height: 20%;
+}
+
 .subheader-container {
-    position: absolute;
-    bottom: 10%;
-    left: 8%;
     color: white;
-    z-index: 2;
     font-size: 4rem;
     text-transform: uppercase;
     font-weight: 800;
     letter-spacing: -0.02em;
 }
 
-/* ==========================
-    PARAGRAPH STYLES
-    ========================== */
 .paragraphs-container {
-    position: absolute;
-    bottom: 60px;
-    right: 60px;
     text-align: right;
     max-width: 350px;
     line-height: 1.5;
@@ -152,113 +124,89 @@ body {
     margin-left: auto;
 }
 
-/* ==========================
-    MEDIA QUERIES
-    ========================== */
+.arrows-container {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 5vw;
+    z-index: 10;
+    pointer-events: none;
+}
 
-/* Desktops and Laptops */
-@media screen and (max-width: 1399px) and (min-width: 1024px) {
+.slider-arrow {
+    pointer-events: auto;
+    background-color: transparent;
+    border: none;
+    width: 4vw;
+    height: 4vw;
+    cursor: pointer;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.slider-arrow-left {
+    background-image: url('../../assets/images/slider/LeftArrow.png');
+}
+
+.slider-arrow-right {
+    background-image: url('../../assets/images/slider/RightArrow.png');
+}
+
+/* Media queries */
+@media screen and (max-width: 1024px) {
+
+    .slider-container {
+        height: 70vh;
+    }
+
+    .slider-wrapper {
+        height: 80%;
+    }
+    
     .section-title {
-        font-size: 8rem;
-        top: 8%;
+        font-size: 6.6rem;
     }
-    .section-image {
-        max-width: 65vw;
+
+    .slider-arrow {
+        width: 8vw;
+        height: 8vw;
     }
-    .subheader-container {
+
+    .slider-wrapper {
+        height: 40%;
+    }
+}
+
+@media screen and (max-width: 428px) {
+
+    .section-title {
         font-size: 3.5rem;
-        bottom: 12%;
     }
-    .paragraphs-container {
-        font-size: 1.4rem;
-        max-width: 320px;
-        bottom: 50px;
-        right: 50px;
-    }
-}
 
-/* Tablets and Small Laptops */
-@media screen and (max-width: 1023px) and (min-width: 768px) {
-    .slider-container {
-        height: 110vh;
-        padding-top: 6vh;
-    }
-    .section-title {
-        font-size: 7rem;
-        top: 7%;
-    }
-    .section-image {
-        max-width: 75vw;
-    }
     .subheader-container {
-        font-size: 3rem;
-        bottom: 12%;
-        left: 7%;
+        font-size: 1.8rem;
     }
-    .paragraphs-container {
-        font-size: 1.3rem;
-        max-width: 300px;
-        bottom: 45px;
-        right: 45px;
-    }
-}
 
-/* Large Smartphones */
-@media screen and (max-width: 767px) and (min-width: 480px) {
-    .slider-container {
-        height: 110vh;
-        padding-top: 5vh;
-    }
-    .section-title {
-        font-size: 5rem;
-        top: 6%;
-    }
-    .section-image {
-        max-width: 85vw;
-    }
-    .subheader-container {
-        font-size: 2.8rem;
-        bottom: 15%;
-        left: 6%;
-    }
     .paragraphs-container {
-        font-size: 1.2rem;
-        max-width: 280px;
-        bottom: 40px;
-        right: 40px;
+        max-width: 200px;
+        font-size: 0.8rem;
     }
+
     .slider-arrow {
-        width: 5vw;
-        height: 5vw;
+        width: 9vw;
+        height: 9vw;
+    }
+    .slider-wrapper {
+        height: 40%;
     }
 }
 
-/* Small Smartphones */
-@media screen and (max-width: 479px) {
-    .slider-container {
-        height: 110vh;
-        padding-top: 4vh;
-    }
+@media screen and (max-width: 320px) {
     .section-title {
-        font-size: 4rem;
-        top: 5%;
-    }
-    .section-image {
-        max-width: 90vw;
-    }
-    .subheader-container {
-        font-size: 2.5rem;
-        bottom: 15%;
-        left: 5%;
-    }
-    .paragraphs-container {
-        font-size: 1.1rem;
-        max-width: 250px;
-        bottom: 35px;
-        right: 35px;
-    }
-    .slider-arrow {
-        width: 6vw;
-        height: 6vw;
+        font-size: 3.2rem;
     }
 }
