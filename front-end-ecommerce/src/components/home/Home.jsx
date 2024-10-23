@@ -1,25 +1,25 @@
 // Home.jsx
 import MainBannerHome from '../mainBanner/MainBannerHome';
-import NavBar from '../NavBar/NavBar';
-import ProductCardHome from '../productcard/ProductCardHome';
-import SliderSectionHome from '../sliderSection/SliderSectionHome'; // Importa tu componente Slider
+import NavBarHome from '../navBar/NavBarHome';
+import SliderSectionHome from '../sliderSection/SliderSectionHome'; 
+import ProductSectionHome from '../productSection/ProductSectionHome';
 import './Home.css';
 
 export default function Home() {
   return (
     <main className="home-container">
-      
+    
       {/* Nav bar Section */}
-      <NavBar/>
+      <NavBarHome/>
 
       {/* Banner main Section */}
       <MainBannerHome/>
 
       {/* Slider Section */}
       <SliderSectionHome />
-  
+
       {/*Product Section */}
-      <ProductCardHome/>
+      <ProductSectionHome/>
 
     </main>
   );
