@@ -222,6 +222,25 @@
     overflow: hidden;
 }
 
+.cart-icon-container {
+    position: relative;
+    display: inline-block;
+}
+
+.cart-items-count {
+    position: absolute;
+    bottom: 0px;  /* Cambiado de 'top' a 'bottom' */
+    right: -2px;
+    background-color: #f91d1d;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+    min-width: 18px;
+    text-align: center;
+    font-weight: bold;
+}
+
 /* =================================
     6. MEDIA QUERIES
    ================================= */

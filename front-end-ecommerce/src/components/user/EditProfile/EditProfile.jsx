@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import NavBar from '../../navBar/NavBarHome';
+import NavBar from '../../navBar/NavBar';
 import './EditProfile.css';
 
 const EditProfile = () => {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import NavBar from '../../navBar/NavBarHome';
+import NavBar from '../../navBar/NavBar';
 import './UserProfile.css';
 
 const UserProfile = () => {

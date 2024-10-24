@@ -1,8 +1,8 @@
 // Home.jsx
-import MainBannerHome from '../mainBanner/MainBannerHome';
-import NavBarHome from '../navBar/NavBarHome';
-import SliderSectionHome from '../sliderSection/SliderSectionHome'; 
-import ProductSectionHome from '../productSection/ProductSectionHome';
+import MainBanner from '../mainBanner/MainBanner';
+import NavBar from '../navBar/NavBar';
+import SliderSection from '../sliderSection/SliderSection'; 
+import ProductSection from '../productSection/ProductSection';
 import './Home.css';
 
 export default function Home() {
@@ -10,16 +10,16 @@ export default function Home() {
     <main className="home-container">
     
       {/* Nav bar Section */}
-      <NavBarHome/>
+      <MainBanner/>
 
       {/* Banner main Section */}
-      <MainBannerHome/>
+      <NavBar/>
 
       {/* Slider Section */}
-      <SliderSectionHome />
+      <SliderSection />
 
       {/*Product Section */}
-      <ProductSectionHome/>
+      <ProductSection/>
 
     </main>
   );

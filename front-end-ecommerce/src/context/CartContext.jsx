@@ -1,4 +1,5 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect, useCallback } from 'react';
+import toast from 'react-hot-toast';
 
 export const CartContext = createContext();
 
@@ -8,37 +9,98 @@ export function CartProvider({ children }) {
     return savedCartItems ? JSON.parse(savedCartItems) : [];
   });
 
+  const [totalItems, setTotalItems] = useState(0);
+
+  useEffect(() => {
+    const newTotal = cartItems.reduce((total, item) => total + item.cantidad, 0);
+    setTotalItems(newTotal);
+  }, [cartItems]);
+
   useEffect(() => {
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
   }, [cartItems]);
 
-  const addItemToCart = (product) => {
+  // Usando useCallback para memorizar las funciones
+  const addItemToCart = useCallback((product) => {
     setCartItems((prevItems) => {
-      const itemExists = prevItems.find(item => item.nombre === product.nombre); // Cambiado a titulo
+      const itemExists = prevItems.find(item => item.nombre === product.nombre);
+      
+      // Creamos el nuevo estado antes de mostrar la notificación
+      let newItems;
       if (itemExists) {
-        return prevItems.map(item => 
-          item.nombre === product.nombre ? { ...item, cantidad: item.cantidad + 1 } : item // Cambiado a cantidad
+        newItems = prevItems.map(item => 
+          item.nombre === product.nombre ? { ...item, cantidad: item.cantidad + 1 } : item
         );
+        // Notificación después de confirmar que el item existe
+        toast.success(`Se agregó otro ${product.nombre} al carrito`, {
+          id: `add-${product.nombre}-${Date.now()}`, // ID único
+          duration: 2000,
+          position: 'bottom-right',
+          style: {
+            background: '#333',
+            color: '#fff',
+            padding: '16px',
+          },
+          icon: '🛍️',
+        });
+      } else {
+        newItems = [...prevItems, { ...product, cantidad: 1 }];
+        // Notificación para nuevo producto
+        toast.success(`${product.nombre} agregado al carrito`, {
+          id: `new-${product.nombre}-${Date.now()}`, // ID único
+          duration: 2000,
+          position: 'bottom-right',
+          style: {
+            background: '#333',
+            color: '#fff',
+            padding: '16px',
+          },
+          icon: '🛍️',
+        });
       }
-      return [...prevItems, { ...product, cantidad: 1 }]; // Cambiado a cantidad
+      
+      return newItems;
     });
-  };
+  }, []); // Sin dependencias ya que no usa valores externos
 
-  const removeItem = (nombre) => { // Cambiado a titulo
-    setCartItems((prevItems) => prevItems.filter(item => item.nombre !== nombre)); // Cambiado a titulo
-  };
+  const removeItem = useCallback((nombre) => {
+    setCartItems((prevItems) => {
+      const itemToRemove = prevItems.find(item => item.nombre === nombre);
+      if (itemToRemove) {
+        // Notificación con ID único
+        toast.error(`${itemToRemove.nombre} eliminado del carrito`, {
+          id: `remove-${nombre}-${Date.now()}`,
+          duration: 2000,
+          position: 'bottom-right',
+          style: {
+            background: '#333',
+            color: '#fff',
+            padding: '16px',
+          },
+          icon: '🗑️',
+        });
+      }
+      return prevItems.filter(item => item.nombre !== nombre);
+    });
+  }, []); // Sin dependencias
 
-  const updateQuantity = (nombre, newQuantity) => { // Cambiado a titulo
-    if (newQuantity < 0) return; // Evitar cantidades negativas
+  const updateQuantity = useCallback((nombre, newQuantity) => {
+    if (newQuantity < 0) return;
     setCartItems((prevItems) =>
       prevItems.map(item =>
-        item.nombre === nombre ? { ...item, cantidad: newQuantity } : item // Cambiado a cantidad
+        item.nombre === nombre ? { ...item, cantidad: newQuantity } : item
       )
     );
-  };
+  }, []);
 
   return (
-    <CartContext.Provider value={{ cartItems, addItemToCart, removeItem, updateQuantity }}>
+    <CartContext.Provider value={{ 
+      cartItems, 
+      addItemToCart, 
+      removeItem, 
+      updateQuantity,
+      totalItems 
+    }}>
       {children}
     </CartContext.Provider>
   );
