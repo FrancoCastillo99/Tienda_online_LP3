@@ -41,7 +41,6 @@ export function CartProvider({ children }) {
       setCartItems(prevItems => [...prevItems, { ...product, cantidad: 1 }]);
     }
 
-    // Mostrar toast después de actualizar el estado
     toast.success(
       itemExists 
         ? `Se agregó otro ${product.nombre}` 
@@ -50,23 +49,36 @@ export function CartProvider({ children }) {
     );
   };
 
-  const removeItem = (nombre) => {
-    // Encontrar el item antes de eliminarlo
+  const removeItem = (nombre, fromCart = false) => {
     const itemToRemove = cartItems.find(item => item.nombre === nombre);
     
     if (itemToRemove) {
       setCartItems(prevItems => prevItems.filter(item => item.nombre !== nombre));
-      toast.error(`${itemToRemove.nombre} eliminado del carrito`, toastConfig);
+      // Mensaje específico si se elimina desde el carrito
+      const message = fromCart 
+        ? `${itemToRemove.nombre} eliminado del carrito`
+        : `Se quitó ${itemToRemove.nombre} del carrito`;
+      toast.error(message, toastConfig);
     }
   };
 
-  const updateQuantity = (nombre, newQuantity) => {
+  const updateQuantity = (nombre, newQuantity, previousQuantity) => {
     if (newQuantity < 0) return;
+    
     setCartItems(prevItems =>
       prevItems.map(item =>
         item.nombre === nombre ? { ...item, cantidad: newQuantity } : item
       )
     );
+
+    // Notificar solo si la cantidad cambió desde ShoppingCart
+    if (previousQuantity !== undefined) {
+      if (newQuantity > previousQuantity) {
+        toast.success(`Se agregó otro ${nombre}`, toastConfig);
+      } else if (newQuantity < previousQuantity) {
+        toast.error(`Se quitó un ${nombre}`, toastConfig);
+      }
+    }
   };
 
   return (

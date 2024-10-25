@@ -206,7 +206,7 @@ body {
     ================================= */
 
 
-@media (max-width: 480px) {
+@media (max-width: 530px) {
     :root {
         --image-height: 150px;
     }
