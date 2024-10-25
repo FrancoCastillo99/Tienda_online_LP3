@@ -42,6 +42,12 @@ const NavBar = () => {
 
     const toggleCart = () => {
         setIsCartOpen(!isCartOpen);
+        // Añadir/remover la clase no-scroll al body
+        if (!isCartOpen) {
+            document.body.classList.add('no-scroll');
+        } else {
+            document.body.classList.remove('no-scroll');
+        }
     };
 
     const toggleMenu = () => {
@@ -103,12 +109,7 @@ const NavBar = () => {
             )}
 
             {isCartOpen && (
-                <div className="cart-overlay">
-                    <div className="cart-modal">
-                        <button onClick={toggleCart} className="close-cart-button">&times;</button>
-                        <ShoppingCart />
-                    </div>
-                </div>
+                <ShoppingCart onClose={toggleCart} />
             )}
         </>
     );

@@ -177,50 +177,6 @@
 /* =================================
     5. CARRITO DE COMPRAS
    ================================= */
-.cart-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: var(--cart-overlay-bg-nav);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-.cart-modal {
-    background-color: white;
-    border-radius: 5px;
-    max-width: 1000px;
-    width: 90%;
-    max-height: 80vh;
-    overflow-y: scroll;
-    position: relative;
-}
-
-.cart-modal::-webkit-scrollbar {
-    display: none;
-}
-
-.close-cart-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 1.5rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
-.close-cart-button:hover {
-    color: var(--close-button-hover-nav);
-}
-
-.no-scroll {
-    overflow: hidden;
-}
 
 .cart-icon-container {
     position: relative;
@@ -294,14 +250,13 @@
         width: 100%;
         max-width: none;
         height: auto;
-        max-height: 90vh;
+        max-height: 75vh;
         overflow-y: auto;
     }
 
-    .close-cart-button {
-        font-size: 1.2rem;
-        top: 5px;
-        right: 5px;
+    .back-link {
+        font-size: 1rem;
+        top: 15px;
     }
 
     .cart-overlay {

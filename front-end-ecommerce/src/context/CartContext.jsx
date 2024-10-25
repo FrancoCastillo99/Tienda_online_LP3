@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, useCallback } from 'react';
+import { createContext, useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
 
 export const CartContext = createContext();
@@ -20,78 +20,54 @@ export function CartProvider({ children }) {
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
   }, [cartItems]);
 
-  // Usando useCallback para memorizar las funciones
-  const addItemToCart = useCallback((product) => {
-    setCartItems((prevItems) => {
-      const itemExists = prevItems.find(item => item.nombre === product.nombre);
-      
-      // Creamos el nuevo estado antes de mostrar la notificación
-      let newItems;
-      if (itemExists) {
-        newItems = prevItems.map(item => 
-          item.nombre === product.nombre ? { ...item, cantidad: item.cantidad + 1 } : item
-        );
-        // Notificación después de confirmar que el item existe
-        toast.success(`Se agregó otro ${product.nombre} al carrito`, {
-          id: `add-${product.nombre}-${Date.now()}`, // ID único
-          duration: 2000,
-          position: 'bottom-right',
-          style: {
-            background: '#333',
-            color: '#fff',
-            padding: '16px',
-          },
-          icon: '🛍️',
-        });
-      } else {
-        newItems = [...prevItems, { ...product, cantidad: 1 }];
-        // Notificación para nuevo producto
-        toast.success(`${product.nombre} agregado al carrito`, {
-          id: `new-${product.nombre}-${Date.now()}`, // ID único
-          duration: 2000,
-          position: 'bottom-right',
-          style: {
-            background: '#333',
-            color: '#fff',
-            padding: '16px',
-          },
-          icon: '🛍️',
-        });
-      }
-      
-      return newItems;
-    });
-  }, []); // Sin dependencias ya que no usa valores externos
+  // Configuración básica del toast
+  const toastConfig = {
+    duration: 1500,
+    position: 'bottom-right',
+  };
 
-  const removeItem = useCallback((nombre) => {
-    setCartItems((prevItems) => {
-      const itemToRemove = prevItems.find(item => item.nombre === nombre);
-      if (itemToRemove) {
-        // Notificación con ID único
-        toast.error(`${itemToRemove.nombre} eliminado del carrito`, {
-          id: `remove-${nombre}-${Date.now()}`,
-          duration: 2000,
-          position: 'bottom-right',
-          style: {
-            background: '#333',
-            color: '#fff',
-            padding: '16px',
-          },
-          icon: '🗑️',
-        });
-      }
-      return prevItems.filter(item => item.nombre !== nombre);
-    });
-  }, []); // Sin dependencias
+  const addItemToCart = (product) => {
+    const itemExists = cartItems.find(item => item.nombre === product.nombre);
+    
+    if (itemExists) {
+      setCartItems(prevItems => 
+        prevItems.map(item => 
+          item.nombre === product.nombre 
+            ? { ...item, cantidad: item.cantidad + 1 } 
+            : item
+        )
+      );
+    } else {
+      setCartItems(prevItems => [...prevItems, { ...product, cantidad: 1 }]);
+    }
 
-  const updateQuantity = useCallback((nombre, newQuantity) => {
+    // Mostrar toast después de actualizar el estado
+    toast.success(
+      itemExists 
+        ? `Se agregó otro ${product.nombre}` 
+        : `${product.nombre} agregado al carrito`,
+      toastConfig
+    );
+  };
+
+  const removeItem = (nombre) => {
+    // Encontrar el item antes de eliminarlo
+    const itemToRemove = cartItems.find(item => item.nombre === nombre);
+    
+    if (itemToRemove) {
+      setCartItems(prevItems => prevItems.filter(item => item.nombre !== nombre));
+      toast.error(`${itemToRemove.nombre} eliminado del carrito`, toastConfig);
+    }
+  };
+
+  const updateQuantity = (nombre, newQuantity) => {
     if (newQuantity < 0) return;
-    setCartItems((prevItems) =>
+    setCartItems(prevItems =>
       prevItems.map(item =>
         item.nombre === nombre ? { ...item, cantidad: newQuantity } : item
       )
     );
-  }, []);
+  };
 
   return (
     <CartContext.Provider value={{ 

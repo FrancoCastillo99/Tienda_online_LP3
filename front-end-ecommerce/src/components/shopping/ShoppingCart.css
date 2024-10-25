@@ -289,6 +289,60 @@ TABLE OF CONTENTS
 }
 
 /* =================================
+    5. CARRITO DE COMPRAS
+   ================================= */
+.cart-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--cart-overlay-bg-nav);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.cart-modal {
+    background-color: white;
+    border-radius: 5px;
+    max-width: 100%;
+    width: 80%;
+    padding-top: 5vh;
+    padding-bottom: 3vh;
+    overflow-y: scroll;
+    position: relative;
+}
+
+.cart-modal::-webkit-scrollbar {
+    display: none;
+}
+
+.back-link {
+    position: absolute;
+    top: 20px;
+    left: 25px;
+    display: flex;
+    align-items: center;
+    color: var(--text-color-cart);
+    text-decoration: none;
+    font-size: 0.875rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.back-link:hover {
+    color: var(--text-color-cart);
+}
+
+.no-scroll {
+    overflow: hidden;
+}
+
+/* =================================
 11. Media Queries
 ================================= */
 @media (max-width: 768px) {
