@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom";
 import dashboardIcon from '../../../assets/svgs/dashboardIcon.svg';
 import pedidosIcon from '../../../assets/svgs/pedidosIcon.svg';
-import menuIcon from '../../../assets/svgs/menuIcon.svg';
 import productosIcon from '../../../assets/images/iconos/productosIcon.png';
 import usuariosIcon from '../../../assets/svgs/usuariosIcon.svg';
-import analitycsIcon from '../../../assets/images/iconos/analitycsIcon.png';
+import balanceIcon from '../../../assets/images/iconos/balanceIcon.png';
 import flechaDerecha from '../../../assets/svgs/flechaDerecha.svg';
 import adminImg from '../../../assets/images/avatar/Administrador.jpeg';
 import "./SideBar.css";
@@ -28,7 +27,7 @@ const SideBar = () => {
                             <ul className="menu-list">
                                 <li>
                                     <Link to={"/admin/dashboard"} className="menu-link">
-                                        <div className="menu-item">
+                                        <div className="menu-item-admin">
                                             <img src={dashboardIcon} alt="Icono de Dashboard" className="icon-item" />
                                             <span>Dashboard</span>
                                         </div>
@@ -37,7 +36,7 @@ const SideBar = () => {
                                 </li>
                                 <li>
                                     <Link to={"/admin/pedidos"} className="menu-link">
-                                        <div className="menu-item">
+                                        <div className="menu-item-admin">
                                             <img src={pedidosIcon} alt="Icono de Pedidos" className="icon-item"/>
                                             <span>Pedidos</span>
                                         </div>
@@ -45,17 +44,8 @@ const SideBar = () => {
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to={"/admin/menu"} className="menu-link">
-                                        <div className="menu-item">
-                                            <img src={menuIcon} alt="Icono del Menú" className="icon-item"/>
-                                            <span>Menú</span>
-                                        </div>
-                                        <img src={flechaDerecha} alt="Flecha derecha" className="flecha-icon" />
-                                    </Link>
-                                </li>
-                                <li>
                                     <Link to={"/admin/productos"} className="menu-link">
-                                        <div className="menu-item">
+                                        <div className="menu-item-admin">
                                             <img src={productosIcon} alt="Icono de Productos" className="icon-item"/>
                                             <span>Productos</span>
                                         </div>
@@ -64,7 +54,7 @@ const SideBar = () => {
                                 </li>
                                 <li>
                                     <Link to={"/admin/usuarios"} className="menu-link">
-                                        <div className="menu-item">
+                                        <div className="menu-item-admin">
                                             <img src={usuariosIcon} alt="Icono de Usuarios" className="icon-item" />
                                             <span>Usuarios</span>
                                         </div>
@@ -72,10 +62,10 @@ const SideBar = () => {
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to={"/admin/analitycs"} className="menu-link">
-                                        <div className="menu-item">
-                                            <img src={analitycsIcon} alt="Icono de Analitycs"  className="icon-item"/>
-                                            <span>Analitycs</span>
+                                    <Link to={"/admin/balance"} className="menu-link">
+                                        <div className="menu-item-admin">
+                                            <img src={balanceIcon} alt="Icono de Balance"  className="icon-item"/>
+                                            <span>Balance</span>
                                         </div>
                                         <img src={flechaDerecha} alt="Flecha derecha" className="flecha-icon" />
                                     </Link>

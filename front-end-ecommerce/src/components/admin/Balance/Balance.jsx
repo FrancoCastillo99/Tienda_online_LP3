@@ -1,15 +1,15 @@
 
-const Pedidos = () => {
+const Analitycs = () => {
     return(
         <div className="content">
-                <div className="section-pedidos">
-                    
+            <div className="section">
+                
                 </div>
                 <div className="title-section">
-                    <h1>PEDIDOS</h1>
+                    <h1>BALANCE</h1>
                 </div>
         </div>
     )
 }
 
-export default Pedidos;
+export default Analitycs;
