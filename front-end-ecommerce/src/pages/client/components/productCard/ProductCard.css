@@ -1,22 +1,16 @@
 /* =================================
 TABLE OF CONTENTS
 =================================
-1. Imports
-2. CSS Variables
-3. Global Styles
-4. Article Styles
-5. Article Elements
-6. Button Styles
-7. Media Queries
+1. CSS Variables
+2. Global Styles
+3. Article Styles
+4. Article Elements
+5. Button Styles
+6. Media Queries
 ================================= */
 
 /* =================================
-1. IMPORTS
-================================= */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
-
-/* =================================
-    2. CSS VARIABLES 
+    1. CSS VARIABLES 
     ================================= */
 :root {
     --background-card: #f8f8ff;
@@ -34,7 +28,7 @@ TABLE OF CONTENTS
 }
 
 /* =================================
-    3. CONFIGURACIÓN GLOBAL
+    2. CONFIGURACIÓN GLOBAL
     ================================= */
 body {
     font-family: var(--font-family-card);
@@ -42,7 +36,7 @@ body {
 }
 
 /* =================================
-    4. ARTICLE STYLE
+    3. ARTICLE STYLE
     ================================= */
 .articles {
     display: flex;
@@ -69,7 +63,7 @@ body {
 }
 
 /* =================================
-    5. ARTICLE ELEMENTOS
+    4. ARTICLE ELEMENTOS
     ================================= */
 .articles figure {
     width: 100%;
@@ -171,7 +165,7 @@ body {
 }
 
 /* =================================
-    6. BUTTON STYLE 
+    5. BUTTON STYLE 
     ================================= */
 .article-btn {
     margin: 0.5rem 1rem;
@@ -202,11 +196,11 @@ body {
 }
 
 /* =================================
-    7. MEDIA QUERIES
+    6. MEDIA QUERIES
     ================================= */
 
 
-@media (max-width: 530px) {
+@media (max-width: 480px) {
     :root {
         --image-height: 150px;
     }

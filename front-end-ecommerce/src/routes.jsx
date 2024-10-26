@@ -8,7 +8,7 @@ import Pedidos from "./pages/admin/modules/Pedidos/Pedidos"
 import Menu from "./pages/admin/modules/Menu/Menu"
 import Productos from "./pages/admin/modules/Productos/Productos"
 import Usuarios from "./pages/admin/modules/Usuarios/Usuarios"
-import Analitycs from "./pages/admin/modules/Analitycs/Analitycs"
+import Balance from "./pages/admin/modules/balance/Balance"
 import UserProfile from "./pages/client/views/user/Profile/UserProfile"
 import EditProfile from "./pages/client/views/user/EditProfile/EditProfile"
 
@@ -26,7 +26,7 @@ const RoutesConfig = () => {
                 <Route path="menu" element={<Menu />}/>
                 <Route path="productos" element={<Productos />}/>
                 <Route path="usuarios" element={<Usuarios />}/>
-                <Route path="analitycs" element={<Analitycs />}/>
+                <Route path="balance" element={<Balance />}/>
             </Route>
             <Route path="/profile" element={<UserProfile/>}/>
             <Route path="/edit-profile" element={<EditProfile/>}/>

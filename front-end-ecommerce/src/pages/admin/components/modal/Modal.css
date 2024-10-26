@@ -1,0 +1,119 @@
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed; /* Fija el modal en la ventana */
+    background: rgba(0, 0, 0,0.5); /* Fondo oscuro con opacidad */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    padding: 1rem;
+}
+
+.contenido-modal {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    background: #fff; /* Fondo blanco para el contenido del modal */
+    border-radius: 1rem; /* Bordes redondeados */
+    padding: 3rem;
+    width: 100%; /* Ancho del modal */
+    max-width: 66%; /* Ancho máximo para pantallas pequeñas */
+    height: 88vh;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Sombra para darle profundidad */
+    position: relative; /* Necesario para el botón de cerrar */
+    overflow-y: auto;
+}
+.contenido-modal-mediano{
+    flex-direction: column;
+    background: #fff; /* Fondo blanco para el contenido del modal */
+    border-radius: 1rem; /* Bordes redondeados */
+    padding: 1.6rem;
+    width: 100%; /* Ancho del modal */
+    max-width: 60%; /* Ancho máximo para pantallas pequeñas */
+    height: 70vh;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Sombra para darle profundidad */
+    position: relative; /* Necesario para el botón de cerrar */
+    overflow-y: auto;
+}
+.contenido-modal-ajustado{
+    flex-direction: column;
+    background: #fff; /* Fondo blanco para el contenido del modal */
+    border-radius: 1rem; /* Bordes redondeados */
+    padding: 1.6rem;
+    width: 100%; /* Ancho del modal */
+    max-width: fit-content; /* Ancho máximo para pantallas pequeñas */
+    height: fit-content;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Sombra para darle profundidad */
+    position: relative; /* Necesario para el botón de cerrar */
+    overflow-y: auto;
+}
+.header-modal{
+    width: 100%;
+    text-align: center;
+}
+.body-modal{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    padding: 1rem;
+}
+.body-modal-ajustado{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    padding: 1rem;
+    gap: 1.4rem;
+    margin-top: 0.6rem;
+}
+.acciones-modal{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.formulario{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    gap: 1rem;
+}
+.formulario label{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.formulario input{
+    height: 3vh;
+    padding: 1rem;
+}
+.formulario textarea{
+    resize: none;
+    padding: 1rem;
+    height: 10vh;
+    width: 100%;
+}
+.formulario select{
+    padding: 0.5rem;
+}
+.formulario span{
+    font-weight: bold;
+    font-size: 1rem;
+}
+input[name="precio"]::-webkit-outer-spin-button,
+input[name="precio"]::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+    appearance: none;
+}
+.close {
+    border: none;
+    background-color: #fff;
+    cursor: pointer; /* Cambiar el cursor al pasar por encima */
+    position: absolute; /* Posicionarlo en la esquina superior derecha */
+    top: 1rem; /* Espacio desde la parte superior */
+    right: 1rem; /* Espacio desde la derecha */
+}
