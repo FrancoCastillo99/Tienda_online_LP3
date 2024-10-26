@@ -2,8 +2,9 @@ import "./Usuarios.css";
 import filtroIcon from "../../../assets/images/iconos/filtrosIcon.png";
 import { useState, useEffect } from "react";
 import Modal from "../Modal/Modal";
-import { db } from "../../../config/firebaseConfig"; // Asegúrate de la ruta correcta
-import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from "firebase/firestore"; // Asegúrate de importar updateDoc y doc
+import { db } from "../../../config/firebaseConfig";
+import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from "firebase/firestore";
+import Boton from "../Boton/Boton";
 
 const Usuarios = () => {
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -98,7 +99,7 @@ const Usuarios = () => {
                 <div className="container-usuarios">
                     <h2>LISTA DE USUARIOS</h2>
                     <div className="lista-acciones-usuario">
-                        <button className="btn btn-agregar" onClick={openAddModal}>Agregar Usuario</button>
+                        <Boton onClick={openAddModal} nameClass="btn-agregar" texto="Agregar Usuario"></Boton>
                         <Modal isOpen={isAddModalOpen} onClose={closeAddModal} titulo="Formulario para Agregar usuario" contenedorClass="contenido-modal-mediano" bodyClass="body-modal">
                             <form className="formulario" onSubmit={handleAddSubmit}>
                                 <label>
@@ -120,13 +121,10 @@ const Usuarios = () => {
                                     <span>Rol</span>
                                     <input type="text" name="rol" placeholder="Rol" required />
                                 </label>
-
-                                <button type="submit" className="btn btn-agregar-formulario">Agregar</button>
+                                <Boton type="submit" nameClass="btn-agregar-formulario" texto="Agregar"></Boton>
                             </form>
                         </Modal>
-                        <button className="btn btn-filtrar">
-                            <img src={filtroIcon} alt="filtro" />
-                        </button>
+                        <Boton nameClass="btn-filtrar" change={true} img={filtroIcon}></Boton>
                     </div>
                     <table className="tabla-usuarios">
                         <thead>
@@ -144,8 +142,8 @@ const Usuarios = () => {
                                     <td>{usuario.email}</td>
                                     <td>{usuario.rol}</td>
                                     <td>
-                                        <button className="btn btn-editar" onClick={() => openEditModal(usuario)}>Editar</button>
-                                        <button className="btn btn-eliminar" onClick={() => openDeleteModal( usuario)}>Eliminar</button>
+                                        <Boton onClick={() => openEditModal(usuario)} nameClass="btn-editar" texto="Editar"></Boton>
+                                        <Boton onClick={() => openEditModal(usuario)} nameClass="btn-eliminar" texto="Eliminar"></Boton>
                                     </td>
                                 </tr>
                             ))}
@@ -170,15 +168,14 @@ const Usuarios = () => {
                                             <span>Rol</span>
                                             <input type="text" name="rol" placeholder="Rol" defaultValue={ usuarioEdit?.rol} required />
                                         </label>
-
-                                        <button type="submit" className="btn btn-agregar-formulario">Guardar Cambios</button>
+                                        <Boton type="submit" nameClass="btn-agregar-formulario" texto="Guardar Cambios"></Boton>
                                     </form>
                                 </Modal>
                                 <Modal isOpen={isDeleteModalOpen} onClose={closeDeleteModal} titulo="Confirmar Eliminación" contenedorClass="contenido-modal-ajustado" bodyClass="body-modal-ajustado">
                                     <p>¿Estás seguro de que deseas eliminar el usuario "{ usuarioDelete?.username}"?</p>
                                     <div className="acciones-modal">
-                                        <button onClick={handleDelete} className="btn btn-eliminar">Eliminar</button>
-                                        <button onClick={closeDeleteModal} className="btn btn-cancelar">Cancelar</button>
+                                        <Boton onClick={handleDelete} nameClass="btn-eliminar" texto="Eliminar"></Boton>
+                                        <Boton onClick={closeDeleteModal} nameClass="btn-cancelar" texto="Cancelar"></Boton>
                                     </div>
                                 </Modal>
                         </tbody>

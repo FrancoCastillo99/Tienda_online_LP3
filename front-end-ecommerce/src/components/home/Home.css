@@ -1,17 +1,3 @@
-/* ==========================
-  GLOBAL STYLES
-  ========================== */
-
-/* Importa la fuente Inter de Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
-
-/* Estilos generales aplicados a todo el documento */
-body {
-  margin: 0; /* Elimina el margen predeterminado del body */
-  font-family: "Inter", sans-serif; /* Define la fuente general */
-  background-color: #ffffff; /* Color de fondo blanco */
-}
-
 /* Oculta la barra de desplazamiento en navegadores WebKit */
 body::-webkit-scrollbar {
   display: none; /* No muestra la barra de desplazamiento */

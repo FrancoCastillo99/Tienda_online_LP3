@@ -2,8 +2,9 @@ import "./Productos.css";
 import filtroIcon from "../../../assets/images/iconos/filtrosIcon.png";
 import { useState, useEffect } from "react";
 import Modal from "../Modal/Modal";
-import { db } from "../../../config/firebaseConfig"; // Asegúrate de la ruta correcta
-import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from "firebase/firestore"; // Asegúrate de importar updateDoc y doc
+import { db } from "../../../config/firebaseConfig";
+import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from "firebase/firestore";
+import Boton from "../Boton/Boton";
 
 const Productos = () => {
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -107,7 +108,7 @@ const Productos = () => {
                 <div className="container-productos">
                     <h2>LISTA DE PRODUCTOS</h2>
                     <div className="lista-acciones-productos">
-                        <button className="btn btn-agregar" onClick={openAddModal}>Agregar Producto</button>
+                        <Boton onClick={openAddModal} nameClass="btn-agregar" texto="Agregar Producto"></Boton>
                         <Modal isOpen={isAddModalOpen} onClose={closeAddModal} titulo="Formulario para Agregar Producto" contenedorClass="contenido-modal" bodyClass="body-modal">
                             <form className="formulario" onSubmit={handleAddSubmit}>
                                 <label>
@@ -139,13 +140,10 @@ const Productos = () => {
                                     <span>Precio</span>
                                     <input type="number" name="precio" min="0" step="any" required />
                                 </label>
-
-                                <button type="submit" className="btn btn-agregar-formulario">Agregar</button>
+                                <Boton type="submit" nameClass="btn-agregar-formulario" texto="Agregar"></Boton>
                             </form>
                         </Modal>
-                        <button className="btn btn-filtrar">
-                            <img src={filtroIcon} alt="filtro" />
-                        </button>
+                        <Boton nameClass="btn-filtrar" change={true} img={filtroIcon}></Boton>
                     </div>
                     <table className="tabla-productos">
                         <thead>
@@ -167,8 +165,8 @@ const Productos = () => {
                                     <td>{producto.stock}</td>
                                     <td>${producto.precio}</td>
                                     <td className="acciones-producto">
-                                        <button className="btn btn-editar" onClick={() => openEditModal(producto)}>Editar</button>
-                                        <button className="btn btn-eliminar" onClick={() => openDeleteModal(producto)}>Eliminar</button>
+                                        <Boton onClick={() => openEditModal(producto)} nameClass="btn-editar" texto="Editar"></Boton>
+                                        <Boton onClick={() => openDeleteModal(producto)} nameClass="btn-eliminar" texto="Eliminar"></Boton>
                                     </td>
                                 </tr>
                             ))}
@@ -202,15 +200,14 @@ const Productos = () => {
                                             <span>Precio</span>
                                             <input type="number" name="precio" placeholder="Precio" min="0" step="any" defaultValue={productoEdit?.precio} required />
                                         </label>
-
-                                        <button type="submit" className="btn btn-agregar-formulario">Guardar Cambios</button>
+                                        <Boton type="submit" nameClass="btn-agregar-formulario" texto="Guardar Cambios"></Boton>
                                     </form>
                                 </Modal>
                                 <Modal isOpen={isDeleteModalOpen} onClose={closeDeleteModal} titulo="Confirmar Eliminación" contenedorClass="contenido-modal-ajustado" bodyClass="body-modal-ajustado">
                                     <p>¿Estás seguro de que deseas eliminar el producto "{productoDelete?.nombre}"?</p>
                                     <div className="acciones-modal">
-                                        <button onClick={handleDelete} className="btn btn-eliminar">Eliminar</button>
-                                        <button onClick={closeDeleteModal} className="btn btn-cancelar">Cancelar</button>
+                                        <Boton onClick={handleDelete} nameClass="btn-eliminar" texto="Eliminar"></Boton>
+                                        <Boton onClick={closeDeleteModal} nameClass="btn-cancelar" texto="Cancelar"></Boton>
                                     </div>
                                 </Modal>
                         </tbody>
