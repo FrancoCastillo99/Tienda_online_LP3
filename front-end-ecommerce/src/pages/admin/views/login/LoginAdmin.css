@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lily+Script+One&display=swap');
+
+/* Reinicio de márgenes, padding y definición de la fuente base */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background-color: #ffffff;
+}
+
+.container-admin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Alinea el contenido vertical y horizontalmente */
+}
+
+/* Contenedor principal del formulario */
+.container-form {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  transition: all 1s ease;
+}
+
+/* Estilos para la sección de información */
+.information-admin {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-image: url("../../../../assets/admin/videos/login/loginAdminOne.gif"); /* Gif de fondo */
+  background-size: cover;
+  background-position: center;
+}
+
+.info-childs h1 {
+  font-size: 3.5rem;
+  font-family: 'Lily Script One';
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.info-childs input {
+  font-weight: bold;
+  background-color: transparent;
+  outline: none;
+  border: 2px solid #fff;
+  border-radius: 20px;
+  padding: 10px 20px;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Efecto hover en botones solo para pantallas no táctiles */
+@media (hover: hover) {
+  .info-childs input:hover,
+  .form input[type="submit"]:hover{
+    background-color: rgb(0, 0, 0);
+    border: none;
+    color: #fff;
+    box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
+    transform: scale(1.02);
+  }
+}
+
+/* Efecto para cuando se presiona el botón en dispositivos táctiles o al hacer clic */
+.info-childs input:active,
+.form input[type="submit"]:active {
+  background-color: rgb(0, 0, 0);
+  transform: scale(0.98);
+  box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
+}
+
+/* Estilos para la sección del formulario */
+.form-information {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  text-align: center;
+  background-color: #ffffff;
+}
+
+.form-information-childs {
+  padding: 0 30px;
+}
+
+.form-information-childs h2 {
+  font-size: 2rem;
+  color: #000;
+}
+
+.form {
+  margin: 30px 0 0 0;
+}
+
+.form label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 0 10px;
+  background-color: #ffffff;
+  box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
+  min-width: 20rem;
+}
+
+.form label input {
+  width: 100%;
+  padding: 10px;
+  background-color: #fff;
+  border: none;
+  outline: none;
+  color: #333;
+}
+
+.form label i {
+  color: #a7a7a7;
+}
+
+/* Estilo al estar focus de los botones a enviar */
+.form label:focus-within {
+  border: 1px solid rgb(236, 190, 8);
+  box-shadow: 0 4px 12px rgba(236, 190, 8, 0.25);
+  padding: 0 5px;
+}
+
+/* Estilo para el botón de enviar */
+.form input[type="submit"] {
+  background-color: rgb(236, 190, 8);
+  color: #fff;
+  border-radius: 20px;
+  border: none;
+  padding: 10px 90px;
+  cursor: pointer;
+  margin-top: 10px;
+  box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
+  min-width: 20rem;
+}
+
+/* Ocultar las alertas con una clase de utilidad */
+.hide {
+  position: absolute;
+  transform: translateY(-300%);
+}
+
+/* Estilos para las alertas de error y éxito */
+.alerta {
+  text-align: center;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  font-size: 0.8rem;
+  color: #fff;
+}
+
+.alerta-error {
+  background-color: #f51414;
+  padding: 0.5rem 1rem;
+  margin-top: 20px;
+  font-weight: 500;
+}
+
+.alerta-exito {
+  background-color: #0ca828;
+  padding: 0.5rem 1rem;
+  margin-top: 20px;
+  font-weight: 500;
+}
+
+input,
+button {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Estilos responsivos para pantallas medianas */
+@media screen and (max-width: 750px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+/* Estilos responsivos para pantallas pequeñas */
+@media screen and (max-width: 580px) {
+  html,
+  body {
+    height: 100%;
+    font-size: 15px;
+  }
+
+  .container-form {
+    flex-direction: column; /* Pila las secciones una debajo de la otra */
+  }
+
+  .information,
+  .form-information {
+    width: 100%;
+    flex-grow: 1;
+    height: auto;
+    padding: 20px;
+  }
+
+  .information {
+    background-size: cover; /* Asegura que la imagen de fondo se ajuste bien */
+  }
+
+  .form-information {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+}
