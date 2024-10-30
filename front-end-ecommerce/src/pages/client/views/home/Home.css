@@ -1,0 +1,15 @@
+/* Oculta la barra de desplazamiento en navegadores WebKit */
+body::-webkit-scrollbar {
+  display: none; /* No muestra la barra de desplazamiento */
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Contenedor principal de la página home */
+.home-container {
+  min-height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la ventana */
+  display: flex; /* Utiliza el modelo de caja flex */
+  flex-direction: column; /* Alinea los elementos hijos en columna */
+}

@@ -1,0 +1,237 @@
+.container-panel {
+    min-height: 100vh;
+    width: 22%;
+    background-color: #f51111;
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+}
+
+.panel-admin {
+    height: 100%;
+}
+
+.info-admin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 4rem 2rem 1rem 2rem;
+}
+
+.menu-admin {
+    display: flex;
+    flex-direction: column; /* Asegura que el contenido se alinee en columna */
+    align-items: stretch; /* Asegura que los hijos ocupen todo el ancho */
+    padding: 3rem;
+}
+
+.menu-list {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 2.4rem; /* Espaciado entre los elementos de la lista */
+}
+
+.menu-link {
+    display: flex;
+    justify-content: space-between; /* Distribuye espacio entre el contenido y la flecha */
+    align-items: center;
+    padding: 0.5rem 0; /* Añadir padding para aumentar el área de clic */
+}
+.menu-item-admin {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem; /* Espacio entre icono y texto */
+    color: #fff;
+}
+.icon-item{
+    width: 2rem; /* Ajusta según sea necesario */
+    height:  2rem;
+    object-fit: contain; /* Mantiene proporciones */
+}
+.flecha-icon {
+    width: 20px; /* Ajusta según sea necesario */
+    height: auto; /* Asegura que la imagen mantenga su proporción */
+}
+@media (max-width: 1400px) {
+    .container-panel {
+        width: 30%;
+    }
+    .menu-link {
+        display: flex;
+        justify-content: space-between; /* Distribuye espacio entre el contenido y la flecha */
+        align-items: center; /* Alinea verticalmente los elementos dentro del enlace */
+        padding: 0.5rem 0; /* Añadir padding para aumentar el área de clic */
+    }
+    .info-admin .avatar-username {
+        font-size: 1.6rem;
+    }
+    .icon-item{
+        width: 1.4rem; /* Ajusta según sea necesario */
+        height:  1.4rem;
+    }
+    .flecha-icon {
+        margin-left: 2rem; /* Alinea automáticamente la flecha a la derecha */
+        width: 20px; /* Ajusta según sea necesario */
+        height: auto; /* Asegura que la imagen mantenga su proporción */
+    }
+}
+
+@media (max-width: 968px) {
+    .container-panel {
+        width: 34%;
+    }
+    .info-admin{
+        margin: 3rem 2rem 0.5rem 2rem;
+    }
+    .info-admin .avatar-username {
+        font-size: 1.4rem;
+    }
+    .info-admin .avatar-image {
+        width: 4rem;
+        height: 4rem;
+    }
+    .menu-link {
+        display: flex;
+        justify-content: space-between; /* Distribuye espacio entre el contenido y la flecha */
+        align-items: center; /* Alinea verticalmente los elementos dentro del enlace */
+        padding: 0.5rem 0; /* Añadir padding para aumentar el área de clic */
+    }
+    .icon-item{
+        width: 1.4rem; /* Ajusta según sea necesario */
+        height:  1.4rem;
+    }
+    .flecha-icon {
+        margin-left: 2rem; /* Alinea automáticamente la flecha a la derecha */
+        width: 20px; /* Ajusta según sea necesario */
+        height: auto; /* Asegura que la imagen mantenga su proporción */
+    }
+}
+@media (max-width: 794px) {
+    .container-panel {
+        width: 36%; /* Para pantallas más pequeñas */
+    }
+    .menu-link {
+        padding: 0.8rem 0; /* Incrementa el padding */
+    }
+    .info-admin {
+        margin: 3rem 1rem 1rem 1rem; /* Reduce el margen para pantallas pequeñas */
+    }
+    .info-admin .avatar-username {
+        font-size: 1.4rem;
+    }
+    .flecha-icon {
+        margin-left: 2rem; /* Alinea automáticamente la flecha a la derecha */
+        width: 20px; /* Ajusta según sea necesario */
+        height: auto; /* Asegura que la imagen mantenga su proporción */
+    }
+}
+/* Mostrar solo íconos y avatar arriba a la derecha en pantallas muy pequeñas */
+@media (max-width: 580px) {
+    .container-panel {
+        width: 100%; /* Barra lateral ocupa todo el ancho inferior */
+        min-height: 12vh;
+        position: fixed; /* Fija el menú en la parte inferior */
+        bottom: 0;
+        display: flex;
+        justify-content: space-around; /* Espaciado entre los iconos */
+        align-items: center;
+        overflow-x: auto;
+    }
+
+    .menu-admin {
+        padding: 1rem;
+    }
+
+    .info-admin {
+        position: fixed; /* Fija el avatar en la esquina superior derecha */
+        top: 1rem;
+        left: 1rem;
+        display: flex;
+        gap: 0.5rem;
+        margin: 0;
+    }
+    .info-admin .avatar-username {
+        font-size: 1.2rem;
+    }
+    .info-admin .avatar-image {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+    .menu-list {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+        gap: 3.5rem;
+    }
+
+    .menu-link {
+        padding: 0.4rem 0; /* Incrementa el padding */
+        width: 100%;
+    }
+
+    .avatar-username {
+        color: #000;
+    }
+    
+    /* Ocultar el texto de los elementos del menú, mostrando solo íconos */
+    .menu-link span {
+        display: none;
+    }
+
+    /* Ajustar el tamaño de los íconos */
+    .icon-item {
+        width: 1.7rem;
+        height: 1.7rem;
+    }
+
+    .flecha-icon {
+        display: none; /* Oculta flechas en pantallas pequeñas */
+    }
+}
+
+@media (max-width: 430px) {
+    .container-panel {
+        min-height: 10vh; /* Ajustar la altura mínima */
+    }
+    .info-admin .avatar-username {
+        font-size: 1rem;
+    }
+    .info-admin .avatar-image {
+        width: 2rem;
+        height: 2rem;
+    }
+    .menu-list{
+        gap: 2.8rem;
+    }
+    .menu-link {
+        padding: 0.2rem 0; /* Reducir padding para elementos de menú */
+    }
+    .icon-item {
+        width: 1.5rem; /* Disminuir tamaño de los íconos aún más */
+        height: 1.5rem;
+    }
+}
+@media (max-width: 369px) {
+    .icon-item {
+        width: 1.2rem; /* Disminuir tamaño de los íconos aún más */
+        height: 1.2rem;
+    }
+    .menu-list{
+        gap: 2.2rem;
+    }
+    .menu-link {
+        padding: 0.1rem 0; /* Reducir padding para elementos de menú */
+    }
+}
+@media (max-width: 290px) {
+    .icon-item {
+        width: 1rem; /* Disminuir tamaño de los íconos aún más */
+        height: 1rem;
+    }
+    .menu-list{
+        gap: 1.8rem;
+    }
+}

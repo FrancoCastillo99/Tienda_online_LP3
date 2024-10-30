@@ -1,0 +1,35 @@
+.avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.4rem;
+}
+
+.avatar-image {
+    width: var(--image-size); /* Utiliza la variable dinámica para ajustar el tamaño */
+    height: var(--image-size);
+    object-fit: cover;
+    border-radius: 50%; /* Para que sea circular */
+}
+
+.avatar-username {
+    font-size: var(--font-size); /* Usa la variable dinámica para ajustar el tamaño */
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+/* Media Queries para adaptarse a pantallas pequeñas */
+@media (max-width: 768px) {
+    .avatar {
+        gap: 1rem;
+    }
+    .avatar-image {
+        width: 3.6rem; /* Ajusta según lo que necesites */
+        height: 3.6rem;
+    }
+    .avatar-username {
+        font-size: 1.4rem;
+        font-weight: bold;
+        line-height: 1.2;
+    }
+}

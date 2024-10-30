@@ -1,0 +1,105 @@
+
+.btn-agregar{
+    background-color: #fff;
+    color: #000000;
+    font-weight: bold;
+    width: 16%;
+    padding: 1rem;
+    height: fit-content;
+    text-align: center;
+    border: none;
+    border-radius: 10rem;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgb(0, 0, 0, 25%) ;
+}
+.btn-agregar-formulario {
+    background-color: #000;
+    color: #fff;
+    font-weight: bold;
+    width: 20vw;
+    margin-top: 0.5rem;
+    align-self: center;
+    padding: 1rem;
+    height: fit-content;
+    text-align: center;
+    border: none;
+    border-radius: 10rem;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgb(0, 0, 0, 25%) ;
+}
+.btn-editar{
+    background-color: #406de7;
+    margin: 0.6rem;
+    color: #fff;
+    font-weight: bold;
+    width: 5.5rem;
+    margin-top: 0.5rem;
+    padding: 1rem;
+    height: fit-content;
+    text-align: center;
+    border: none;
+    border-radius: 10rem;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgb(0, 0, 0, 25%) ;
+}
+.btn-eliminar{
+    background-color: #f44336;
+    margin: 0.6rem;
+    color: #fff;
+    font-weight: bold;
+    width: 5.5rem;
+    margin-top: 0.5rem;
+    padding: 1rem;
+    height: fit-content;
+    text-align: center;
+    border: none;
+    border-radius: 10rem;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgb(0, 0, 0, 25%) ;
+}
+.btn-filtrar{
+    padding: 0.6rem;
+    width: fit-content;
+    height: fit-content;
+    background-color:#fff;
+    border: none;
+    border-radius: 10rem;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgb(0, 0, 0, 25%) ;
+}
+.btn-filtrar img{
+    width: 20px;
+    height: 20px;
+}
+.btn-editar:hover{
+    background-color: #104bee;
+}
+.btn-eliminar:hover{
+    background-color: #e72724;
+}
+.btn-cancelar{
+    background-color: #fff;
+    color: #000;
+    font-weight: bold;
+    width: 5.5rem;
+    padding: 1rem;
+    height: fit-content;
+    text-align: center;
+    border: none;
+    border-radius: 10rem;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgb(0, 0, 0, 25%) ;
+}
+.btn-cancelar:hover{
+    background-color: #000;
+    color: #fff;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgb(0, 0, 0, 25%) ;
+}
+.btn-agregar-formulario:hover{
+    background-color: #0f0f0f;
+}
+.btn-agregar:hover{
+    background-color: #000;
+    color:#fff;
+} 

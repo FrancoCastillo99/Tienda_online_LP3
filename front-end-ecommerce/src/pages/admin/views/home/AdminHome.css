@@ -1,0 +1,6 @@
+.home-container-admin{
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden; /* Oculta contenido que sobrepase el contenedor */
+}

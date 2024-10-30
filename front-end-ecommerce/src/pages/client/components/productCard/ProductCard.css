@@ -1,0 +1,249 @@
+/* =================================
+TABLE OF CONTENTS
+=================================
+1. CSS Variables
+2. Global Styles
+3. Article Styles
+4. Article Elements
+5. Button Styles
+6. Media Queries
+================================= */
+
+/* =================================
+    1. CSS VARIABLES 
+    ================================= */
+:root {
+    --background-card: #f8f8ff;
+    --text-card: #2c2c2c;
+    --button-bg-card: #2c2c2c;
+    --button-text-card: #f8f8ff;
+    --button-hover-card: #F91D1D;
+    --font-family-card: 'Inter', sans-serif;
+    --border-radius-card: 16px;
+    --transition-speed-card: 0.4s;
+    --base-card-width: 368px;
+    --base-card-height: 650px;
+    --base-font-size: 16px;
+    --image-height: 300px;
+}
+
+/* =================================
+    2. CONFIGURACIÓN GLOBAL
+    ================================= */
+body {
+    font-family: var(--font-family-card);
+    font-size: var(--base-font-size);
+}
+
+/* =================================
+    3. ARTICLE STYLE
+    ================================= */
+.articles {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    margin: 0 auto;
+    max-width: 100%;
+    gap: 1rem;
+    padding: 0.5rem;
+}
+
+.articles article {
+    width: var(--base-card-width);
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    transition: all var(--transition-speed-card) ease-in-out;
+    overflow: hidden;
+    border-radius: var(--border-radius-card);
+    background: var(--background-card);
+}
+
+/* =================================
+    4. ARTICLE ELEMENTOS
+    ================================= */
+.articles figure {
+    width: 100%;
+    height: var(--image-height);
+    overflow: hidden;
+    margin: 0;
+}
+
+.articles article img {
+    width: 100%;
+    height: var(--image-height);
+    object-fit: cover;
+    transform-origin: center;
+    transition: transform var(--transition-speed-card) ease-in-out;
+}
+
+.articles article:hover img {
+    transform: scale(1.1);
+}
+
+.article-preview {
+    height: calc(100% - var(--image-height));
+    width: 100%;
+    padding: 1.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.article-preview h2 {
+    font-size: 1.6rem;
+    font-weight: 800;
+    line-height: 1.5;
+    letter-spacing: -0.02em;
+    margin: 0;
+    padding: 0 0.5rem;
+    color: var(--text-card);
+    transition: color 0.3s ease-out;
+    text-align: center;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+.article-preview p {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-card);
+    text-align: center;
+    text-transform: uppercase;
+    margin: 0.5rem 0;
+    padding: 0 0.5rem;
+    width: 100%;
+    max-height: 100px;
+    overflow-y: auto;
+    /* Ocultar scrollbar en Firefox */
+    scrollbar-width: none;
+    /* Ocultar scrollbar en IE y Edge */
+    -ms-overflow-style: none;
+}
+
+/* Ocultar scrollbar en Chrome, Safari y Opera */
+.article-preview p::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* Estilos para el scrollbar en navegadores WebKit */
+.article-preview p::-webkit-scrollbar {
+    width: 6px;
+}
+
+.article-preview p::-webkit-scrollbar-track {
+    background: var(--background-card);
+    border-radius: 3px;
+}
+
+.article-preview p::-webkit-scrollbar-thumb {
+    background-color: var(--button-bg-card);
+    border-radius: 3px;
+}
+
+.article-buy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 1rem;
+    padding-top: 0.5rem;
+}
+
+.article-price {
+    font-weight: 700;
+    color: var(--text-card);
+    text-align: center;
+    text-transform: uppercase;
+    margin: 0.5rem 0;
+    font-size: 1.2rem;
+}
+
+/* =================================
+    5. BUTTON STYLE 
+    ================================= */
+.article-btn {
+    margin: 0.5rem 1rem;
+    background: var(--button-bg-card);
+    color: var(--button-text-card);
+    padding: 0.5rem 2rem 0.7rem 1.7rem;
+    font-size: 1rem;
+    border-radius: 2.5em;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    text-transform: uppercase;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+    transition: all var(--transition-speed-card) ease-in-out;
+}
+
+.article-btn:hover {
+    background-color: var(--button-hover-card);
+}
+
+.article-btn:active {
+    background-color: var(--button-hover-card);
+    transform: scale(0.9);
+    transition: all 0.2s ease-in-out;
+}
+
+/* =================================
+    6. MEDIA QUERIES
+    ================================= */
+
+
+@media (max-width: 480px) {
+    :root {
+        --image-height: 150px;
+    }
+    
+    .articles {
+        gap: 0.5rem;
+        padding: 0.5rem;
+    }
+
+    .articles article {
+        width: calc(50% - 0.5rem);
+    }
+
+    .article-preview {
+        padding: 0.75rem 0.5rem;
+        gap: 0.5rem;
+    }
+
+    .article-preview h2 {
+        font-size: 0.8rem;
+        padding: 0 0.2rem;
+    }
+
+    .article-preview p {
+        font-size: 0.7rem;
+        margin: 0.2rem 0;
+        padding: 0 0.2rem;
+        max-height: 50px;
+    }
+
+    .article-price {
+        font-size: 0.8rem;
+        margin: 0.2rem 0;
+    }
+
+    .article-buy {
+        margin-top: 0.5rem;
+        padding-top: 0.2rem;
+    }
+
+    .article-btn {
+        padding: 0.3rem 0.8rem;
+        font-size: 0.7rem;
+        margin: 0.2rem 0.4rem;
+    }
+}

@@ -1,16 +1,16 @@
 import { Routes, Route, Navigate } from "react-router-dom"
-import Login from "./components/login/Login"
-import Home from "./components/home/Home"
-import LoginAdmin from "./components/admin/login/LoginAdmin"
-import AdminHome from "./components/admin/home/AdminHome"
-import Dashboard from "./components/admin/dashboard/Dashboard"
-import Pedidos from "./components/admin/Pedidos/Pedidos"
-import Menu from "./components/admin/Menu/Menu"
-import Productos from "./components/admin/Productos/Productos"
-import Usuarios from "./components/admin/Usuarios/Usuarios"
-import Analitycs from "./components/admin/Analitycs/Analitycs"
-import UserProfile from "./components/user/Profile/UserProfile"
-import EditProfile from "./components/user/EditProfile/EditProfile"
+import Login from "./pages/client/views/login/Login"
+import Home from "./pages/client/views/home/Home"
+import LoginAdmin from "./pages/admin/views/login/LoginAdmin"
+import AdminHome from "./pages/admin/views/home/AdminHome"
+import Dashboard from "./pages/admin/modules/dashboard/Dashboard"
+import Pedidos from "./pages/admin/modules/Pedidos/Pedidos"
+import Menu from "./pages/admin/modules/Menu/Menu"
+import Productos from "./pages/admin/modules/Productos/Productos"
+import Usuarios from "./pages/admin/modules/Usuarios/Usuarios"
+import Balance from "./pages/admin/modules/balance/Balance"
+import UserProfile from "./pages/client/views/user/Profile/UserProfile"
+import EditProfile from "./pages/client/views/user/EditProfile/EditProfile"
 
 
 const RoutesConfig = () => {
@@ -26,7 +26,7 @@ const RoutesConfig = () => {
                 <Route path="menu" element={<Menu />}/>
                 <Route path="productos" element={<Productos />}/>
                 <Route path="usuarios" element={<Usuarios />}/>
-                <Route path="analitycs" element={<Analitycs />}/>
+                <Route path="balance" element={<Balance />}/>
             </Route>
             <Route path="/profile" element={<UserProfile/>}/>
             <Route path="/edit-profile" element={<EditProfile/>}/>
