@@ -1,7 +1,6 @@
 package com.buenSabor.model;
 
 import lombok.Data;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -11,7 +10,7 @@ public class Pedido {
     private List<ProductoPedido> productos;
     private double total;
     private String estado;
-    private LocalDateTime fechaPedido;
+    private String fechaPedido;
 
     @Data
     public static class ProductoPedido {

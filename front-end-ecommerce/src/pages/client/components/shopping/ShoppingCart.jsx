@@ -1,29 +1,115 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import './ShoppingCart.css';
 import { CartContext } from '../../context/CartContext';
+import {useUser} from '../../context/UserContext';
+import { initMercadoPago, Wallet } from '@mercadopago/sdk-react';
+import axios from 'axios';
+
+// Inicializa MercadoPago con tu PUBLIC_KEY
+initMercadoPago('APP_USR-819e8c0a-f7eb-4172-9efd-bc38be75c644');
 
 export default function ShoppingCart({ onClose }) {
-  const { cartItems, removeItem, updateQuantity } = useContext(CartContext);
+  const { user } = useUser();
+  const { cartItems, removeItem, updateQuantity, clearCart } = useContext(CartContext);
   const [paymentMethod, setPaymentMethod] = useState(null);
+  const [preferenceId, setPreferenceId] = useState(null);
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [paymentStatus, setPaymentStatus] = useState(null);
+  const [orderId, setOrderId] = useState(null);
 
-  const handleDecreaseQuantity = (nombre, cantidad) => { 
+  const handleDecreaseQuantity = (nombre, cantidad) => {
     if (cantidad > 1) {
-      updateQuantity(nombre, cantidad - 1, cantidad);
+      updateQuantity(nombre, cantidad - 1);
     } else {
-      removeItem(nombre, true);
+      removeItem(nombre);
     }
   };
 
-  const handleIncreaseQuantity = (nombre, cantidad) => { 
-    updateQuantity(nombre, cantidad + 1, cantidad);
+  const handleIncreaseQuantity = (nombre, cantidad) => {
+    updateQuantity(nombre, cantidad + 1);
   };
 
   const total = cartItems.reduce((sum, item) => sum + item.precio * item.cantidad, 0);
 
+  const crearPedido = async (pedido) => {
+    try {
+      const response = await axios.post('http://localhost:8080/api/pedidos', pedido);
+      return response.data;
+    } catch (error) {
+      console.error("Error al crear el pedido en Firebase:", error);
+      throw error;
+    }
+  };
+
+  const crearPedidoFirebase = async () => {
+    if (!user) {
+      console.log("No hay usuario autenticado");
+      return;
+    }
+
+    const pedido = {
+      userId: user.uid, // Usar el userId del usuario autenticado
+      productos: cartItems.map((item) => ({
+        productoId: item.nombre,
+        cantidad: item.cantidad,
+        precioUnitario: item.precio,
+      })),
+      total: total,
+      estado: 'COMPLETADO'
+    };
+
+    try {
+      await crearPedido(pedido); // Llama a la función crearPedido para guardar el pedido en Firebase
+      console.log('Pedido creado en Firebase:', pedido);
+    } catch (error) {
+      console.error('Error al crear el pedido en Firebase:', error);
+    }
+  };
+
+  const createPreference = async () => {
+    try {
+      setIsProcessing(true);
+      const items = cartItems.map(item => ({
+        titulo: item.nombre,
+        descripcion: item.descripcion || item.nombre,
+        precio: item.precio,
+        cantidad: item.cantidad,
+        imagenUrl: item.imagenUrl
+      }));
+
+      const newOrderId = Date.now().toString();
+      setOrderId(newOrderId);
+
+      const response = await axios.post('http://localhost:8080/api/pagos/crear-preferencia', {
+        items: items,
+        idPedido: newOrderId
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+
+      const { preferenceId } = response.data;
+      setPreferenceId(preferenceId);
+      console.log('Preferencia creada');
+    } catch (error) {
+      console.error('Error al crear la preferencia:', error);
+      setPaymentStatus('error');
+    } finally {
+      setIsProcessing(false);
+    }
+  };
+
+  const handleCheckout = async () => {
+    if (paymentMethod === 'mercadopago') {
+      await crearPedidoFirebase();
+      await createPreference();
+    }
+  };
+
   return (
     <div className="cart-overlay">
       <div className="cart-modal">
-        {/* Left Section */}
         <div className="card-content">
           <button onClick={onClose} className="back-link">
             <span className="back-icon">←</span>
@@ -33,35 +119,35 @@ export default function ShoppingCart({ onClose }) {
           <p className="cart-count">Tienes {cartItems.length} artículos en tu carrito</p>
           <div className="cart-section">
             {cartItems.map((item) => (
-              <div key={item.nombre} className="cart-item"> 
+              <div key={item.nombre} className="cart-item">
                 <div className="item-details">
-                  <img src={item.imagenUrl} alt={item.nombre} className="item-image" /> 
+                  <img src={item.imagenUrl} alt={item.nombre} className="item-image" />
                   <div>
-                    <h3 className="item-name">{item.nombre}</h3> 
+                    <h3 className="item-name">{item.nombre}</h3>
                   </div>
                 </div>
                 <div className="item-actions">
                   <div className="quantity-control">
-                    <button 
+                    <button
                       className="quantity-button"
                       onClick={() => handleDecreaseQuantity(item.nombre, item.cantidad)}
-                      aria-label={`Disminuir cantidad de ${item.nombre}`} 
+                      aria-label={`Disminuir cantidad de ${item.nombre}`}
                     >
                       -
                     </button>
-                    <span className="quantity">{item.cantidad}</span> 
-                    <button 
+                    <span className="quantity">{item.cantidad}</span>
+                    <button
                       className="quantity-button"
-                      onClick={() => handleIncreaseQuantity(item.nombre, item.cantidad)} 
-                      aria-label={`Aumentar cantidad de ${item.nombre}`} 
+                      onClick={() => handleIncreaseQuantity(item.nombre, item.cantidad)}
+                      aria-label={`Aumentar cantidad de ${item.nombre}`}
                     >
                       +
                     </button>
                   </div>
                   <p className="item-price">${(item.precio * item.cantidad).toFixed(2)}</p>
-                  <button 
+                  <button
                     className="remove-button"
-                    onClick={() => removeItem(item.nombre, true)}
+                    onClick={() => removeItem(item.nombre)}
                     aria-label={`Eliminar ${item.nombre} del carrito`}
                   >
                     ×
@@ -72,7 +158,6 @@ export default function ShoppingCart({ onClose }) {
           </div>
         </div>
 
-        {/* Right Section */}
         <div className="payment-section">
           <div className="payment-header">
             <h2 className="payment-title">Métodos de pago</h2>
@@ -91,25 +176,30 @@ export default function ShoppingCart({ onClose }) {
             >
               <span className="payment-icon">₿</span>
               Bitcoin
-            </button> 
-            {paymentMethod === 'mercadopago' && (
-              <form className="payment-form">
-                <input className="input" placeholder="Número de tarjeta" />
-                <input className="input" placeholder="Nombre del titular" />
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-                  <input className="input" placeholder="MM/AA" />
-                  <input className="input" placeholder="CVV" />
-                </div>
-              </form>
+            </button>
+
+            {paymentMethod === 'mercadopago' && preferenceId && (
+              <div className="mercadopago-button-container">
+                <Wallet 
+                  initialization={{ preferenceId: preferenceId }}
+                  onReady={() => console.log("Wallet ready")}
+                  onError={(error) => {
+                    console.error('Error:', error);
+                    setPaymentStatus('error');
+                  }}
+                />
+              </div>
             )}
+
             {paymentMethod === 'bitcoin' && (
               <div className="payment-form">
                 <p style={{ fontSize: '0.875rem', marginTop: '1rem' }}>
-                  Envía el pago a la siguiente dirección de Bitcoin: 
+                  Envía el pago a la siguiente dirección de Bitcoin:
                 </p>
                 <input className="input" placeholder="Dirección de Bitcoin" />
               </div>
             )}
+
             <div className="total-section">
               <div className="total-row final">
                 <p>Total</p>
@@ -117,10 +207,20 @@ export default function ShoppingCart({ onClose }) {
               </div>
             </div>
             <div className="checkout-button-container">
-              <button className="checkout-button" disabled={!paymentMethod}>
-                Pagar ${total.toFixed(2)}
+              <button 
+                className="checkout-button" 
+                disabled={!paymentMethod || isProcessing || paymentStatus === 'success'}
+                onClick={handleCheckout}
+              >
+                {isProcessing ? 'Procesando...' : `Pagar $${total.toFixed(2)}`}
               </button>
             </div>
+            {paymentStatus === 'success' && (
+              <p className="success-message">¡Pago realizado con éxito! Tu pedido ha sido registrado.</p>
+            )}
+            {paymentStatus === 'error' && (
+              <p className="error-message">Hubo un error al procesar el pago. Por favor, intenta nuevamente.</p>
+            )}
           </div>
         </div>
       </div>

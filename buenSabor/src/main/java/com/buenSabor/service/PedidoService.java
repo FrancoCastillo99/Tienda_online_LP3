@@ -17,7 +17,7 @@ public class PedidoService {
     private PedidoRepository pedidoRepository;
 
     public String crearPedido(Pedido pedido) throws ExecutionException, InterruptedException {
-        pedido.setFechaPedido(LocalDateTime.now());
+        pedido.setFechaPedido(LocalDateTime.now().toString());
         pedido.setEstado("PENDIENTE");
         return pedidoRepository.guardarPedido(pedido);
     }
@@ -35,11 +35,35 @@ public class PedidoService {
     }
 
     public String actualizarEstadoPedido(String id, String nuevoEstado) throws ExecutionException, InterruptedException {
-        Pedido pedido = pedidoRepository.obtenerPedido(id);
-        if (pedido != null) {
-            pedido.setEstado(nuevoEstado);
-            return pedidoRepository.actualizarPedido(pedido);
+        if (id == null || id.isEmpty()) {
+            throw new IllegalArgumentException("El ID del pedido no puede ser nulo o vacío");
         }
-        return null;
+        if (nuevoEstado == null || nuevoEstado.isEmpty()) {
+            throw new IllegalArgumentException("El nuevo estado no puede ser nulo o vacío");
+        }
+
+        Pedido pedido = pedidoRepository.obtenerPedido(id);
+        if (pedido == null) {
+            throw new IllegalStateException("No se encontró ningún pedido con el ID: " + id);
+        }
+
+        // Validar que el nuevo estado sea válido
+        if (!esEstadoValido(nuevoEstado)) {
+            throw new IllegalArgumentException("Estado no válido: " + nuevoEstado);
+        }
+
+        pedido.setEstado(nuevoEstado);
+        String resultado = pedidoRepository.actualizarPedido(pedido);
+
+        if (resultado == null) {
+            throw new RuntimeException("Error al actualizar el pedido en la base de datos");
+        }
+
+        return resultado;
+    }
+
+    private boolean esEstadoValido(String estado) {
+        // Definir los estados válidos para un pedido
+        return "PENDIENTE".equals(estado) || "PAGADO".equals(estado) || "CANCELADO".equals(estado);
     }
 }

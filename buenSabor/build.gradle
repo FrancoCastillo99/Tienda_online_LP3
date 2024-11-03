@@ -21,6 +21,8 @@ configurations {
 
 repositories {
 	mavenCentral()
+	jcenter()      // Agrega JCenter
+	maven { url "https://jitpack.io" }
 }
 
 dependencies {
@@ -31,6 +33,7 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	implementation 'com.google.firebase:firebase-admin:9.1.1'
+	implementation 'com.mercadopago:sdk-java:2.1.29'
 }
 
 tasks.named('test') {

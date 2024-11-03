@@ -8,6 +8,8 @@ build/
 # Ignorar la clave del servicio de Google
 /src/main/resources/serviceAccountKey.json
 
+/src/main/resources/application-local.properties
+
 ### STS ###
 .apt_generated
 .classpath

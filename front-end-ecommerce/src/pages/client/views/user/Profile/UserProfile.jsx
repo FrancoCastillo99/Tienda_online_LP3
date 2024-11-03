@@ -1,35 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useUser } from '../../../context/UserContext';
 import NavBar from '../../../modules/navBar/NavBar';
 import './UserProfile.css';
 
 const UserProfile = () => {
-    const defaultUser = {
-        name: "PEDRO ALVAREZ",
-        birthday: "22/11",
-        ordersCount: 21,
-        favoriteOrder: "SMASH",
-        lastOrderDate: "22-4-2022"
-    };
+    const { userData, loading } = useUser(); // Obtiene datos del usuario desde el contexto
 
-    const [user, setUser] = useState(defaultUser);
+    const [user, setUser] = useState({
+        name: "",
+        birthday: "",
+        ordersCount: 0,
+        favoriteOrder: "",
+        lastOrderDate: ""
+    });
 
     useEffect(() => {
-        const storedUser = JSON.parse(localStorage.getItem("userProfile"));
-        if (storedUser) {
+        if (!loading && userData) {
+            // Asignar los datos reales del usuario de Firestore
             setUser({
-                name: `${storedUser.firstName.toUpperCase()} ${storedUser.lastName.toUpperCase()}`,
-                birthday: storedUser.birthDate,
-                ordersCount: defaultUser.ordersCount,
-                favoriteOrder: defaultUser.favoriteOrder,
-                lastOrderDate: defaultUser.lastOrderDate,
+                name: userData.username || "Usuario",
+                birthday: userData.birthDate || "Fecha no registrada",
+                ordersCount: userData.ordersCount || 0,
+                favoriteOrder: userData.favoriteOrder || "N/A",
+                lastOrderDate: userData.lastOrderDate || "Fecha no disponible"
             });
         }
-    }, []);
+    }, [loading, userData]);
+
+    if (loading) {
+        return <p>Cargando datos del usuario...</p>;
+    }
 
     return (
         <div className="user-profile-container">
-            <NavBar/>
+            <NavBar />
             <div className="profile-content-container">
                 <div className="profile-avatar-container">
                     <span className="profile-avatar-placeholder">👤</span>
@@ -45,12 +50,12 @@ const UserProfile = () => {
                 <div className="profile-stat-separator"></div>
                 <div className="profile-stat-item">
                     <h3 className="profile-stat-count">{user.favoriteOrder}</h3>
-                    <p className="profile-stat-text">MAS PEDIDO</p>
+                    <p className="profile-stat-text">MÁS PEDIDO</p>
                 </div>
                 <div className="profile-stat-separator"></div>
                 <div className="profile-stat-item">
                     <h3 className="profile-stat-count">{user.lastOrderDate}</h3>
-                    <p className="profile-stat-text">FECHA DE ULTIMO PEDIDO</p>
+                    <p className="profile-stat-text">FECHA DE ÚLTIMO PEDIDO</p>
                 </div>
             </div>
             <div className="profile-actions-container">

@@ -316,6 +316,16 @@
 /* =================================
 9. Checkout Button
 ================================= */
+.mercadopago-button-container {
+  margin-top: 1rem;
+  width: 100%;
+}
+
+/* Para asegurar que el botón de MP se ajuste al diseño */
+.mercadopago-button {
+  width: 100% !important;
+}
+
 .checkout-button-container {
   margin-top: 2rem;
 }
