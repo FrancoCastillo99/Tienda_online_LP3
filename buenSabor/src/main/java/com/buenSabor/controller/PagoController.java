@@ -3,15 +3,24 @@ package com.buenSabor.controller;
 import com.buenSabor.DTO.PreferenciaDTO;
 import com.buenSabor.Exception.MercadoPagoException;
 import com.buenSabor.service.PagoService;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.mercadopago.client.payment.PaymentClient;
 import com.mercadopago.exceptions.MPApiException;
 import com.mercadopago.exceptions.MPException;
 import com.mercadopago.resources.payment.Payment;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+import java.nio.charset.StandardCharsets;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
@@ -41,25 +50,57 @@ public class PagoController {
     }
 
     @PostMapping("/webhook")
-    public ResponseEntity<Void> manejarWebhook(
-            @RequestParam(value = "data.id", required = false) String pagoId,
-            @RequestParam("type") String tipo,
-            @RequestBody(required = false) Map<String, Object> webhookData
-    ) {
-        try {
-            if ("payment".equals(tipo)) {
-                PaymentClient client = new PaymentClient();
-                Payment payment = client.get(Long.parseLong(pagoId));
-                String estado = payment.getStatus();
-                String externalReference = payment.getExternalReference();
+    public ResponseEntity<String> handleWebhook(
+            @RequestBody String payload,
+            @RequestHeader(value = "X-Signature", required = false) String xSignatureHeader,
+            @RequestHeader(value = "x-request-id", required = false) String requestId) {
 
-                pagoService.manejarRespuestaDePago(externalReference, estado);
-                return ResponseEntity.ok().build();
+        try {
+            // Parsear el payload
+            JsonObject jsonPayload = JsonParser.parseString(payload).getAsJsonObject();
+
+            // Verificar que sea una notificación de tipo payment
+            if (!"payment".equals(jsonPayload.get("type").getAsString())) {
+                return ResponseEntity.ok("Notification type not handled");
             }
-            return ResponseEntity.ok().build(); // Aceptamos otros tipos de notificaciones sin procesarlas
-        } catch (MPException | MPApiException | ExecutionException | InterruptedException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+
+            // Obtener el ID del pago
+            String paymentId = jsonPayload.get("data").getAsJsonObject().get("id").getAsString();
+
+            // Validar la firma del webhook
+            if (!pagoService.isValidSignature(xSignatureHeader, requestId, paymentId)) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                        .body("Invalid signature");
+            }
+
+            // Obtener los detalles del pago desde MercadoPago
+            PaymentClient client = new PaymentClient();
+
+            // Obtener los detalles del pago
+            Payment payment = client.get(Long.parseLong(paymentId));
+
+            // Obtener el ID del pedido desde external_reference
+            String idPedido = payment.getExternalReference();
+
+            // Obtener el estado del pago
+            String estado = payment.getStatus();
+
+            // Actualizar el estado en Firebase
+            pagoService.manejarRespuestaDePago(idPedido, estado);
+
+            return ResponseEntity.ok("Webhook processed successfully");
+
+        } catch (MPApiException e) {
+            System.err.println("MPApiException: " + e.getMessage());
+            System.err.println("Causa: " + e.getCause());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error al obtener el pago: " + e.getMessage());
+        } catch (Exception e) {
+            System.err.println("Se produjo un error inesperado: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error inesperado: " + e.getMessage());
         }
     }
 }
+
 

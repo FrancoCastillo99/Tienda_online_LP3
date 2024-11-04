@@ -44,4 +44,18 @@ public class PedidoController {
         String resultado = pedidoService.actualizarEstadoPedido(id, nuevoEstado);
         return resultado != null ? ResponseEntity.ok(resultado) : ResponseEntity.notFound().build();
     }
+
+    @GetMapping("/{id}/estado")
+    public ResponseEntity<String> obtenerEstadoPedido(@PathVariable String id) {
+        try {
+            Pedido pedido = pedidoService.obtenerPedido(id);
+            if (pedido != null) {
+                return ResponseEntity.ok(pedido.getEstado());
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (ExecutionException | InterruptedException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al obtener el estado del pedido");
+        }
+    }
 }

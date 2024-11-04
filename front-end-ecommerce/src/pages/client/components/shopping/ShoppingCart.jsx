@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import './ShoppingCart.css';
 import { CartContext } from '../../context/CartContext';
-import {useUser} from '../../context/UserContext';
+import { useUser } from '../../context/UserContext';
 import { initMercadoPago, Wallet } from '@mercadopago/sdk-react';
 import axios from 'axios';
 
@@ -55,7 +55,7 @@ export default function ShoppingCart({ onClose }) {
         precioUnitario: item.precio,
       })),
       total: total,
-      estado: 'COMPLETADO'
+      estado: 'PENDIENTE' // Cambiado a PENDIENTE
     };
 
     try {
@@ -100,12 +100,28 @@ export default function ShoppingCart({ onClose }) {
     }
   };
 
+
+
   const handleCheckout = async () => {
     if (paymentMethod === 'mercadopago') {
-      await crearPedidoFirebase();
       await createPreference();
+      await crearPedidoFirebase();
+
+      localStorage.setItem('isProcessingPayment', 'true');
+
     }
   };
+
+  useEffect(() => {
+    // Verificar si el pago estaba en proceso al recargar la página
+    const isProcessingPayment = localStorage.getItem('isProcessingPayment');
+    if (isProcessingPayment) {
+      // Limpiar el carrito inmediatamente
+      clearCart();
+      setPaymentStatus('success');
+      localStorage.removeItem('isProcessingPayment'); // Eliminar la marca después de limpiar
+    }
+  }, []);
 
   return (
     <div className="cart-overlay">
