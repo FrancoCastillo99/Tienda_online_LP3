@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 @RestController
@@ -38,5 +39,20 @@ public class UsuarioController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity<Usuario> obtenerUsuarioId(@PathVariable String id) throws ExecutionException, InterruptedException {
+        Usuario usuario = usuarioService.obtenerUsuarioPorId(id);
+        if (usuario != null) {
+            return ResponseEntity.ok(usuario);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Usuario>> obtenerTodosLosUsuarios() throws ExecutionException, InterruptedException {
+        List<Usuario> usuarios = usuarioService.obtenerTodosLosUsuarios();
+        return ResponseEntity.ok(usuarios);
     }
 }

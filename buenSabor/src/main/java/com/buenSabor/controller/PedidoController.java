@@ -1,6 +1,7 @@
 package com.buenSabor.controller;
 
 
+import com.buenSabor.DTO.PedidoInfoDTO;
 import com.buenSabor.model.Pedido;
 import com.buenSabor.service.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,11 @@ public class PedidoController {
     @GetMapping
     public ResponseEntity<List<Pedido>> obtenerTodosLosPedidos() throws ExecutionException, InterruptedException {
         return ResponseEntity.ok(pedidoService.obtenerTodosLosPedidos());
+    }
+
+    @GetMapping("/info")
+    public ResponseEntity<List<PedidoInfoDTO>> obtenerInfoTodosLosPedidos() throws ExecutionException, InterruptedException {
+        return ResponseEntity.ok(pedidoService.obtenerInfoTodosLosPedidos());
     }
 
     @PutMapping("/{id}/estado")

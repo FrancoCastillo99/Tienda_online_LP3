@@ -1,20 +1,32 @@
 package com.buenSabor.service;
 
 
+import com.buenSabor.DTO.PedidoInfoDTO;
 import com.buenSabor.model.Pedido;
+import com.buenSabor.model.Producto;
+import com.buenSabor.model.Usuario;
 import com.buenSabor.repository.PedidoRepository;
+import com.buenSabor.repository.ProductoRepository;
+import com.buenSabor.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+import java.util.stream.Collectors;
 
 @Service
 public class PedidoService {
 
     @Autowired
     private PedidoRepository pedidoRepository;
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private ProductoRepository productoRepository;
 
     public String crearPedido(Pedido pedido) throws ExecutionException, InterruptedException {
         pedido.setFechaPedido(LocalDateTime.now().toString());
@@ -66,4 +78,52 @@ public class PedidoService {
         // Definir los estados válidos para un pedido
         return "PENDIENTE".equals(estado) || "PAGADO".equals(estado) || "CANCELADO".equals(estado);
     }
+
+    public List<PedidoInfoDTO> obtenerInfoTodosLosPedidos() throws ExecutionException, InterruptedException {
+        List<Pedido> pedidos = pedidoRepository.obtenerTodosLosPedidos();
+        return pedidos.stream().map(this::convertirAPedidoInfoDTO).collect(Collectors.toList());
+    }
+
+    private PedidoInfoDTO convertirAPedidoInfoDTO(Pedido pedido) {
+        PedidoInfoDTO dto = new PedidoInfoDTO();
+        dto.setId(pedido.getId());
+        dto.setFechaPedido(pedido.getFechaPedido());
+        dto.setTotal(pedido.getTotal());
+        dto.setEstado(pedido.getEstado());
+
+        // Obtener el username del comprador
+        try {
+            Usuario usuario = usuarioRepository.obtenerUsuarioPorId(pedido.getUserId());
+            dto.setUsernameComprador(usuario != null ? usuario.getUsername() : "Usuario no encontrado");
+        } catch (ExecutionException | InterruptedException e) {
+            dto.setUsernameComprador("Error al obtener usuario");
+            Thread.currentThread().interrupt();  // Restablecer el estado de interrupción
+        }
+
+        // Obtener información de los productos usando un método auxiliar para manejar excepciones
+        List<PedidoInfoDTO.ProductoPedidoInfo> productosInfo = pedido.getProductos().stream()
+                .map(this::convertirAProductoPedidoInfo)
+                .collect(Collectors.toList());
+        dto.setProductos(productosInfo);
+
+        return dto;
+    }
+
+    // Método auxiliar para convertir ProductoPedido y manejar excepciones
+    private PedidoInfoDTO.ProductoPedidoInfo convertirAProductoPedidoInfo(Pedido.ProductoPedido productoPedido) {
+        PedidoInfoDTO.ProductoPedidoInfo ppi = new PedidoInfoDTO.ProductoPedidoInfo();
+        ppi.setCantidad(productoPedido.getCantidad());
+        ppi.setPrecioUnitario(productoPedido.getPrecioUnitario());
+
+        try {
+            Producto producto = productoRepository.obtenerProducto(productoPedido.getProductoId());
+            ppi.setNombreProducto(producto != null ? producto.getNombre() : "Producto no encontrado");
+        } catch (ExecutionException | InterruptedException e) {
+            ppi.setNombreProducto("Error al obtener producto");
+            Thread.currentThread().interrupt();  // Restablecer el estado de interrupción
+        }
+
+        return ppi;
+    }
 }
+
