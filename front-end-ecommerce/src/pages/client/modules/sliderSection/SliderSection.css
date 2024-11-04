@@ -1,20 +1,35 @@
 .slider-container {
     position: relative;
     width: 100vw;
-    height: 100vh;
+    height: clamp(500px, 100vh, 100vh);
     overflow: hidden;
     background-color: #FFA602;
-    padding-top: 10%;
+    padding-top: clamp(2rem, 10%, 10rem);
     display: flex;
     align-items: center;
-    
+}
+
+/* Media query para tabletas */
+@media (max-width: 1024px) {
+    .slider-container {
+        height: clamp(500px, 55vh, 55vh); /* Ajustar altura para tabletas */
+    }
+
+}
+
+/* Media query para móviles */
+@media (max-width: 480px) {
+    .slider-container {
+        height: clamp(400px, 50vh, 50vh); /* Disminuir altura para móviles */
+    }
+
 }
 
 .slider-wrapper {
     display: flex;
     transition: transform 0.3s ease-in-out;
-    width: 400%; /* 100% por cada sección */
-    height: 80% !important;
+    width: 400%;
+    height: clamp(40%, 80%, 80%);
 }
 
 .slider-section {
@@ -53,7 +68,7 @@
     font-weight: 900;
     letter-spacing: -0.02em;
     color: #FFFFFF;
-    font-size: 10rem;
+    font-size: clamp(3.5rem, 14vw, 14rem);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     white-space: nowrap;
     z-index: 1;
@@ -63,7 +78,7 @@
 }
 
 .section-image {
-    max-width: 65vw;
+    max-width: min(65vw, 800px);
     height: auto;
     z-index: 2;
     position: relative;
@@ -74,7 +89,7 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    padding: 2rem 5vw;
+    padding: clamp(1rem, 2vw, 2rem) clamp(2rem, 5vw, 5rem);
     padding-top: 0;
     padding-bottom: 0;
     height: 20%;
@@ -82,7 +97,7 @@
 
 .subheader-container {
     color: white;
-    font-size: 4rem;
+    font-size: clamp(2.5rem, 8vw, 6rem);
     text-transform: uppercase;
     font-weight: 800;
     letter-spacing: -0.02em;
@@ -90,7 +105,7 @@
 
 .paragraphs-container {
     text-align: right;
-    max-width: 350px;
+    max-width: clamp(200px, 30vw, 350px);
     line-height: 1.5;
     font-family: "Inter";
 }
@@ -100,14 +115,14 @@
     color: black;
     text-transform: uppercase;
     position: relative;
-    margin-bottom: 10px;
-    font-size: 1.4rem;
+    margin-bottom: clamp(5px, 1vw, 10px);
+    font-size: clamp(1.2rem, 2.5vw, 2.5rem);
 }
 
 .paragraphs-container p:nth-of-type(2) {
     color: white;
     text-transform: uppercase;
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 2vw, 2rem);
 }
 
 .paragraphs-container p:first-of-type::after {
@@ -127,7 +142,7 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    padding: 0 5vw;
+    padding: 0 clamp(1rem, 5vw, 5rem);
     z-index: 10;
     pointer-events: none;
 }
@@ -136,8 +151,8 @@
     pointer-events: auto;
     background-color: transparent;
     border: none;
-    width: 4vw;
-    height: 4vw;
+    width: clamp(2rem, 4vw, 6rem);
+    height: clamp(2rem, 4vw, 4rem);
     cursor: pointer;
     background-size: contain;
     background-repeat: no-repeat;
@@ -152,78 +167,5 @@
     background-image: url('../../../../assets/client/icons/slider/RightArrow.png');
 }
 
-/* Media queries */
-@media screen and (max-width: 1024px) {
 
-    .slider-container {
-        height: 70vh;
-    }
 
-    .slider-wrapper {
-        height: 80%;
-    }
-    
-    .section-title {
-        font-size: 6.6rem;
-    }
-
-    .slider-arrow {
-        width: 8vw;
-        height: 8vw;
-    }
-
-    .slider-wrapper {
-        height: 40%;
-    }
-}
-
-@media screen and (max-width: 428px) {
-
-    .section-title {
-        font-size:3.6rem;
-    }
-
-    .subheader-container {
-        font-size: 2rem;
-    }
-
-    .paragraphs-container {
-        max-width: 200px;
-        font-size: 0.8rem;
-    }
-
-    .slider-arrow {
-        width: 9vw;
-        height: 9vw;
-    }
-    .slider-wrapper {
-        height: 40%;
-    }
-
-    .paragraphs-container p:first-of-type {
-        font-size: 1rem;
-    }
-    
-    .paragraphs-container p:nth-of-type(2) {
-        font-size: 0.8rem;
-    }
-    
-}
-
-@media screen and (max-width: 320px) {
-    .section-title {
-        font-size: 3.2rem;
-    }
-
-    .subheader-container {
-        font-size: 1.8rem;
-    }
-
-    .paragraphs-container p:first-of-type {
-        font-size: 1rem;
-    }
-    
-    .paragraphs-container p:nth-of-type(2) {
-        font-size: 0.8rem;
-    }
-}

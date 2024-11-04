@@ -119,21 +119,12 @@ body {
     width: 100%;
     max-height: 100px;
     overflow-y: auto;
-    /* Ocultar scrollbar en Firefox */
     scrollbar-width: none;
-    /* Ocultar scrollbar en IE y Edge */
     -ms-overflow-style: none;
 }
 
-/* Ocultar scrollbar en Chrome, Safari y Opera */
 .article-preview p::-webkit-scrollbar {
     display: none;
-}
-
-
-/* Estilos para el scrollbar en navegadores WebKit */
-.article-preview p::-webkit-scrollbar {
-    width: 6px;
 }
 
 .article-preview p::-webkit-scrollbar-track {
@@ -198,52 +189,159 @@ body {
 /* =================================
     6. MEDIA QUERIES
     ================================= */
+@media (max-width: 1200px) {
+    .articles article {
+        width: calc(var(--base-card-width) * 0.9);
+    }
+    :root {
+        --image-height: 270px;
+        --base-font-size: 14px;
+    }
+    .article-preview h2 {
+        font-size: 1.4rem;
+    }
+    .article-preview p {
+        font-size: 0.9rem;
+    }
+    .article-price {
+        font-size: 1.1rem;
+    }
+    .article-btn {
+        font-size: 0.9rem;
+        padding: 0.4rem 1.8rem 0.6rem 1.5rem;
+    }
+}
 
+@media (max-width: 992px) {
+    .articles article {
+        width: calc(var(--base-card-width) * 0.8);
+    }
+    :root {
+        --image-height: 240px;
+        --base-font-size: 13px;
+    }
+    .article-preview h2 {
+        font-size: 1.2rem;
+    }
+    .article-preview p {
+        font-size: 0.85rem;
+    }
+    .article-price {
+        font-size: 1rem;
+    }
+    .article-btn {
+        font-size: 0.85rem;
+        padding: 0.4rem 1.6rem 0.6rem 1.3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .articles article {
+        width: calc(var(--base-card-width) * 0.7);
+    }
+    :root {
+        --image-height: 200px;
+        --base-font-size: 12px;
+    }
+    .article-preview {
+        padding: 1rem 0.75rem;
+        gap: 0.75rem;
+    }
+    .article-preview h2 {
+        font-size: 1.1rem;
+    }
+    .article-preview p {
+        font-size: 0.8rem;
+        max-height: 70px;
+        margin: 0.3rem 0;
+    }
+    .article-price {
+        font-size: 0.9rem;
+        margin: 0.3rem 0;
+    }
+    .article-btn {
+        font-size: 0.8rem;
+        padding: 0.3rem 1.4rem 0.5rem 1.1rem;
+        margin: 0.3rem 1rem;
+    }
+    .article-buy {
+        margin-top: 0.5rem;
+    }
+}
 
 @media (max-width: 480px) {
-    :root {
-        --image-height: 150px;
-    }
-    
     .articles {
         gap: 0.5rem;
-        padding: 0.5rem;
     }
-
     .articles article {
-        width: calc(50% - 0.5rem);
+        width: calc(var(--base-card-width) * 0.45);
     }
-
+    :root {
+        --image-height: 140px;
+        --base-font-size: 11px;
+    }
     .article-preview {
-        padding: 0.75rem 0.5rem;
-        gap: 0.5rem;
+        padding: 0.5rem 0.4rem;
+        gap: 0.3rem;
     }
-
     .article-preview h2 {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
         padding: 0 0.2rem;
+        line-height: 1.2;
     }
-
     .article-preview p {
-        font-size: 0.7rem;
+        font-size: 0.75rem;
+        max-height: 45px;
         margin: 0.2rem 0;
         padding: 0 0.2rem;
-        max-height: 50px;
     }
-
     .article-price {
         font-size: 0.8rem;
         margin: 0.2rem 0;
     }
-
+    .article-btn {
+        font-size: 0.7rem;
+        padding: 0.25rem 1rem 0.35rem 0.9rem;
+        margin: 0.2rem 0.5rem;
+    }
     .article-buy {
-        margin-top: 0.5rem;
+        margin-top: 0.3rem;
         padding-top: 0.2rem;
     }
+}
 
-    .article-btn {
-        padding: 0.3rem 0.8rem;
+@media (max-width: 320px) {
+    .articles article {
+        width: calc(var(--base-card-width) * 0.4);
+    }
+    :root {
+        --image-height: 120px;
+        --base-font-size: 10px;
+    }
+    .article-preview {
+        padding: 0.4rem 0.3rem;
+        gap: 0.2rem;
+    }
+    .article-preview h2 {
+        font-size: 0.8rem;
+        line-height: 1.1;
+    }
+    .article-preview p {
         font-size: 0.7rem;
-        margin: 0.2rem 0.4rem;
+        max-height: 40px;
+        margin: 0.15rem 0;
+    }
+    .article-price {
+        font-size: 0.75rem;
+        margin: 0.15rem 0;
+    }
+    .article-btn {
+        font-size: 0.65rem;
+        padding: 0.2rem 0.8rem 0.3rem 0.7rem;
+        margin: 0.15rem 0.4rem;
+    }
+    .article-buy {
+        margin-top: 0.2rem;
+        padding-top: 0.15rem;
     }
 }

@@ -1,0 +1,141 @@
+/* Footer.css */
+.footer {
+    background-color: #010101;
+    width: 100%;
+    padding: 2.5rem 0;
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-title {
+    color: #ECBE08;
+    font-size: 2rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.footer-address {
+    color: #ECBE08;
+    margin-top: 1rem;
+    font-size: 1.25rem;
+    text-align: center;
+}
+
+.social-icons {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.social-icon {
+    color: white;
+    transition: color 0.3s ease;
+    font-size: 1.75rem;
+}
+
+.social-icon svg {
+    width: 32px;
+    height: 32px;
+}
+
+.social-icon:hover {
+    color: #ECBE08;
+}
+
+.footer-copyright {
+    color: white;
+    font-size: 1rem;
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+/* Media query para tablets */
+@media screen and (max-width: 768px) {
+    .footer {
+        padding: 2rem 0;
+    }
+
+    .footer-title {
+        font-size: 1.75rem;
+    }
+
+    .footer-address {
+        font-size: 1.1rem;
+        padding: 0 1rem;
+    }
+
+    .social-icon svg {
+        width: 28px;
+        height: 28px;
+    }
+
+    .social-icons {
+        gap: 1.5rem;
+    }
+
+    .footer-copyright {
+        font-size: 0.9rem;
+    }
+}
+
+/* Media query para móviles */
+@media screen and (max-width: 480px) {
+    .footer {
+        padding: 1.5rem 0;
+    }
+
+    .footer-title {
+        font-size: 1.5rem;
+    }
+
+    .footer-address {
+        font-size: 1rem;
+        padding: 0 1rem;
+        margin-top: 0.75rem;
+    }
+
+    .social-icon svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .social-icons {
+        gap: 1.25rem;
+        margin-top: 1rem;
+    }
+
+    .footer-copyright {
+        font-size: 0.8rem;
+        margin-top: 1rem;
+        padding: 0 1rem;
+    }
+}
+
+/* Media query para móviles muy pequeños */
+@media screen and (max-width: 320px) {
+    .footer-title {
+        font-size: 1.25rem;
+    }
+
+    .footer-address {
+        font-size: 0.9rem;
+    }
+
+    .social-icon svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .social-icons {
+        gap: 1rem;
+    }
+
+    .footer-copyright {
+        font-size: 0.75rem;
+    }
+}
