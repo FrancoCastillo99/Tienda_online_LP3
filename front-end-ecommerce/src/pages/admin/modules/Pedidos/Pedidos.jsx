@@ -14,7 +14,12 @@ const Pedidos = () => {
       setLoading(true);
       const response = await axios.get(`${API_URL}/info`);
       const pedidosData = Array.isArray(response.data) ? response.data : [];
-      setPedidos(pedidosData);
+      
+      const pedidosOrdenados = pedidosData.sort((a, b) => {
+        return new Date(b.fechaPedido) - new Date(a.fechaPedido);
+      });
+      
+      setPedidos(pedidosOrdenados);
       setError(null);
     } catch (error) {
       console.error('Error al obtener pedidos:', error);
@@ -43,31 +48,33 @@ const Pedidos = () => {
         <table className="pedidos-tabla">
           <thead>
             <tr>
-              <th>ID</th>
               <th>Fecha</th>
               <th>Comprador</th>
               <th>Productos</th>
               <th>Total</th>
-              <th>Estado</th>
             </tr>
           </thead>
           <tbody>
             {pedidos.map((pedido) => (
               <tr key={pedido.id}>
-                <td>{pedido.id}</td>
                 <td>{new Date(pedido.fechaPedido).toLocaleString()}</td>
                 <td>{pedido.usernameComprador}</td>
                 <td>
-                  <ul>
+                  <ul className="productos-lista">
                     {pedido.productos.map((producto, index) => (
-                      <li key={index}>
-                        {producto.nombreProducto} - Cantidad: {producto.cantidad} - Precio: ${producto.precioUnitario.toFixed(2)}
+                      <li key={index} className="producto-item">
+                        <span className="producto-nombre">{producto.nombreProducto}</span>
+                        <span className="producto-cantidad">
+                          <span className="etiqueta">Cantidad:</span> {producto.cantidad}
+                        </span>
+                        <span className="producto-precio">
+                          <span className="etiqueta">Precio:</span> ${producto.precioUnitario.toFixed(2)}
+                        </span>
                       </li>
                     ))}
                   </ul>
                 </td>
                 <td>${pedido.total.toFixed(2)}</td>
-                <td>{pedido.estado}</td>
               </tr>
             ))}
           </tbody>

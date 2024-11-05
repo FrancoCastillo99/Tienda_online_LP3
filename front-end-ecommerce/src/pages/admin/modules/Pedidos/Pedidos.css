@@ -1,79 +1,151 @@
 .pedidos-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  .pedidos-titulo {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  .loading {
-    text-align: center;
-    padding: 20px;
-    font-size: 18px;
-    color: #666;
-  }
-  
-  .error-message {
-    background-color: #fee;
-    color: #e74c3c;
-    padding: 10px;
-    border-radius: 4px;
-    margin-bottom: 20px;
-    border: 1px solid #fcc;
-  }
-  
-  .tabla-container {
-    overflow-x: auto;
-  }
-  
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.pedidos-titulo {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+.loading {
+  text-align: center;
+  padding: 20px;
+  font-size: 18px;
+  color: #666;
+}
+
+.error-message {
+  background-color: #fee;
+  color: #e74c3c;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  border: 1px solid #fcc;
+}
+
+.tabla-container {
+  overflow-y: auto;
+  max-height: calc(100vh - 200px);
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+.pedidos-tabla {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.pedidos-tabla th,
+.pedidos-tabla td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.pedidos-tabla th {
+  background-color: #34495e;
+  color: white;
+  font-weight: bold;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.pedidos-tabla tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.pedidos-tabla tbody tr:hover {
+  background-color: #e0e0e0;
+}
+
+.productos-lista {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.producto-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.producto-item:last-child {
+  border-bottom: none;
+}
+
+/* Anchos fijos para nombre, cantidad y precio */
+.producto-nombre {
+  margin-right: 15px;
+  width: 150px; /* Espacio fijo para el nombre */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.producto-cantidad {
+  width: 90px; /* Espacio fijo para la cantidad */
+  margin-right: 15px;
+  font-size: 14px;
+}
+
+.producto-precio {
+  width: 100px; /* Espacio fijo para el precio */
+  font-size: 14px;
+}
+
+.etiqueta {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+@media (max-width: 768px) {
   .pedidos-tabla {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
+    font-size: 14px;
   }
-  
+
   .pedidos-tabla th,
   .pedidos-tabla td {
-    border: 1px solid #ddd;
-    padding: 12px;
-    text-align: left;
+    padding: 8px;
   }
-  
-  .pedidos-tabla th {
-    background-color: #f2f2f2;
-    font-weight: bold;
+
+  .producto-item {
+    flex-direction: column;
+    align-items: flex-start;
   }
-  
-  .pedidos-tabla tr:nth-child(even) {
-    background-color: #f9f9f9;
+
+  .producto-nombre,
+  .producto-cantidad,
+  .producto-precio {
+    width: 100%; /* Ancho completo para pantallas pequeñas */
+    margin-right: 0;
+    margin-top: 4px;
   }
-  
-  .pedidos-tabla tr:hover {
-    background-color: #f5f5f5;
-  }
-  
-  .pedidos-tabla ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .pedidos-tabla li {
-    margin-bottom: 5px;
-  }
-  
-  @media (max-width: 768px) {
-    .pedidos-tabla {
-      font-size: 14px;
-    }
-  
-    .pedidos-tabla th,
-    .pedidos-tabla td {
-      padding: 8px;
-    }
-  }
+}
+
+/* Estilos para la barra de desplazamiento */
+.tabla-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.tabla-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.tabla-container::-webkit-scrollbar-thumb {
+  background: #34495e;
+  border-radius: 4px;
+}
+
+.tabla-container::-webkit-scrollbar-thumb:hover {
+  background: #2c3e50;
+}
+

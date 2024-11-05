@@ -114,14 +114,7 @@ public class PedidoService {
         PedidoInfoDTO.ProductoPedidoInfo ppi = new PedidoInfoDTO.ProductoPedidoInfo();
         ppi.setCantidad(productoPedido.getCantidad());
         ppi.setPrecioUnitario(productoPedido.getPrecioUnitario());
-
-        try {
-            Producto producto = productoRepository.obtenerProducto(productoPedido.getProductoId());
-            ppi.setNombreProducto(producto != null ? producto.getNombre() : "Producto no encontrado");
-        } catch (ExecutionException | InterruptedException e) {
-            ppi.setNombreProducto("Error al obtener producto");
-            Thread.currentThread().interrupt();  // Restablecer el estado de interrupción
-        }
+        ppi.setNombreProducto(productoPedido.getProductoId());
 
         return ppi;
     }
