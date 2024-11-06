@@ -186,6 +186,21 @@ body {
     transition: all 0.2s ease-in-out;
 }
 
+.article-btn:hover:not(.disabled) {
+    background-color: #3182ce;
+}
+
+.article-btn.disabled {
+    background-color: #a0aec0;
+    cursor: not-allowed;
+}
+
+.article-preview .out-of-stock-message {
+    color: #e53e3e;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+    font-weight: bold;
+}
 /* =================================
     6. MEDIA QUERIES
     ================================= */

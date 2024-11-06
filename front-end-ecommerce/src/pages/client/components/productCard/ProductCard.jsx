@@ -54,10 +54,17 @@ function ProductCard({ categoria }) {
                     <div className="article-preview">
                         <h2>{product.nombre}</h2>
                         <p>{product.descripcion}</p>
+                        {product.stock === 0 && (
+                            <p className="out-of-stock-message">Producto agotado</p>
+                        )}
                         <div className="article-buy">
                             <div className="article-price">${product.precio.toFixed(2)}</div>
-                            <button className="article-btn" onClick={() => addItemToCart(product)}>
-                            🛒 Agregar
+                            <button 
+                                className={`article-btn ${product.stock === 0 ? 'disabled' : ''}`}
+                                onClick={() => addItemToCart(product)}
+                                disabled={product.stock === 0}
+                            >
+                                {product.stock === 0 ? 'Sin stock' : '🛒 Agregar'}
                             </button>
                         </div>
                     </div>
