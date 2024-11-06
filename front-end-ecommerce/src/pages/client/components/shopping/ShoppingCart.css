@@ -351,3 +351,66 @@
   cursor: not-allowed;
 }
 
+/* =================================*/
+/*       Crypto Payment Section      */
+
+.crypto-select {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.375rem;
+  background-color: #ffffff;
+  color: #4a5568;
+  font-size: 1rem;
+}
+
+.crypto-amount {
+  margin-bottom: 1rem;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.crypto-pay-button {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 0.375rem;
+  background-color: #4299e1;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.crypto-pay-button:hover {
+  background-color: #3182ce;
+}
+
+.crypto-pay-button:disabled {
+  background-color: #a0aec0;
+  cursor: not-allowed;
+}
+
+.checkout-button {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 0.375rem;
+  background-color: #48bb78;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.checkout-button:hover {
+  background-color: #38a169;
+}
+
+.checkout-button:disabled {
+  background-color: #9ae6b4;
+  cursor: not-allowed;
+}

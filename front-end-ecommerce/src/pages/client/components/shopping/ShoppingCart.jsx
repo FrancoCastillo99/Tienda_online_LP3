@@ -16,6 +16,8 @@ export default function ShoppingCart({ onClose }) {
   const [isProcessing, setIsProcessing] = useState(false);
   const [paymentStatus, setPaymentStatus] = useState(null);
   const [orderId, setOrderId] = useState(null);
+  const [cryptoRates, setCryptoRates] = useState(null);
+  const [selectedCrypto, setSelectedCrypto] = useState(null);
 
   const handleDecreaseQuantity = (nombre, cantidad) => {
     if (cantidad > 1) {
@@ -36,7 +38,7 @@ export default function ShoppingCart({ onClose }) {
       const response = await axios.post('http://localhost:8080/api/pedidos', pedido);
       return response.data;
     } catch (error) {
-      console.error("Error al crear el pedido en Firebase:", error);
+      console.error("Error al crear el pedido:", error);
       throw error;
     }
   };
@@ -48,21 +50,59 @@ export default function ShoppingCart({ onClose }) {
     }
 
     const pedido = {
-      userId: user.uid, // Usar el userId del usuario autenticado
+      userId: user.uid,
       productos: cartItems.map((item) => ({
         productoId: item.nombre,
         cantidad: item.cantidad,
         precioUnitario: item.precio,
       })),
       total: total,
-      estado: 'PENDIENTE' // Cambiado a PENDIENTE
+      estado: 'PENDIENTE'
     };
 
     try {
-      await crearPedido(pedido); // Llama a la función crearPedido para guardar el pedido en Firebase
-      console.log('Pedido creado en Firebase:', pedido);
+      await crearPedido(pedido);
+      console.log('Pedido creado:', pedido);
     } catch (error) {
-      console.error('Error al crear el pedido en Firebase:', error);
+      console.error('Error al crear el pedido:', error);
+    }
+  };
+
+  const crearPedidoCrypto = async () => {
+    if (!user) {
+      console.log("No hay usuario autenticado");
+      return;
+    }
+  
+    if (!selectedCrypto || !cryptoRates) {
+      console.error("No se ha seleccionado una criptomoneda o no se han cargado las tasas");
+      return;
+    }
+  
+    const cryptoAmount = calculateCryptoAmount();
+    const pesosAmount = convertCryptoToPesos(cryptoAmount, selectedCrypto);
+
+    console.log("Monto en criptomonedas:", cryptoAmount);
+    console.log("Monto en pesos argentinos:", pesosAmount);
+  
+    const pedido = {
+      userId: user.uid,
+      productos: cartItems.map((item) => ({
+        productoId: item.nombre,
+        cantidad: item.cantidad,
+        precioUnitario: item.precio,
+      })),
+      total: pesosAmount,
+      estado: 'PENDIENTE'
+    };
+  
+    try {
+      const pedidoCreado = await crearPedido(pedido);
+      console.log('Pedido creado con criptomoneda:', pedidoCreado);
+      return pedidoCreado;
+    } catch (error) {
+      console.error('Error al crear el pedido con criptomoneda:', error);
+      throw error;
     }
   };
 
@@ -100,26 +140,88 @@ export default function ShoppingCart({ onClose }) {
     }
   };
 
+  const fetchCryptoRates = async () => {
+    try {
+      const response = await axios.get('http://localhost:8080/api/crypto/precios');
+      setCryptoRates(response.data);
+    } catch (error) {
+      console.error('Error al obtener las tasas de criptomonedas:', error);
+    }
+  };
 
+  // Convierte el total en pesos argentinos a la cantidad de criptomonedas seleccionada
+  const calculateCryptoAmount = () => {
+    if (!cryptoRates || !selectedCrypto || !cryptoRates[selectedCrypto]) {
+        console.error("Error: Tasas de criptomonedas no disponibles o criptomoneda no seleccionada.");
+        return 0;
+    }
+
+    // Asegúrate de obtener el valor en USD desde cryptoRates[selectedCrypto].usd
+    const cryptoRateInUSD = cryptoRates[selectedCrypto].usd;
+
+    // Convierte de pesos a dólares
+    const dollarAmount = total / 992; // Tasa de ejemplo para ARS a USD
+
+    // Convierte de dólares a la cantidad de criptomonedas
+    const cryptoAmount = dollarAmount / cryptoRateInUSD;
+
+    // Retorna con precisión de hasta 8 decimales
+    return parseFloat(cryptoAmount.toFixed(8));
+  };
+
+  // Convierte una cantidad en criptomonedas a pesos argentinos
+  const convertCryptoToPesos = (cryptoAmount, cryptoType) => {
+    if (!cryptoRates || !cryptoType || !cryptoRates[cryptoType]) {
+        console.error("Error: Tasas de criptomonedas no disponibles o tipo de criptomoneda no válido.");
+        return 0;
+    }
+
+    // Asegúrate de obtener el valor en USD desde cryptoRates[cryptoType].usd
+    const cryptoRateInUSD = cryptoRates[cryptoType].usd;
+
+    // Convierte de criptomonedas a dólares
+    const dollarAmount = cryptoAmount * cryptoRateInUSD;
+
+    // Convierte de dólares a pesos argentinos
+    const pesosAmount = dollarAmount * 992; // Tasa de ejemplo para USD a ARS
+
+    // Retorna con dos decimales de precisión
+    return parseFloat(pesosAmount.toFixed(2));
+  };
+
+
+  const handleCryptoPayment = async () => {
+    setIsProcessing(true);
+    try {
+      const pedidoCreado = await crearPedidoCrypto();
+      setOrderId(pedidoCreado.id);
+      setPaymentStatus('success');
+      clearCart();
+    } catch (error) {
+      console.error('Error al procesar el pago con criptomoneda:', error);
+      setPaymentStatus('error');
+    } finally {
+      setIsProcessing(false);
+    }
+  };
 
   const handleCheckout = async () => {
     if (paymentMethod === 'mercadopago') {
       await createPreference();
       await crearPedidoFirebase();
-
       localStorage.setItem('isProcessingPayment', 'true');
-
+    } else if (paymentMethod === 'crypto') {
+      await handleCryptoPayment();
     }
   };
 
   useEffect(() => {
-    // Verificar si el pago estaba en proceso al recargar la página
+    fetchCryptoRates();
     const isProcessingPayment = localStorage.getItem('isProcessingPayment');
     if (isProcessingPayment) {
-      // Limpiar el carrito inmediatamente
       clearCart();
       setPaymentStatus('success');
-      localStorage.removeItem('isProcessingPayment'); // Eliminar la marca después de limpiar
+      localStorage.removeItem('isProcessingPayment');
     }
   }, []);
 
@@ -187,11 +289,11 @@ export default function ShoppingCart({ onClose }) {
               Mercado Pago
             </button>
             <button
-              className={`payment-method ${paymentMethod === 'bitcoin' ? 'selected' : ''}`}
-              onClick={() => setPaymentMethod('bitcoin')}
+              className={`payment-method ${paymentMethod === 'crypto' ? 'selected' : ''}`}
+              onClick={() => setPaymentMethod('crypto')}
             >
               <span className="payment-icon">₿</span>
-              Bitcoin
+              Criptomoneda
             </button>
 
             {paymentMethod === 'mercadopago' && preferenceId && (
@@ -207,12 +309,29 @@ export default function ShoppingCart({ onClose }) {
               </div>
             )}
 
-            {paymentMethod === 'bitcoin' && (
-              <div className="payment-form">
-                <p style={{ fontSize: '0.875rem', marginTop: '1rem' }}>
-                  Envía el pago a la siguiente dirección de Bitcoin:
-                </p>
-                <input className="input" placeholder="Dirección de Bitcoin" />
+            {paymentMethod === 'crypto' && (
+              <div className="crypto-payment-form">
+                <select
+                  value={selectedCrypto}
+                  onChange={(e) => setSelectedCrypto(e.target.value)}
+                  className="crypto-select"
+                >
+                  <option value="">Selecciona una criptomoneda</option>
+                  <option value="bitcoin">Bitcoin</option>
+                  <option value="ethereum">Ethereum</option>
+                </select>
+                {selectedCrypto && (
+                  <p className="crypto-amount">
+                    Monto a pagar: {calculateCryptoAmount().toFixed(8)} {selectedCrypto}
+                  </p>
+                )}
+                <button
+                  className="crypto-pay-button"
+                  onClick={handleCryptoPayment}
+                  disabled={!selectedCrypto || isProcessing}
+                >
+                  {isProcessing ? 'Procesando...' : `Pagar con ${selectedCrypto || 'criptomoneda'}`}
+                </button>
               </div>
             )}
 
