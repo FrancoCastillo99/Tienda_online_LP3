@@ -35,7 +35,13 @@ const Pedidos = () => {
   }, []);
 
   if (loading) {
-    return <div className="loading">Cargando pedidos...</div>;
+    return (
+      <div className="pedidos-container">
+        <div className="loading">
+          Cargando pedidos...
+        </div>
+      </div>
+    )
   }
 
   return (

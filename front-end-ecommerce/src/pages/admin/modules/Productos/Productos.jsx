@@ -154,7 +154,13 @@ const Productos = () => {
   };
 
   if (loading) {
-    return <div className="loading">Cargando productos...</div>;
+    return (
+      <div className="productos-container">
+        <div className="loading">
+          Cargando productos...
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -228,9 +234,11 @@ const Productos = () => {
       </div>
 
       {modalAbierto && (
-        <div className="modal">
-          <div className="modal-content">
-            <h3>{modo === 'crear' ? 'Crear Nuevo Producto' : 'Editar Producto'}</h3>
+        <div className="modal-producto">
+          <div className="modal-content-producto">
+            <div className='header-modal-producto'>
+              <h2>{modo === 'crear' ? 'Crear Nuevo Producto' : 'Editar Producto'}</h2>
+            </div>
             <form onSubmit={handleSubmit} className="productos-form">
               <input
                 type="text"
@@ -238,7 +246,7 @@ const Productos = () => {
                 value={productoSeleccionado.nombre}
                 onChange={(e) => setProductoSeleccionado({...productoSeleccionado, nombre: e.target.value})}
                 required
-                className="form-input"
+                className="form-input-product"
               />
               
               <input
@@ -247,7 +255,7 @@ const Productos = () => {
                 value={productoSeleccionado.precio}
                 onChange={(e) => setProductoSeleccionado({...productoSeleccionado, precio: e.target.value})}
                 required
-                className="form-input"
+                className="form-input-product"
               />
 
               <input
@@ -256,7 +264,7 @@ const Productos = () => {
                 value={productoSeleccionado.categoria}
                 onChange={(e) => setProductoSeleccionado({...productoSeleccionado, categoria: e.target.value})}
                 required
-                className="form-input"
+                className="form-input-product"
               />
 
               <textarea
@@ -271,7 +279,7 @@ const Productos = () => {
                 placeholder="URL de la imagen"
                 value={productoSeleccionado.imagenUrl}
                 onChange={(e) => setProductoSeleccionado({...productoSeleccionado, imagenUrl: e.target.value})}
-                className="form-input"
+                className="form-input-product"
               />
 
               <input
@@ -280,7 +288,7 @@ const Productos = () => {
                 value={productoSeleccionado.stock}
                 onChange={(e) => setProductoSeleccionado({...productoSeleccionado, stock: e.target.value})}
                 required
-                className="form-input"
+                className="form-input-product"
               />
 
               <div className="form-buttons">

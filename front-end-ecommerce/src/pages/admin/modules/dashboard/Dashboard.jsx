@@ -14,9 +14,6 @@ const Dashboard = () => {
                 <p>A</p>
                 <p>A</p>
             </div>
-            <div className="title-section">
-                <h1>DASHBOARD</h1>
-            </div>
         </div>
     )
 }

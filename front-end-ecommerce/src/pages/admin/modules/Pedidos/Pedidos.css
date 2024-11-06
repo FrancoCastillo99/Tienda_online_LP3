@@ -1,7 +1,9 @@
 .pedidos-container {
-  max-width: 1200px;
+  position: relative;
+  width: 64%;
+  height: 88vh;
   margin: 0 auto;
-  padding: 20px;
+  padding: 4rem;
 }
 
 .pedidos-titulo {
@@ -9,14 +11,17 @@
   font-weight: bold;
   margin-bottom: 20px;
   text-align: center;
-  color: #333;
+  color: #4360b1;
 }
 
 .loading {
-  text-align: center;
-  padding: 20px;
-  font-size: 18px;
-  color: #666;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1rem;
+  font-weight: bold;
+  color: #000;
 }
 
 .error-message {
@@ -49,7 +54,7 @@
 }
 
 .pedidos-tabla th {
-  background-color: #34495e;
+  background-color: #4360b1;
   color: white;
   font-weight: bold;
   position: sticky;
@@ -141,11 +146,11 @@
 }
 
 .tabla-container::-webkit-scrollbar-thumb {
-  background: #34495e;
+  background: #4360b1;
   border-radius: 4px;
 }
-
-.tabla-container::-webkit-scrollbar-thumb:hover {
-  background: #2c3e50;
+@media (max-width: 580px){
+  .pedidos-container{
+    width: 100%;
+  }
 }
-

@@ -5,9 +5,6 @@ const Analitycs = () => {
             <div className="section">
                 
                 </div>
-                <div className="title-section">
-                    <h1>BALANCE</h1>
-                </div>
         </div>
     )
 }

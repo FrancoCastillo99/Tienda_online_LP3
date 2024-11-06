@@ -57,7 +57,11 @@ const Usuarios = () => {
   };
 
   if (loading) {
-    return <div className="loading">Cargando usuarios...</div>;
+    return (
+    <div className='usuarios-container'>
+      <div className="loading">Cargando usuarios...</div>
+    </div>
+    )
   }
 
   return (
@@ -65,7 +69,7 @@ const Usuarios = () => {
       <h2 className="usuarios-titulo">Gestión de Usuarios</h2>
 
       {error && <div className="error-message">{error}</div>}
-
+      
       <div className="tabla-container">
         <table className="usuarios-tabla">
           <thead>
@@ -97,8 +101,8 @@ const Usuarios = () => {
       </div>
 
       {modalAbierto && usuarioSeleccionado && (
-        <div className="modal">
-          <div className="modal-content">
+        <div className="modal-usuarios">
+          <div className="modal-content-usuarios">
             <h3>Editar Rol de Usuario</h3>
             <form onSubmit={handleSubmit} className="usuarios-form">
               <p>Usuario: {usuarioSeleccionado.username || usuarioSeleccionado.email}</p>

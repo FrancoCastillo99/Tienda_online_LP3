@@ -1,27 +1,19 @@
 .usuarios-container {
-    max-width: 1200px;
+    position: relative;
+    width: 64%;
+    height: 88vh;
     margin: 0 auto;
-    padding: 20px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+    padding: 4rem;
   }
   
   .usuarios-titulo {
-    font-size: 28px;
+    font-size: 1.7rem;
     font-weight: 600;
-    color: #2c3e50;
+    color: #4360b1;
     margin-bottom: 20px;
     text-align: center;
   }
-  
-  .loading {
-    text-align: center;
-    padding: 20px;
-    font-size: 18px;
-    color: #666;
-  }
-  
+
   .error-message {
     background-color: #fee;
     color: #e74c3c;
@@ -51,7 +43,7 @@
   }
   
   .usuarios-tabla th {
-    background-color: #34495e;
+    background-color: #4360b1;
     color: white;
     font-weight: 600;
     position: sticky;
@@ -95,21 +87,17 @@
   }
   
   .btn-primary {
-    background-color: #34495e;
+    background-color: #4360b1;
     color: white;
   }
   
-  .btn-primary:hover {
-    background-color: #2c3f51;
-  }
-  
   .btn-secondary {
-    background-color: #7f8c8d;
+    background-color: #000;
     color: white;
   }
   
   .btn-secondary:hover {
-    background-color: #95a5a6;
+    background-color: #666868;
   }
   
   .btn-sm {
@@ -117,7 +105,7 @@
     font-size: 0.9em;
   }
   
-  .modal {
+  .modal-usuarios {
     position: fixed;
     top: 0;
     left: 0;
@@ -130,19 +118,29 @@
     z-index: 1000;
   }
   
-  .modal-content {
+  .modal-content-usuarios {
+    text-align: center;
     background-color: white;
-    padding: 20px;
+    padding: 3rem;
     border-radius: 8px;
     width: 90%;
-    max-width: 500px;
+    max-width: 60%;
   }
   
   .usuarios-form {
-    display: grid;
-    gap: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
   }
-  
+  .form-input-usuarios{
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 0.4rem;
+    font-size: 14px;
+    border: 1px solid black;
+  }
   .select-rol {
     width: 100%;
     padding: 10px;
