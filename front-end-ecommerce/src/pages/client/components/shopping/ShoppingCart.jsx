@@ -21,14 +21,22 @@ export default function ShoppingCart({ onClose }) {
 
   const handleDecreaseQuantity = (nombre, cantidad) => {
     if (cantidad > 1) {
-      updateQuantity(nombre, cantidad - 1);
+      updateQuantity(nombre, cantidad - 1, cantidad);
+      toast.error(`Se quitó un ${nombre}`, {
+        duration: 1500,
+        position: 'bottom-right',
+      });
     } else {
-      removeItem(nombre);
+      removeItem(nombre, true); // true indica que se elimina desde el carrito
     }
   };
 
   const handleIncreaseQuantity = (nombre, cantidad) => {
-    updateQuantity(nombre, cantidad + 1);
+    updateQuantity(nombre, cantidad + 1, cantidad);
+    toast.success(`Se agregó otro ${nombre}`, {
+      duration: 1500,
+      position: 'bottom-right',
+    });
   };
 
   const total = cartItems.reduce((sum, item) => sum + item.precio * item.cantidad, 0);
