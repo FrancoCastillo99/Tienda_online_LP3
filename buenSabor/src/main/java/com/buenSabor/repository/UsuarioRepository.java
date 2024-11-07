@@ -84,7 +84,7 @@ public class UsuarioRepository {
         // Convertir Timestamp a LocalDateTime
         Timestamp timestamp = document.getTimestamp("creada");
         if (timestamp != null) {
-            usuario.setCreada(LocalDateTime.ofInstant(timestamp.toDate().toInstant(), ZoneId.systemDefault()));
+            usuario.setCreada(timestamp);
         }
 
         return usuario;
