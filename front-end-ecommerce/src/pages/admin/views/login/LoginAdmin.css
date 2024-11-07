@@ -201,7 +201,7 @@ button {
     flex-direction: column; /* Pila las secciones una debajo de la otra */
   }
 
-  .information,
+  .information-admin,
   .form-information {
     width: 100%;
     flex-grow: 1;
@@ -209,15 +209,13 @@ button {
     padding: 20px;
   }
 
-  .information {
+  .information-admin {
     background-size: cover; /* Asegura que la imagen de fondo se ajuste bien */
   }
 
   .form-information {
-    
     display: flex;
     align-items: center;
     justify-content: center;
   }
-
 }
