@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Link, useLocation } from 'react-router-dom'; // Añadido useLocation
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { CartContext } from '../../context/CartContext';
+import { useUser } from '../../context/UserContext';
 import ShoppingCart from '../../components/shopping/ShoppingCart';
 import SearchBar from '../../components/searchBar/SearchBar';
 import menuIcon from '../../../../assets/client/icons/navBar/menuIcon.png';
@@ -11,11 +12,13 @@ import './NavBar.css';
 
 const NavBar = () => {
     const { totalItems } = useContext(CartContext);
+    const { logout } = useUser();
+    const navigate = useNavigate();
     const [isCartOpen, setIsCartOpen] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [navbarHeight, setNavbarHeight] = useState(0);
     const [isSearchVisible, setIsSearchVisible] = useState(false);
-    const location = useLocation(); // Hook para obtener la ubicación actual
+    const location = useLocation();
 
     useEffect(() => {
         const navbar = document.querySelector('.navbar');
@@ -77,9 +80,18 @@ const NavBar = () => {
         if (location.pathname === '/home') {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-        // Si el menú está abierto, lo cerramos
         if (isMenuOpen) {
             toggleMenu();
+        }
+    };
+
+    const handleLogout = async () => {
+        try {
+            await logout();
+            setIsMenuOpen(false);
+            navigate('/client/login');
+        } catch (error) {
+            console.error("Error durante el cierre de sesión:", error);
         }
     };
 
@@ -113,21 +125,21 @@ const NavBar = () => {
             </nav>
 
             {isMenuOpen && (
-                <div 
-                    className="menu-overlay"
-                    style={{ top: `${navbarHeight}px` }}
-                >
+                <div className="menu-overlay" style={{ top: `${navbarHeight}px` }}>
                     <div className="menu-modal">
                         <button onClick={toggleMenu} className="close-menu-button">
                             <span className="close-text">CERRAR</span>
                             <img src={cancelIcon} alt="close Icon" className="close-menu" />
                         </button>
                         <ul>
-                            <li><Link to="/profile" onClick={toggleMenu}>PERFIL</Link></li>
-                            <li><Link to="/home" onClick={handleHomeClick}>HOME</Link></li>
-                            <li><Link to="/Menu" onClick={toggleMenu}>MENU</Link></li>
-                            <li><Link to="/Menu" onClick={toggleMenu}>CARRITO</Link></li>
-                            <li><Link to="/Nosotros" onClick={toggleMenu}>NOSTROS</Link></li>
+                        <li><Link to="/client/user-profile" onClick={toggleMenu}>PERFIL</Link></li>
+                        <li><Link to="/home" onClick={handleHomeClick}>HOME</Link></li>
+                        <li><Link to="/client/about-us" onClick={toggleMenu}>NOSTROS</Link></li>
+                        <li>
+                            <a href="#" onClick={handleLogout} className="menu-link">
+                            <span>CERRAR SESION</span>
+                            </a>
+                        </li>
                         </ul>
                     </div>
                 </div>

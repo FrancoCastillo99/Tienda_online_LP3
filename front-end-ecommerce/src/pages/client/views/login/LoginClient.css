@@ -157,6 +157,7 @@ body {
   ================================= */
 .info-childs input,
 .form input[type="submit"],
+.rol-button,
 .google-button {
   font-weight: bold;
   border-radius: var(--border-radius);
@@ -181,6 +182,7 @@ body {
   box-shadow: var(--box-shadow);
 }
 
+.rol-button,
 .google-button {
   width: 100%;
   color: var(--text-color);
@@ -232,6 +234,7 @@ body {
 @media (hover: hover) {
   .info-childs input:hover,
   .form input[type="submit"]:hover,
+  .rol-button:hover,
   .google-button:hover {
     background-color: var(--text-color);
     border: none;
@@ -243,6 +246,7 @@ body {
 
 .info-childs input:active,
 .form input[type="submit"]:active,
+.rol-button:active,
 .google-button:active {
   background-color: var(--text-color);
   transform: scale(0.98);

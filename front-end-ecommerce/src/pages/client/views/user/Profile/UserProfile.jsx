@@ -59,7 +59,7 @@ const UserProfile = () => {
                 </div>
             </div>
             <div className="profile-actions-container">
-                <Link to="/edit-profile" className="profile-edit-button">EDITAR PERFIL</Link>
+                <Link to="/client/edit-profile" className="profile-edit-button">EDITAR PERFIL</Link>
                 <button className="profile-settings-button">AJUSTES</button>
             </div>
         </div>
