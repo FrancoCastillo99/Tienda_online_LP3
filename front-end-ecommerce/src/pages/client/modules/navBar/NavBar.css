@@ -9,6 +9,40 @@
     6. Media queries
    ================================= */
 
+   .search-bar-container {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.search-toggle-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    margin-left: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-icon {
+    font-size: 1.2rem;
+}
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 768px) {
+    .search-bar-container {
+        position: fixed;
+        top: var(--navbar-height);
+        padding: 10px;
+    }
+}
+
 /* =================================
     1. VARIABLES Y CONFIGURACIÓN GLOBAL
    ================================= */
@@ -66,7 +100,7 @@
     font-family: 'Inter', sans-serif;
     font-size: 28px;
     font-weight: 700;
-    margin-right: 10px;
+    margin-left: 5px;
 }
 
 .menu-button {
@@ -87,14 +121,23 @@
 
 .menu-icon {
     width: 25px;
-    height: 25px;
-    margin-left: 5px;
+    height: 22px;
+    margin-right: 8px;
 }
 
 /* Sección derecha */
 .shop-icon {
     width: 45px;
     cursor: pointer;
+}
+
+/* Sección derecha */
+.search-icon {
+    width: 26px;
+    cursor: pointer;
+    position:fixed;
+    margin-right: 6%;
+
 }
 
 /* =================================
@@ -239,6 +282,10 @@
 
     .shop-icon {
         width: 35px;
+    }
+
+    .search-icon {
+        width: 26px;
     }
 
     .menu-overlay {

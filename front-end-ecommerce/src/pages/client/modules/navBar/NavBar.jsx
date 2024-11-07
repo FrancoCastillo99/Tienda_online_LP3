@@ -1,17 +1,21 @@
-import React, { useState, useEffect, useContext } from 'react'; // Añadido useContext
-import { Link } from 'react-router-dom';
-import { CartContext } from '../../context/CartContext'; // Ajusta la ruta según tu estructura
+import React, { useState, useEffect, useContext } from 'react';
+import { Link, useLocation } from 'react-router-dom'; // Añadido useLocation
+import { CartContext } from '../../context/CartContext';
 import ShoppingCart from '../../components/shopping/ShoppingCart';
+import SearchBar from '../../components/searchBar/SearchBar';
 import menuIcon from '../../../../assets/client/icons/navBar/menuIcon.png';
 import cancelIcon from '../../../../assets/client/icons/navBar/cancel.png';
 import ShopIcon from '../../../../assets/client/icons/navBar/ShopIcon.png';
+import searchIcon from '../../../../assets/client/icons/navBar/searchIcon.png';
 import './NavBar.css';
 
 const NavBar = () => {
-    const { totalItems } = useContext(CartContext); // Obtenemos totalItems del contexto
+    const { totalItems } = useContext(CartContext);
     const [isCartOpen, setIsCartOpen] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [navbarHeight, setNavbarHeight] = useState(0);
+    const [isSearchVisible, setIsSearchVisible] = useState(false);
+    const location = useLocation(); // Hook para obtener la ubicación actual
 
     useEffect(() => {
         const navbar = document.querySelector('.navbar');
@@ -41,8 +45,11 @@ const NavBar = () => {
     }, [isCartOpen, isMenuOpen]);
 
     const toggleCart = () => {
+        if (!isCartOpen) {
+            setIsMenuOpen(false);
+            setIsSearchVisible(false);
+        }
         setIsCartOpen(!isCartOpen);
-        // Añadir/remover la clase no-scroll al body
         if (!isCartOpen) {
             document.body.classList.add('no-scroll');
         } else {
@@ -51,12 +58,28 @@ const NavBar = () => {
     };
 
     const toggleMenu = () => {
+        if (!isMenuOpen) {
+            setIsCartOpen(false);
+            setIsSearchVisible(false);
+        }
         setIsMenuOpen(!isMenuOpen);
+    };
+
+    const toggleSearch = () => {
+        if (!isSearchVisible) {
+            setIsCartOpen(false);
+            setIsMenuOpen(false);
+        }
+        setIsSearchVisible(!isSearchVisible);
     };
 
     const handleHomeClick = () => {
         if (location.pathname === '/home') {
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        // Si el menú está abierto, lo cerramos
+        if (isMenuOpen) {
+            toggleMenu();
         }
     };
 
@@ -69,11 +92,14 @@ const NavBar = () => {
                     </div>
                     <div className="navbar-section center">
                         <button onClick={toggleMenu} className="menu-button">
-                            <span className="menu-text">MENU</span>
                             <img src={menuIcon} alt="Menu Icon" className="menu-icon" />
+                            <span className="menu-text">MENU</span>
                         </button>
                     </div>
                     <div className="navbar-section right">
+                        <button onClick={toggleSearch} className="search-toggle-button">
+                            <img src={searchIcon} alt="Buscar" className="search-icon" />
+                        </button>
                         <button onClick={toggleCart} className="cart-button">
                             <div className="cart-icon-container">
                                 <img src={ShopIcon} alt="Carrito" className="shop-icon" />
@@ -86,7 +112,6 @@ const NavBar = () => {
                 </div>
             </nav>
 
-            {/* El resto del código permanece igual */}
             {isMenuOpen && (
                 <div 
                     className="menu-overlay"
@@ -99,7 +124,7 @@ const NavBar = () => {
                         </button>
                         <ul>
                             <li><Link to="/profile" onClick={toggleMenu}>PERFIL</Link></li>
-                            <li><Link to="/Home" onClick={toggleMenu}>HOME</Link></li>
+                            <li><Link to="/home" onClick={handleHomeClick}>HOME</Link></li>
                             <li><Link to="/Menu" onClick={toggleMenu}>MENU</Link></li>
                             <li><Link to="/Menu" onClick={toggleMenu}>CARRITO</Link></li>
                             <li><Link to="/Nosotros" onClick={toggleMenu}>NOSTROS</Link></li>
@@ -110,6 +135,12 @@ const NavBar = () => {
 
             {isCartOpen && (
                 <ShoppingCart onClose={toggleCart} />
+            )}
+
+            {isSearchVisible && (
+                <div className="search-bar-container">
+                    <SearchBar />
+                </div>
             )}
         </>
     );

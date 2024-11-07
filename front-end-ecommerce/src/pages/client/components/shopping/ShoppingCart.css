@@ -16,6 +16,7 @@
 /* =================================
 2. Cart Overlay and Modal
 ================================= */
+/* Base styles for cart-overlay */
 .cart-overlay {
   position: fixed;
   top: 0;
@@ -25,9 +26,9 @@
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center; /* Cambiado de flex-start a center */
   z-index: 100;
-  padding: 2.5rem;
+  padding: 1rem; /* Reducido el padding base */
 }
 
 .cart-modal {
@@ -353,6 +354,7 @@
 
 /* =================================*/
 /*       Crypto Payment Section      */
+/* =================================*/
 
 .crypto-select {
   width: 100%;
@@ -398,7 +400,11 @@
   padding: 0.75rem;
   border: none;
   border-radius: 0.375rem;
+<<<<<<< HEAD
   background-color: #585555cb;
+=======
+  background-color:  rgba(255, 255, 255, 0.2);
+>>>>>>> e4560c8428aca00105a7d2f3fe5b62f7d5bd1cff
   color: #ffffff;
   font-weight: 600;
   font-size: 1rem;
@@ -407,10 +413,95 @@
 }
 
 .checkout-button:hover {
+<<<<<<< HEAD
   background-color: #3e3b3bcb;
 }
 
 .checkout-button:disabled {
   background-color: #b6cbbd;
+=======
+  background-color:  #6b7280;
+}
+
+.checkout-button:disabled {
+  background-color:#6b7280;
+>>>>>>> e4560c8428aca00105a7d2f3fe5b62f7d5bd1cff
   cursor: not-allowed;
 }
+
+/* =================================
+Responsive Styles
+================================= */
+@media (max-width: 766px) {
+  .cart-overlay {
+    padding-top: 20% !important;
+    height: 100vh;
+  }
+
+  .item-actions {
+    flex-direction: column-reverse; /* Cambiar a columna para apilar los elementos */
+    align-items: flex-start; /* Alinear los elementos al inicio */
+  }
+
+  .remove-button {
+    align-self: flex-end; /* Alinear el botón de eliminar a la derecha */
+    margin-top: 0rem; /* Añadir margen superior para separarlo de los otros elementos */
+  }
+
+  .item-price {
+    padding-left: 40%; /* Asegurarse de que no haya márgenes adicionales */
+  }
+
+  .cart-modal {
+    flex-direction: column; /* Cambiar a columna en móviles */
+    height: 100% !important; /* Mantener el 80% de altura en móviles */
+  }
+
+  .card-content,
+  .payment-section {
+    width: 100%; /* Tomar el 100% del ancho */
+    height: 100% !important; /* Cada sección ocupa el 40% de la altura de la modal */
+  }
+}
+
+/* Para pantallas móviles pequeñas */
+@media (max-width: 480px) {
+  .cart-overlay {
+    padding: 0.5rem;
+  }
+  
+  .cart-modal {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    border-radius: 0;
+  }
+}
+
+/* Para tablets y móviles en landscape */
+@media (min-width: 481px) and (max-width: 1024px) {
+  .cart-overlay {
+    padding: 1.5rem;
+  }
+  
+  .cart-modal {
+    width: 100%;
+    height: 40vh;
+    margin-bottom: 40%;
+  }
+}
+
+/* Para pantallas grandes */
+@media (min-width: 1025px) {
+  .cart-overlay {
+    padding: 2.5rem;
+  }
+  
+  .cart-modal {
+    width: 85%;
+    max-width: 1400px;
+    height: 85vh;
+    margin-top: 7%;
+  }
+}
+
