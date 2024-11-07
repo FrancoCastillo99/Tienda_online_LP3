@@ -105,7 +105,7 @@
     background-color: #F91D1D;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .search-product-content {
         flex-direction: column;
     }
