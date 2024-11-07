@@ -71,6 +71,7 @@ export default function ShoppingCart({ onClose }) {
     try {
       await crearPedido(pedido);
       console.log('Pedido creado:', pedido);
+      await registrarIngresoCaja(pedido.total);
     } catch (error) {
       console.error('Error al crear el pedido:', error);
     }
@@ -107,6 +108,7 @@ export default function ShoppingCart({ onClose }) {
     try {
       const pedidoCreado = await crearPedido(pedido);
       console.log('Pedido creado con criptomoneda:', pedidoCreado);
+      await registrarIngresoCaja(pedido.total);
       return pedidoCreado;
     } catch (error) {
       console.error('Error al crear el pedido con criptomoneda:', error);
@@ -232,6 +234,21 @@ export default function ShoppingCart({ onClose }) {
       localStorage.removeItem('isProcessingPayment');
     }
   }, []);
+
+  const registrarIngresoCaja = async (monto) => {
+    const movimientoDTO = {
+      concepto: `Ingreso por pedido`,
+      monto: monto,
+      tipo: 'Ingreso', // Tipo de movimiento según la naturaleza del ingreso
+    };
+  
+    try {
+      const response = await axios.put('http://localhost:8080/api/libro/actualizar/y5t1i0yHyA0GJqiQR78U/movimiento', movimientoDTO);
+      console.log('Ingreso registrado en la caja:', response.data);
+    } catch (error) {
+      console.error('Error al registrar el ingreso en la caja:', error);
+    }
+  };
 
   return (
     <div className="cart-overlay">

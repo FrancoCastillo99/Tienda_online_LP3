@@ -73,20 +73,49 @@ const Productos = () => {
     }
   };
 
+  const agregarMovimiento = async (productoId, cantidad, costo) => {
+    const movimientoDTO = {
+      concepto: `Reposición de stock para ${productoSeleccionado.nombre}`,
+      monto: cantidad * costo,
+      tipo: 'Gasto', // O el tipo de movimiento que corresponda
+    };
+  
+    try {
+      const response = await axios.put(`http://localhost:8080/api/libro/actualizar/y5t1i0yHyA0GJqiQR78U/movimiento`, movimientoDTO);
+      console.log(response.data);
+    } catch (error) {
+      console.error('Error al agregar el movimiento:', error);
+      setError('Error al agregar el movimiento');
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
     try {
       const productoData = {
         ...productoSeleccionado,
         precio: parseFloat(productoSeleccionado.precio),
         stock: parseInt(productoSeleccionado.stock, 10)
       };
-
+  
+      // Verificar si el stock ha cambiado para agregar un movimiento
+      if (modo === 'editar') {
+        const productoOriginal = productos.find(p => p.id === productoSeleccionado.id);
+        if (productoOriginal && productoOriginal.stock !== productoSeleccionado.stock) {
+          const cantidadAAgregar = productoSeleccionado.stock - productoOriginal.stock;
+          await agregarMovimiento(productoSeleccionado.id, cantidadAAgregar, (productoSeleccionado.precio)*0.3);
+        }
+      }
+  
+      // Guardar o actualizar el producto
       if (modo === 'crear') {
         await axios.post(API_URL, productoData);
       } else {
         await axios.put(`${API_URL}/${productoData.id}`, productoData);
       }
+  
+      // Resetear los valores después de guardar
       setProductoSeleccionado({
         nombre: '',
         precio: '',
@@ -107,7 +136,7 @@ const Productos = () => {
       setError('Error al guardar el producto');
     }
   };
-
+  
   const eliminarProducto = async (id) => {
     if (window.confirm('¿Estás seguro de eliminar este producto?')) {
       try {

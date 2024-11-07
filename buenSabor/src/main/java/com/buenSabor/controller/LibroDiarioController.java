@@ -1,5 +1,6 @@
 package com.buenSabor.controller;
 
+import com.buenSabor.DTO.LibroMayorDTO;
 import com.buenSabor.DTO.MovimientoDTO;
 import com.buenSabor.DTO.ReposicionStockDTO;
 import com.buenSabor.model.LibroDiario;
@@ -58,4 +59,18 @@ public class LibroDiarioController {
         response.put("mensaje", "Movimiento agregado exitosamente y valores actualizados");
         return ResponseEntity.ok(response);
     }
+
+    @GetMapping("/libroMayor")
+    public ResponseEntity<LibroMayorDTO> obtenerLibroMayor() throws ExecutionException, InterruptedException {
+        // Obtén todos los libros diarios y suma los valores de ingresos, pagos y balance
+        List<LibroDiario> librosDiarios = libroDiarioService.obtenerTodosLosLibros();
+        double totalIngresos = librosDiarios.stream().mapToDouble(LibroDiario::getIngresos).sum();
+        double totalPagos = librosDiarios.stream().mapToDouble(LibroDiario::getGastos).sum();
+        double balanceTotal = librosDiarios.stream().mapToDouble(LibroDiario::getBalance).sum();
+
+        // Crea el objeto LibroMayorDTO con los valores calculados
+        LibroMayorDTO libroMayor = new LibroMayorDTO(totalIngresos, totalPagos, balanceTotal);
+        return ResponseEntity.ok(libroMayor);
+    }
+
 }
