@@ -41,10 +41,6 @@ function Login() {
     navigate('/client/register');
   };
 
-  const handleAdminRedirect = () => {
-    navigate('/admin/login'); // Redirige a la página de inicio de sesión de admin
-  };
-
   const handleLogin = async (event) => {
     event.preventDefault();
 
@@ -224,11 +220,6 @@ function Login() {
               <button className="google-button" onClick={handleGoogleAuth}>
                 <img src={googleIcon} alt="googleIcon" className='google-icon' />
                 {isLogin ? "Ingresar con Google" : "Registrarte con Google"}
-              </button>
-              <br></br> 
-              <button className="rol-button" onClick={handleAdminRedirect}>
-                <i className='bx bx-user'></i>
-                {"Ingresar como Administrador"}
               </button>
             </form>
           </div>

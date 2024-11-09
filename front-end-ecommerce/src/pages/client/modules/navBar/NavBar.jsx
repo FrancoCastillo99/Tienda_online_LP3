@@ -68,6 +68,18 @@ const NavBar = () => {
         setIsMenuOpen(!isMenuOpen);
     };
 
+    const handleNavigation = (e) => {
+        // Primero cerramos el menú
+        if (isMenuOpen) {
+            toggleMenu();
+        }
+        // Hacemos scroll al top
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    };
+
     const toggleSearch = () => {
         if (!isSearchVisible) {
             setIsCartOpen(false);
@@ -76,10 +88,18 @@ const NavBar = () => {
         setIsSearchVisible(!isSearchVisible);
     };
 
-    const handleHomeClick = () => {
-        if (location.pathname === '/home') {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+    const handleHomeClick = (e) => {
+        // Si ya estamos en la página home, prevenimos la navegación por defecto
+        // y solo realizamos el scroll
+        if (location.pathname === '/client/home') {
+            e.preventDefault();
+            window.scrollTo({ 
+                top: 0, 
+                behavior: 'smooth' 
+            });
         }
+        
+        // Si el menú está abierto, lo cerramos
         if (isMenuOpen) {
             toggleMenu();
         }
@@ -104,8 +124,8 @@ const NavBar = () => {
                     </div>
                     <div className="navbar-section center">
                         <button onClick={toggleMenu} className="menu-button">
-                            <img src={menuIcon} alt="Menu Icon" className="menu-icon" />
                             <span className="menu-text">MENU</span>
+                            <img src={menuIcon} alt="Menu Icon" className="menu-icon" />
                         </button>
                     </div>
                     <div className="navbar-section right">
@@ -132,9 +152,9 @@ const NavBar = () => {
                             <img src={cancelIcon} alt="close Icon" className="close-menu" />
                         </button>
                         <ul>
-                        <li><Link to="/client/user-profile" onClick={toggleMenu}>PERFIL</Link></li>
-                        <li><Link to="/home" onClick={handleHomeClick}>HOME</Link></li>
-                        <li><Link to="/client/about-us" onClick={toggleMenu}>NOSTROS</Link></li>
+                        <li><Link to="/client/user-profile" onClick={handleNavigation}>PERFIL</Link></li>
+                        <li><Link to="/client/home" onClick={handleHomeClick}>HOME</Link></li>
+                        <li><Link to="/client/about-us" onClick={handleNavigation}>NOSOTROS</Link></li>
                         <li>
                             <a href="#" onClick={handleLogout} className="menu-link">
                             <span>CERRAR SESION</span>
