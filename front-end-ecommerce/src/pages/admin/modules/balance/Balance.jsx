@@ -89,8 +89,8 @@ const Balance = () => {
     };
   
     try {
-      const serviciosId = 'ccJlysR6cKXmgaC8JxpX'; // ID de la cuenta "Servicios"
-      const cajaId = 'q6Uy4kPWFF9O2UI55Kag'; // ID de la cuenta "Caja"
+      const serviciosId = 'zfGLlWWLmJ2AFlLN2UyW'; // ID de la cuenta "Servicios"
+      const cajaId = 'Pa9f2USfJ8o9e7LRid89'; // ID de la cuenta "Caja"
   
       // Agregar el movimiento como gasto en la cuenta "Servicios"
       const responseGasto = await fetch(`http://localhost:8080/api/libro/actualizar/${serviciosId}/movimiento`, {

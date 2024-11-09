@@ -89,8 +89,8 @@ const Productos = () => {
     };
   
     try {
-      const mercaderiaId = '8GfMDAYy4eUXzjgjiWZi'; // ID de la cuenta "Mercadería"
-      const cajaId = 'q6Uy4kPWFF9O2UI55Kag'; // Reemplaza con el ID de la cuenta "Caja"
+      const mercaderiaId = 'l3xHtIP36xr3l4oGJgJV'; // ID de la cuenta "Mercadería"
+      const cajaId = 'Pa9f2USfJ8o9e7LRid89'; // Reemplaza con el ID de la cuenta "Caja"
   
       // Agregar el movimiento como gasto en la cuenta "Mercadería"
       const responseGasto = await axios.put(`http://localhost:8080/api/libro/actualizar/${mercaderiaId}/movimiento`, movimientoGasto);

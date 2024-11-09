@@ -251,8 +251,8 @@ export default function ShoppingCart({ onClose }) {
     };
   
     try {
-      const ventaId = 'Qh48g9RR1lKnpB7oL0LY'; // ID de la cuenta "Ventas"
-      const cajaId = 'q6Uy4kPWFF9O2UI55Kag'; // Reemplaza con el ID de la cuenta "Caja"
+      const ventaId = 'HHw2o4TmDFA1FCA1jtDV'; // ID de la cuenta "Ventas"
+      const cajaId = 'Pa9f2USfJ8o9e7LRid89'; // Reemplaza con el ID de la cuenta "Caja"
   
       // Registrar el movimiento como ingreso en "Ventas"
       const responseIngreso = await axios.put(`http://localhost:8080/api/libro/actualizar/${ventaId}/movimiento`, movimientoIngreso);
