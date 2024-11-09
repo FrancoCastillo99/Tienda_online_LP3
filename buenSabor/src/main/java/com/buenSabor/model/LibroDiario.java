@@ -10,6 +10,7 @@ import java.util.List;
 @Data
 public class LibroDiario {
     private String id;
+    private String nombre;
     private double ingresos;
     private double gastos;
     private double balance;

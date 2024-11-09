@@ -23,13 +23,16 @@ public class LibroDiarioService {
     @Autowired
     private ProductoRepository productoRepository;
 
-    public String crearLibroDiario() throws ExecutionException, InterruptedException {
+    public String crearLibroDiario(String nombre) throws ExecutionException, InterruptedException {
+        // Crear el nuevo libro diario y asignar el nombre
         LibroDiario nuevoLibro = new LibroDiario();
+        nuevoLibro.setNombre(nombre); // Asignar el nombre proporcionado
         nuevoLibro.setIngresos(0);
         nuevoLibro.setGastos(0);
         nuevoLibro.setBalance(0);
         nuevoLibro.setMovimientos(new ArrayList<>());
 
+        // Guardar el libro diario en el repositorio y devolver el ID
         return libroDiarioRepository.guardarLibroDiario(nuevoLibro);
     }
 
@@ -52,7 +55,7 @@ public class LibroDiarioService {
         }
 
         // Recalcular el balance
-        libro.setBalance(libro.getIngresos() - libro.getGastos());
+        libro.setBalance(libro.getGastos() - libro.getIngresos());
 
         // Agregar el movimiento al libro
         libro.getMovimientos().add(movimiento);

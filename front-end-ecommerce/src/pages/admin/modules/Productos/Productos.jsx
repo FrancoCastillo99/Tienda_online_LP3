@@ -74,20 +74,38 @@ const Productos = () => {
   };
 
   const agregarMovimiento = async (productoId, cantidad, costo) => {
-    const movimientoDTO = {
+    const monto = cantidad * costo;
+  
+    const movimientoGasto = {
       concepto: `Reposición de stock para ${productoSeleccionado.nombre}`,
-      monto: cantidad * costo,
-      tipo: 'Gasto', // O el tipo de movimiento que corresponda
+      monto: monto,
+      tipo: 'Gasto',
+    };
+  
+    const movimientoIngreso = {
+      concepto: `Ingreso por reposición de stock de ${productoSeleccionado.nombre}`,
+      monto: monto,
+      tipo: 'Ingreso',
     };
   
     try {
-      const response = await axios.put(`http://localhost:8080/api/libro/actualizar/y5t1i0yHyA0GJqiQR78U/movimiento`, movimientoDTO);
-      console.log(response.data);
+      const mercaderiaId = '8GfMDAYy4eUXzjgjiWZi'; // ID de la cuenta "Mercadería"
+      const cajaId = 'q6Uy4kPWFF9O2UI55Kag'; // Reemplaza con el ID de la cuenta "Caja"
+  
+      // Agregar el movimiento como gasto en la cuenta "Mercadería"
+      const responseGasto = await axios.put(`http://localhost:8080/api/libro/actualizar/${mercaderiaId}/movimiento`, movimientoGasto);
+      console.log(responseGasto.data);
+  
+      // Agregar el movimiento como ingreso en la cuenta "Caja"
+      const responseIngreso = await axios.put(`http://localhost:8080/api/libro/actualizar/${cajaId}/movimiento`, movimientoIngreso);
+      console.log(responseIngreso.data);
+  
     } catch (error) {
-      console.error('Error al agregar el movimiento:', error);
-      setError('Error al agregar el movimiento');
+      console.error('Error al agregar los movimientos:', error);
+      setError('Error al agregar los movimientos');
     }
   };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -104,7 +122,7 @@ const Productos = () => {
         const productoOriginal = productos.find(p => p.id === productoSeleccionado.id);
         if (productoOriginal && productoOriginal.stock !== productoSeleccionado.stock) {
           const cantidadAAgregar = productoSeleccionado.stock - productoOriginal.stock;
-          await agregarMovimiento(productoSeleccionado.id, cantidadAAgregar, (productoSeleccionado.precio)*0.3);
+          await agregarMovimiento(productoSeleccionado.id, cantidadAAgregar, productoSeleccionado.precio);
         }
       }
   

@@ -6,13 +6,13 @@ import productosIcon from '../../../../assets/admin/icons/productosIcon.png';
 import usuariosIcon from '../../../../assets/admin/icons/svgs/usuariosIcon.svg';
 import balanceIcon from '../../../../assets/admin/icons/balanceIcon.png';
 import flechaDerecha from '../../../../assets/admin/icons/svgs/flechaDerecha.svg';
-import adminImg from '../../../../assets/admin/images/avatar/Administrador.jpeg';
+import adminImg from '../../../../assets/admin/images/avatar/Administrador.png';
 import signOut from '../../../../assets/admin/icons/signOutIcon.png';
 import "./SideBar.css";
 import Avatar from "../avatar/Avatar";
 
 const SideBar = () => {
-    const admin = "Emiliano";
+    const admin = "Franco";
     const { logout } = useUser();
     const navigate = useNavigate();
 

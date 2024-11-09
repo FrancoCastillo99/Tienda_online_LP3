@@ -236,19 +236,37 @@ export default function ShoppingCart({ onClose }) {
   }, []);
 
   const registrarIngresoCaja = async (monto) => {
-    const movimientoDTO = {
+    // Crear el objeto de movimiento para "Ventas" (Ingreso)
+    const movimientoIngreso = {
       concepto: `Ingreso por pedido`,
       monto: monto,
-      tipo: 'Ingreso', // Tipo de movimiento según la naturaleza del ingreso
+      tipo: 'Ingreso',
+    };
+  
+    // Crear el objeto de movimiento para "Caja" (Gasto)
+    const movimientoGasto = {
+      concepto: `Pago de ingreso por pedido`,
+      monto: monto,
+      tipo: 'Gasto',
     };
   
     try {
-      const response = await axios.put('http://localhost:8080/api/libro/actualizar/y5t1i0yHyA0GJqiQR78U/movimiento', movimientoDTO);
-      console.log('Ingreso registrado en la caja:', response.data);
+      const ventaId = 'Qh48g9RR1lKnpB7oL0LY'; // ID de la cuenta "Ventas"
+      const cajaId = 'q6Uy4kPWFF9O2UI55Kag'; // Reemplaza con el ID de la cuenta "Caja"
+  
+      // Registrar el movimiento como ingreso en "Ventas"
+      const responseIngreso = await axios.put(`http://localhost:8080/api/libro/actualizar/${ventaId}/movimiento`, movimientoIngreso);
+      console.log('Ingreso registrado en la cuenta de ventas:', responseIngreso.data);
+  
+      // Registrar el movimiento como gasto en "Caja"
+      const responseGasto = await axios.put(`http://localhost:8080/api/libro/actualizar/${cajaId}/movimiento`, movimientoGasto);
+      console.log('Gasto registrado en la cuenta de caja:', responseGasto.data);
+  
     } catch (error) {
-      console.error('Error al registrar el ingreso en la caja:', error);
+      console.error('Error al registrar el movimiento:', error);
     }
   };
+  
 
   return (
     <div className="cart-overlay">

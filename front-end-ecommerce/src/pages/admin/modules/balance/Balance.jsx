@@ -25,6 +25,10 @@ const Balance = () => {
   const [selectedService, setSelectedService] = useState('agua');
   const [serviceAmount, setServiceAmount] = useState('');
   const [serviceError, setServiceError] = useState('');
+  const [selectedAccount, setSelectedAccount] = useState('');
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+  const [filteredMovimientos, setFilteredMovimientos] = useState([]);
 
   useEffect(() => {
     fetchLibros();
@@ -71,27 +75,53 @@ const Balance = () => {
       setServiceError('Por favor ingrese un monto válido');
       return;
     }
-    const movimientoDTO = {
+    
+    const movimientoGasto = {
       concepto: `${selectedService} - Pago`,
       monto: parseFloat(serviceAmount),
       tipo: 'Gasto',
     };
-
+  
+    const movimientoIngreso = {
+      concepto: `Ingreso - ${selectedService} Pago`,
+      monto: parseFloat(serviceAmount),
+      tipo: 'Ingreso',
+    };
+  
     try {
-      const response = await fetch(`http://localhost:8080/api/libro/actualizar/y5t1i0yHyA0GJqiQR78U/movimiento`, {
+      const serviciosId = 'ccJlysR6cKXmgaC8JxpX'; // ID de la cuenta "Servicios"
+      const cajaId = 'q6Uy4kPWFF9O2UI55Kag'; // ID de la cuenta "Caja"
+  
+      // Agregar el movimiento como gasto en la cuenta "Servicios"
+      const responseGasto = await fetch(`http://localhost:8080/api/libro/actualizar/${serviciosId}/movimiento`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(movimientoDTO),
+        body: JSON.stringify(movimientoGasto),
       });
-
-      if (!response.ok) {
-        throw new Error('Error al agregar el movimiento');
+  
+      if (!responseGasto.ok) {
+        throw new Error('Error al agregar el movimiento en Servicios');
       }
-
-      const data = await response.json();
-      alert(data.mensaje);
+  
+      // Agregar el movimiento como ingreso en la cuenta "Caja"
+      const responseIngreso = await fetch(`http://localhost:8080/api/libro/actualizar/${cajaId}/movimiento`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(movimientoIngreso),
+      });
+  
+      if (!responseIngreso.ok) {
+        throw new Error('Error al agregar el movimiento en Caja');
+      }
+  
+      // Mostrar mensaje de éxito y limpiar campos
+      const dataGasto = await responseGasto.json();
+      const dataIngreso = await responseIngreso.json();
+      alert(`Movimientos agregados: \nServicios: ${dataGasto.mensaje}\nCaja: ${dataIngreso.mensaje}`);
       setServiceAmount('');
       setServiceError('');
     } catch (error) {
@@ -99,126 +129,219 @@ const Balance = () => {
     }
   };
 
+  const handleAccountChange = (e) => {
+    setSelectedAccount(e.target.value);
+  };
+
+  const handleDateChange = (e) => {
+    if (e.target.name === 'startDate') {
+      setStartDate(e.target.value);
+    } else {
+      setEndDate(e.target.value);
+    }
+  };
+
+  useEffect(() => {
+    if (selectedAccount && libros.length > 0) {
+      const selectedLibro = libros.find(libro => libro.nombre === selectedAccount);
+      if (selectedLibro) {
+        let filtered = selectedLibro.movimientos;
+
+        if (startDate && endDate) {
+          filtered = filtered.filter(movimiento => {
+            const movDate = new Date(movimiento.fecha.seconds * 1000);
+            return movDate >= new Date(startDate) && movDate <= new Date(endDate);
+          });
+        }
+
+        setFilteredMovimientos(filtered);
+      }
+    }
+  }, [selectedAccount, startDate, endDate, libros]);
+
   if (error) {
     return <div className="error-message" role="alert">{error}</div>;
   }
 
   return (
     <div className="balance-container">
-      <h1>Libros de Contabilidad</h1>
+      <div className="balance-content">
+        <h1>Libros de Contabilidad</h1>
 
-      {/* Sección para pagar servicios */}
-      <div className="service-payment">
-        <h2>Pago de Servicios</h2>
-        <div className="service-selector">
-          <label htmlFor="service-type">Seleccionar servicio:</label>
-          <select
-            id="service-type"
-            value={selectedService}
-            onChange={(e) => setSelectedService(e.target.value)}
-          >
-            <option value="agua">Agua</option>
-            <option value="luz">Luz</option>
-            <option value="gas">Gas</option>
-          </select>
+        <div className="service-payment">
+          <h2>Pago de Servicios</h2>
+          <div className="service-selector">
+            <label htmlFor="service-type">Seleccionar servicio:</label>
+            <select
+              id="service-type"
+              value={selectedService}
+              onChange={(e) => setSelectedService(e.target.value)}
+            >
+              <option value="agua">Agua</option>
+              <option value="luz">Luz</option>
+              <option value="gas">Gas</option>
+            </select>
+          </div>
+          <div className="service-amount">
+            <label htmlFor="amount">Monto a pagar:</label>
+            <input
+              type="number"
+              id="amount"
+              value={serviceAmount}
+              onChange={(e) => setServiceAmount(e.target.value)}
+              min="0"
+              step="any"
+            />
+          </div>
+          {serviceError && <div className="error-message">{serviceError}</div>}
+          <button onClick={handlePagoServicio} className="payment-btn">Pagar Servicio</button>
         </div>
-        <div className="service-amount">
-          <label htmlFor="amount">Monto a pagar:</label>
-          <input
-            type="number"
-            id="amount"
-            value={serviceAmount}
-            onChange={(e) => setServiceAmount(e.target.value)}
-            min="0"
-            step="any"
-          />
-        </div>
-        {serviceError && <div className="error-message">{serviceError}</div>}
-        <button onClick={handlePagoServicio} className="payment-btn">Pagar Servicio</button>
-      </div>
 
-      {/* Tabla de Libros Diarios */}
-      <table className="balance-table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Fecha</th>
-            <th>Ingresos</th>
-            <th>Gastos</th>
-            <th>Balance</th>
-            <th>Movimientos</th>
-          </tr>
-        </thead>
-        <tbody>
-          {libros.map((libro) => (
-            <tr key={libro.id}>
-              <td>{libro.id}</td>
-              <td>{new Date().toLocaleDateString()}</td>
-              <td>{formatCurrency(libro.ingresos)}</td>
-              <td>{formatCurrency(libro.gastos)}</td>
-              <td>{formatCurrency(libro.balance)}</td>
-              <td>
-                <button 
-                  className="view-movements-btn" 
-                  onClick={() => handleVerMovimientos(libro.movimientos)}
-                  aria-label={`Ver movimientos del libro ${libro.id}`}
-                >
-                  Ver Movimientos
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-
-      {/* Modal de Movimientos */}
-      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <h2>Movimientos</h2>
-        <table className="movements-table">
+        <table className="balance-table">
           <thead>
             <tr>
-              <th>Concepto</th>
-              <th>Monto</th>
-              <th>Tipo</th>
+              <th>Cuenta</th>
+              <th>Debe</th>
+              <th>Haber</th>
+              <th>Balance</th>
+              <th>Movimientos</th>
             </tr>
           </thead>
           <tbody>
-            {selectedMovimientos.map((movimiento, index) => (
-              <tr key={index}>
-                <td>{movimiento.concepto}</td>
-                <td>{formatCurrency(movimiento.monto)}</td>
-                <td>{movimiento.tipo}</td>
+            {libros.map((libro) => (
+              <tr key={libro.id}>
+                <td className='balance-table-name'>{libro.nombre}</td>
+                <td>{formatCurrency(libro.gastos)}</td>
+                <td>{formatCurrency(libro.ingresos)}</td>
+                <td>{formatCurrency(libro.balance)}</td>
+                <td>
+                  <button 
+                    className="view-movements-btn" 
+                    onClick={() => handleVerMovimientos(libro.movimientos)}
+                    aria-label={`Ver movimientos del libro ${libro.id}`}
+                  >
+                    Ver Movimientos
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
-      </Modal>
 
-      {/* Sección del Libro Mayor */}
-      {libroMayor && (
-        <div className="libro-mayor">
-          <h2>Libro Mayor</h2>
-          <table className="balance-table">
+        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+          <h2>Movimientos</h2>
+          <table className="movements-table">
             <thead>
               <tr>
-                <th>Ingresos Totales</th>
-                <th>Pagos Totales</th>
-                <th>Balance Total</th>
+                <th>Fecha</th>
+                <th>Concepto</th>
+                <th>Debe</th>
+                <th>Haber</th>
+                <th>Balance</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>{formatCurrency(libroMayor.ingresosTotales)}</td>
-                <td>{formatCurrency(libroMayor.pagosTotales)}</td>
-                <td>{formatCurrency(libroMayor.balanceTotal)}</td>
-              </tr>
+              {(() => {
+                let balanceAcumulado = 0;
+                return selectedMovimientos.map((movimiento, index) => {
+                  if (movimiento.tipo.toLowerCase() === 'gasto') {
+                    balanceAcumulado += movimiento.monto;
+                  } else if (movimiento.tipo.toLowerCase() === 'ingreso') {
+                    balanceAcumulado -= movimiento.monto;
+                  }
+                  return (
+                    <tr key={index}>
+                      <td>{new Date(movimiento.fecha.seconds * 1000).toLocaleDateString()}</td>
+                      <td>{movimiento.concepto}</td>
+                      <td>
+                        {movimiento.tipo.toLowerCase() === 'gasto' ? formatCurrency(movimiento.monto) : '-'}
+                      </td>
+                      <td>
+                        {movimiento.tipo.toLowerCase() === 'ingreso' ? formatCurrency(movimiento.monto) : '-'}
+                      </td>
+                      <td>{formatCurrency(balanceAcumulado)}</td>
+                    </tr>
+                  );
+                });
+              })()}
             </tbody>
           </table>
-        </div>
-      )}
+        </Modal>
+
+        {libroMayor && (
+          <div className="libro-mayor">
+            <h2>Libro Mayor</h2>
+            <div className="libro-mayor-filters">
+              <select
+                value={selectedAccount}
+                onChange={handleAccountChange}
+                className="account-select"
+              >
+                <option value="">Seleccionar cuenta</option>
+                {libros.map((libro) => (
+                  <option key={libro.id} value={libro.nombre}>
+                    {libro.nombre}
+                  </option>
+                ))}
+              </select>
+              <input
+                type="date"
+                name="startDate"
+                value={startDate}
+                onChange={handleDateChange}
+                className="date-input"
+              />
+              <input
+                type="date"
+                name="endDate"
+                value={endDate}
+                onChange={handleDateChange}
+                className="date-input"
+              />
+            </div>
+            <div className="libro-mayor-table-container">
+              <table className="balance-table">
+                <thead>
+                  <tr>
+                    <th>Fecha</th>
+                    <th>Concepto</th>
+                    <th>Debe</th>
+                    <th>Haber</th>
+                    <th>Balance</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {(() => {
+                    let balanceAcumulado = 0;
+                    return filteredMovimientos.map((movimiento, index) => {
+                      if (movimiento.tipo.toLowerCase() === 'gasto') {
+                        balanceAcumulado += movimiento.monto;
+                      } else if (movimiento.tipo.toLowerCase() === 'ingreso') {
+                        balanceAcumulado -= movimiento.monto;
+                      }
+                      return (
+                        <tr key={index}>
+                          <td>{new Date(movimiento.fecha.seconds * 1000).toLocaleDateString()}</td>
+                          <td>{movimiento.concepto}</td>
+                          <td>
+                            {movimiento.tipo.toLowerCase() === 'gasto' ? formatCurrency(movimiento.monto) : '-'}
+                          </td>
+                          <td>
+                            {movimiento.tipo.toLowerCase() === 'ingreso' ? formatCurrency(movimiento.monto) : '-'}
+                          </td>
+                          <td>{formatCurrency(balanceAcumulado)}</td>
+                        </tr>
+                      );
+                    });
+                  })()}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
 
 export default Balance;
-
