@@ -1,0 +1,360 @@
+/* ================================= 
+1. VARIABLES
+================================= */
+:root {
+  --primary-color-user: #ff0000;
+  --secondary-color-user: #ddd;
+  --text-color-user: #888;
+  --highlight-color-user: hsl(39, 100%, 50%);
+  --background-color: #f4f4f4;
+  --border-color: #e2e8f0;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+/* ================================= 
+2. CONTAINER STYLES
+================================= */
+/* Modificar el contenedor principal */
+.user-profile-container {
+  background-color: var(--background-color);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 2rem;
+  padding-top: 80px; /* Añadir padding-top para el espacio de la navbar */
+  position: relative; /* Añadir posición relativa */
+}
+
+/* ================================= 
+3. HEADER STYLES
+================================= */
+.profile-header-container {
+  background-color: var(--primary-color-user);
+  padding: 1.5rem;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.profile-nav-items {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ================================= 
+4. CONTENT STYLES
+================================= */
+.profile-content-container {
+  max-width: 1200px;
+  width: 95%;
+  margin: 2rem auto;
+  background-color: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: var(--shadow-md);
+}
+
+.profile-avatar-container {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 1.5rem;
+  border-radius: 50%;
+  background-color: var(--secondary-color-user);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.profile-avatar-placeholder {
+  font-size: 3rem;
+  color: var(--text-color-user);
+}
+
+.profile-name {
+  font-size: 1.875rem;
+  font-weight: 600;
+  color: var(--text-color-user);
+  margin: 0;
+  text-align: center;
+}
+
+/* ================================= 
+5. STATS STYLES
+================================= */
+.profile-stats-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  width: 95%;
+  margin: 2rem auto;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: var(--shadow-md);
+}
+
+.profile-stat-item {
+  text-align: center;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: white;
+}
+
+.profile-stat-count {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--highlight-color-user);
+  margin: 0;
+}
+
+.profile-stat-text {
+  font-size: 0.875rem;
+  color: var(--text-color-user);
+  margin-top: 0.5rem;
+  font-weight: 500;
+}
+
+/* ================================= 
+6. ORDERS SECTION STYLES
+================================= */
+
+
+.titulo-pedidos {
+  font-size: 1.5rem;
+  color: var(--primary-color-user);
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.container-tabla {
+  overflow-x: auto;
+  border-radius: 0.5rem;
+  border: 1px solid var(--secondary-color-user);
+}
+
+.tabla-pedidos {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.tabla-pedidos th {
+  background-color: var(--secondary-color-user);
+  padding: 1rem;
+  font-weight: 600;
+  color: var(--text-color-user);
+  text-align: left;
+}
+
+.tabla-pedidos td {
+  padding: 1rem;
+  border-top: 1px solid var(--secondary-color-user);
+  color: var(--text-color-user);
+}
+
+.container-pedidos {
+  max-width: 1200px;
+  width: 95%;
+  margin: 2rem auto;
+  background-color: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: var(--shadow-md);
+}
+
+.orders-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 0.5rem 0;
+}
+
+.orders-header h3 {
+  font-size: 1.5rem;
+  color: black;
+  margin: 0;
+  font-weight: 600;
+}
+
+.toggle-button {
+  background: none;
+  border: none;
+  color: var(--text-color-user);
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.toggle-button.open {
+  transform: rotate(180deg);
+}
+
+.container-tabla-wrapper {
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  max-height: 0;
+}
+
+.container-tabla-wrapper.open {
+  max-height: 2000px; /* Adjust this value based on your needs */
+}
+
+.container-tabla {
+  margin-top: 1.5rem;
+  border-top: 1px solid var(--secondary-color-user);
+}
+
+
+/* ================================= 
+7. ACTIONS STYLES
+================================= */
+.profile-actions-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin: 2rem auto;
+  max-width: 1200px;
+  width: 95%;
+  padding: 0 1rem;
+}
+
+.profile-edit-button,
+.profile-settings-button {
+  padding: 0.875rem 2.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.2s;
+  min-width: 180px;
+  text-decoration: none;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-edit-button {
+  background-color: var(--primary-color-user);
+  color: white;
+  border: none;
+}
+
+.profile-edit-button:hover {
+  background-color: #e60000;
+}
+
+.profile-settings-button {
+  background-color: white;
+  color: var(--primary-color-user);
+  border: 1px solid var(--primary-color-user);
+}
+
+.profile-settings-button:hover {
+  background-color: var(--secondary-color-user);
+}
+
+/* ================================= 
+8. RESPONSIVE STYLES
+================================= */
+@media (max-width: 768px) {
+  .profile-content-container,
+  .profile-stats-container,
+  .container-pedidos {
+    width: 90%;
+    padding: 1.5rem;
+  }
+
+  .profile-stats-container {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+
+  .profile-stat-count {
+    font-size: 1.5rem;
+  }
+
+  .profile-actions-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .profile-edit-button,
+  .profile-settings-button {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-content-container,
+  .profile-stats-container,
+  .container-pedidos {
+    width: 95%;
+    padding: 1rem;
+  }
+
+  .profile-name {
+    font-size: 1.5rem;
+  }
+
+  .profile-avatar-container {
+    width: 100px;
+    height: 100px;
+  }
+
+  .tabla-pedidos th,
+  .tabla-pedidos td {
+    padding: 0.75rem;
+    font-size: 0.875rem;
+  }
+
+  .profile-edit-button,
+  .profile-settings-button {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.875rem;
+  }
+
+    .container-pedidos h3 {
+    font-size: 1.25rem;
+    padding: 1rem 0;
+  }
+}
+
+/* ================================= 
+9. LOADING & ERROR STATES
+================================= */
+.loading-container,
+.error-container {
+  text-align: center;
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 1200px;
+  width: 95%;
+  background-color: white;
+  border-radius: 1rem;
+  box-shadow: var(--shadow-md);
+}
+
+.error-message {
+  color: var(--primary-color-user);
+  margin: 0;
+}
+
+.no-orders-message {
+  text-align: center;
+  color: var(--text-color-user);
+  padding: 2rem;
+}

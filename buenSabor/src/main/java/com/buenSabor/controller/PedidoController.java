@@ -3,14 +3,18 @@ package com.buenSabor.controller;
 
 import com.buenSabor.DTO.PedidoInfoDTO;
 import com.buenSabor.model.Pedido;
+import com.buenSabor.model.Producto;
 import com.buenSabor.service.PedidoService;
+import com.buenSabor.service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/pedidos")
@@ -18,6 +22,9 @@ public class PedidoController {
 
     @Autowired
     private PedidoService pedidoService;
+
+    @Autowired
+    private ProductoService productoService;
 
     @PostMapping
     public ResponseEntity<String> crearPedido(@RequestBody Pedido pedido) throws ExecutionException, InterruptedException {
@@ -63,5 +70,33 @@ public class PedidoController {
         } catch (ExecutionException | InterruptedException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al obtener el estado del pedido");
         }
+    }
+
+    @GetMapping("/usuario/{userId}/completo")
+    public ResponseEntity<List<Pedido>> obtenerPedidosCompletoPorUsuario(@PathVariable String userId)
+            throws ExecutionException, InterruptedException {
+        List<Pedido> pedidos = pedidoService.obtenerPedidosPorUsuario(userId);
+
+        // Recolectar todos los IDs de productos únicos
+        List<String> productosIds = pedidos.stream()
+                .flatMap(pedido -> pedido.getProductos().stream())
+                .map(Pedido.ProductoPedido::getProductoId)
+                .distinct()
+                .collect(Collectors.toList());
+
+        // Obtener todos los productos en una sola consulta
+        Map<String, Producto> productosMap = productoService.obtenerMapaProductosPorIds(productosIds);
+
+        // Actualizar la información de los productos en los pedidos
+        pedidos.forEach(pedido -> {
+            pedido.getProductos().forEach(productoPedido -> {
+                Producto producto = productosMap.get(productoPedido.getProductoId());
+                if (producto != null) {
+                    productoPedido.setNombreProducto(producto.getNombre());
+                }
+            });
+        });
+
+        return ResponseEntity.ok(pedidos);
     }
 }

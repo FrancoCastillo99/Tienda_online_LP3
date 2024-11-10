@@ -15,6 +15,7 @@ public class Pedido {
     @Data
     public static class ProductoPedido {
         private String productoId;
+        private String nombreProducto;  // Agregar este campo
         private int cantidad;
         private double precioUnitario;
     }

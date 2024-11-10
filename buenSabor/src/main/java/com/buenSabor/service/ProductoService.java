@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 @Service
@@ -37,5 +38,9 @@ public class ProductoService {
 
     public String eliminarProducto(String id) throws ExecutionException, InterruptedException {
         return productoRepository.eliminarProducto(id);
+    }
+
+    public Map<String, Producto> obtenerMapaProductosPorIds(List<String> ids) throws ExecutionException, InterruptedException {
+        return productoRepository.obtenerMapaProductosPorIds(ids);
     }
 }

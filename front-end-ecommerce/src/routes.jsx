@@ -1,16 +1,16 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import { useUser } from '../src/pages/client/context/UserContext';
-import Login from "./pages/client/views/login/LoginClient";
-import Home from "./pages/client/views/home/Home";
-import AdminHome from "./pages/admin/views/home/AdminHome";
-import Pedidos from "./pages/admin/modules/Pedidos/Pedidos";
-import Menu from "./pages/admin/modules/Menu/Menu";
-import Productos from "./pages/admin/modules/Productos/Productos";
-import Usuarios from "./pages/admin/modules/Usuarios/Usuarios";
-import Balance from "./pages/admin/modules/balance/Balance";
-import UserProfile from "./pages/client/views/user/profile/UserProfile";
-import EditProfile from "./pages/client/views/user/editProfile/EditProfile";
-import AboutUs from "./pages/client/views/aboutUs/AboutUs";
+import { useUser } from '../src/features/context/UserContext';
+import Login from "../src/features/login/Login";
+import ClientHome from "../src/features/client/clientHome/ClientHome";
+import AdminHome from "../src/features/admin/adminHome/AdminHome";
+import Pedidos from "../src/features/admin/pedidos/Pedidos";
+import Menu from "../src/features/admin/menu/Menu";
+import Productos from "../src/features/admin/productos/Productos";
+import Usuarios from "../src/features/admin/usuarios/Usuarios";
+import Balance from "../src/features/admin/balance/Balance";
+import Profile from "../src/features/profileClient/Profile";
+import EditProfile from "../src/features/profileClient/EditProfile";
+import AboutUs from "../src/features/aboutUs/AboutUs";
 
 const LoadingScreen = () => {
     return (
@@ -38,8 +38,8 @@ const RoutesConfig = () => {
     const ROUTES = {
         LOGIN: "/client/login",
         REGISTER: "/client/register",
-        CLIENT_HOME: "/client/home",
-        ADMIN_HOME: "/admin/home",
+        CLIENT_HOME: "/client/Home",
+        ADMIN_HOME: "/admin/Home",
         ABOUT_US: "/client/about-us"
     };
 
@@ -114,16 +114,16 @@ const RoutesConfig = () => {
                 path={ROUTES.CLIENT_HOME}
                 element={
                     <ProtectedClientRoute>
-                        <Home />
+                        <ClientHome />
                     </ProtectedClientRoute>
                 }
             />
             
             <Route
-                path="/client/user-profile"
+                path="/client/profile"
                 element={
                     <ProtectedClientRoute>
-                        <UserProfile />
+                        <Profile />
                     </ProtectedClientRoute>
                 }
             />

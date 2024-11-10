@@ -1,0 +1,70 @@
+/* ==========================
+    BANNER STYLES
+========================== */
+
+/* Estilos del banner principal */
+.banner {
+    background-image: url('../assets/images/bannerSectionImg/home-img.jpg');
+    background-size: cover; /* Cambiado de 'contain' a 'cover' para llenar el contenedor */
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100%; /* Asegura que el banner ocupe todo el ancho */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+/* Título dentro del banner */
+.content-banner h1 {
+    font-size: 8rem; /* Tamaño de la fuente grande */
+    font-weight: 900; /* Peso de la fuente grueso */
+    line-height: 1.2; /* Altura de línea */
+    letter-spacing: -0.02rem; /* Ajusta el espaciado entre letras */
+    color: #F91D1D; /* Color rojo */
+    display: flex; /* Contenedor flex */
+    justify-content: center; /* Centra el texto horizontalmente */
+    padding-bottom: 1.5rem; /* Espaciado inferior */
+}
+
+/* Texto descriptivo debajo del título en el banner */
+.content-banner p {
+    font-size: 3.2rem; /* Tamaño de la fuente */
+    font-weight: 600; /* Peso de la fuente */
+    line-height: 1.2; /* Altura de línea */
+    color: #ffffff; /* Color blanco */
+    display: flex; /* Contenedor flex */
+    justify-content: center; /* Centra el texto horizontalmente */
+}
+
+/* ==========================
+    MEDIA QUERIES
+  ========================== */
+
+/* Estilos para pantallas medianas y tabletas */
+@media (max-width: 1024px) {
+    .content-banner h1 {
+        font-size: 5.4rem; /* Tamaño de fuente reducido */
+        text-align: center; /* Centra el texto */
+    }
+
+    .content-banner p {
+        font-size: 2.16rem; /* Tamaño de fuente reducido */
+        text-align: center; /* Centra el texto */
+    }
+}
+
+/* Estilos para pantallas pequeñas y móviles */
+@media (max-width: 768px) {
+    .content-banner h1 {
+        font-size: 3.8rem; /* Tamaño de fuente reducido */
+        text-align: center; /* Centra el texto */
+        justify-content: center; /* Asegura que el texto esté centrado */
+    }
+
+    .content-banner p {
+        font-size: 1.8rem; /* Tamaño de fuente reducido */
+        text-align: center; /* Centra el texto */
+        justify-content: center; /* Asegura que el texto esté centrado */
+    }
+}
