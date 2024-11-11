@@ -2,6 +2,8 @@ package com.buenSabor.controller;
 
 
 import com.buenSabor.DTO.PedidoInfoDTO;
+import com.buenSabor.DTO.PedidoUserDTO;
+import com.buenSabor.mapper.PedidoMapper;
 import com.buenSabor.model.Pedido;
 import com.buenSabor.model.Producto;
 import com.buenSabor.service.PedidoService;
@@ -25,6 +27,9 @@ public class PedidoController {
 
     @Autowired
     private ProductoService productoService;
+
+    @Autowired
+    private PedidoMapper pedidoMapper;
 
     @PostMapping
     public ResponseEntity<String> crearPedido(@RequestBody Pedido pedido) throws ExecutionException, InterruptedException {
@@ -73,8 +78,9 @@ public class PedidoController {
     }
 
     @GetMapping("/usuario/{userId}/completo")
-    public ResponseEntity<List<Pedido>> obtenerPedidosCompletoPorUsuario(@PathVariable String userId)
+    public ResponseEntity<List<PedidoUserDTO>> obtenerPedidosCompletoPorUsuario(@PathVariable String userId)
             throws ExecutionException, InterruptedException {
+        // Obtener pedidos
         List<Pedido> pedidos = pedidoService.obtenerPedidosPorUsuario(userId);
 
         // Recolectar todos los IDs de productos únicos
@@ -87,16 +93,10 @@ public class PedidoController {
         // Obtener todos los productos en una sola consulta
         Map<String, Producto> productosMap = productoService.obtenerMapaProductosPorIds(productosIds);
 
-        // Actualizar la información de los productos en los pedidos
-        pedidos.forEach(pedido -> {
-            pedido.getProductos().forEach(productoPedido -> {
-                Producto producto = productosMap.get(productoPedido.getProductoId());
-                if (producto != null) {
-                    productoPedido.setNombreProducto(producto.getNombre());
-                }
-            });
-        });
+        // Convertir pedidos a DTOs usando el mapper
+        List<PedidoUserDTO> pedidosDTO = pedidoMapper.toDTOList(pedidos, productosMap);
 
-        return ResponseEntity.ok(pedidos);
+        return ResponseEntity.ok(pedidosDTO);
     }
+
 }

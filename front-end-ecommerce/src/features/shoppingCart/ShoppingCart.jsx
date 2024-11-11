@@ -238,21 +238,21 @@ export default function ShoppingCart({ onClose }) {
   const registrarIngresoCaja = async (monto) => {
     // Crear el objeto de movimiento para "Ventas" (Ingreso)
     const movimientoIngreso = {
-      concepto: `Ingreso por pedido`,
+      concepto: `Ventas-Caja`,
       monto: monto,
       tipo: 'Ingreso',
     };
   
     // Crear el objeto de movimiento para "Caja" (Gasto)
     const movimientoGasto = {
-      concepto: `Pago de ingreso por pedido`,
+      concepto: `Caja-Ventas`,
       monto: monto,
       tipo: 'Gasto',
     };
   
     try {
-      const ventaId = 'Qh48g9RR1lKnpB7oL0LY'; // ID de la cuenta "Ventas"
-      const cajaId = 'q6Uy4kPWFF9O2UI55Kag'; // Reemplaza con el ID de la cuenta "Caja"
+      const ventaId = 'HHw2o4TmDFA1FCA1jtDV'; // ID de la cuenta "Ventas"
+      const cajaId = 'Pa9f2USfJ8o9e7LRid89'; // Reemplaza con el ID de la cuenta "Caja"
   
       // Registrar el movimiento como ingreso en "Ventas"
       const responseIngreso = await axios.put(`http://localhost:8080/api/libro/actualizar/${ventaId}/movimiento`, movimientoIngreso);

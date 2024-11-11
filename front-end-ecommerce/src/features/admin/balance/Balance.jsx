@@ -77,20 +77,20 @@ const Balance = () => {
     }
     
     const movimientoGasto = {
-      concepto: `${selectedService} - Pago`,
+      concepto: `Servicio-Caja`,
       monto: parseFloat(serviceAmount),
       tipo: 'Gasto',
     };
   
     const movimientoIngreso = {
-      concepto: `Ingreso - ${selectedService} Pago`,
+      concepto: `Caja-Servicio`,
       monto: parseFloat(serviceAmount),
       tipo: 'Ingreso',
     };
   
     try {
-      const serviciosId = 'ccJlysR6cKXmgaC8JxpX'; // ID de la cuenta "Servicios"
-      const cajaId = 'q6Uy4kPWFF9O2UI55Kag'; // ID de la cuenta "Caja"
+      const serviciosId = 'zfGLlWWLmJ2AFlLN2UyW'; // ID de la cuenta "Servicios"
+      const cajaId = 'Pa9f2USfJ8o9e7LRid89'; // ID de la cuenta "Caja"
   
       // Agregar el movimiento como gasto en la cuenta "Servicios"
       const responseGasto = await fetch(`http://localhost:8080/api/libro/actualizar/${serviciosId}/movimiento`, {
@@ -234,7 +234,7 @@ const Balance = () => {
             <thead>
               <tr>
                 <th>Fecha</th>
-                <th>Concepto</th>
+                <th>Cajas involucradas</th>
                 <th>Debe</th>
                 <th>Haber</th>
                 <th>Balance</th>
@@ -304,7 +304,7 @@ const Balance = () => {
                 <thead>
                   <tr>
                     <th>Fecha</th>
-                    <th>Concepto</th>
+                    <th>Cajas involucradas</th>
                     <th>Debe</th>
                     <th>Haber</th>
                     <th>Balance</th>
