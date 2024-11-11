@@ -12,7 +12,7 @@ const EditProfile = () => {
   const navigate = useNavigate();
   const { userData, user, updateUserData } = useUser();
   const auth = getAuth();
-  
+
   const [formData, setFormData] = useState({
     username: '',
     email: ''
@@ -45,19 +45,12 @@ const EditProfile = () => {
       let displayName = '';
       
       // Intentar obtener el nombre del userData primero
-      if (userData?.firstName || userData?.lastName) {
-        displayName = `${userData.firstName || ''} ${userData.lastName || ''}`.trim();
+      if (userData?.username) {
+        displayName = userData.username;
       } 
       // Si no hay nombre en userData, intentar obtenerlo del usuario de Google
       else if (user?.displayName) {
         displayName = user.displayName;
-        // Si es la primera vez, actualizar también en Firestore
-        if (userData && !userData.firstName && !userData.lastName) {
-          const names = user.displayName.split(' ');
-          const firstName = names[0] || '';
-          const lastName = names.slice(1).join(' ') || '';
-          updateUserDataInFirestore(firstName, lastName);
-        }
       }
       // Si aún no hay nombre, usar el email como respaldo
       else if (user?.email) {
@@ -70,26 +63,6 @@ const EditProfile = () => {
       });
     }
   }, [userData, user]);
-
-  const updateUserDataInFirestore = async (firstName, lastName) => {
-    try {
-      const userRef = doc(db, 'usuarios', user.uid);
-      await updateDoc(userRef, {
-        firstName,
-        lastName,
-        username: `${firstName} ${lastName}`.trim()
-      });
-
-      updateUserData({
-        ...userData,
-        firstName,
-        lastName,
-        username: `${firstName} ${lastName}`.trim()
-      });
-    } catch (err) {
-      console.error('Error al actualizar datos iniciales:', err);
-    }
-  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -114,24 +87,16 @@ const EditProfile = () => {
     setSuccess(null);
   
     try {
-      const names = formData.username.trim().split(/\s+/);
-      const firstName = names[0] || '';
-      const lastName = names.slice(1).join(' ') || '';
-      
       const userRef = doc(db, 'usuarios', user.uid);
       await updateDoc(userRef, {
-        firstName,
-        lastName,
         username: formData.username.trim()
       });
-  
+
       updateUserData({
         ...userData,
-        firstName,
-        lastName,
         username: formData.username.trim()
       });
-  
+
       setSuccess('Perfil actualizado exitosamente');
       setTimeout(() => navigate('/client/profile'), 2000);
     } catch (err) {
@@ -174,26 +139,10 @@ const EditProfile = () => {
     }
   };
 
-  const handleDeleteProfile = async () => {
-    if (window.confirm('¿Estás seguro de que deseas eliminar tu perfil? Esta acción no se puede deshacer.')) {
-      setIsLoading(true);
-      try {
-        const userRef = doc(db, 'usuarios', user.uid);
-        await updateDoc(userRef, { isDeleted: true });
-        await auth.currentUser.delete();
-        navigate('/login');
-      } catch (err) {
-        setError('Error al eliminar el perfil: ' + err.message);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-  };
-
   const handleCancel = () => {
     let displayName = '';
-    if (userData?.firstName || userData?.lastName) {
-      displayName = `${userData.firstName || ''} ${userData.lastName || ''}`.trim();
+    if (userData?.username) {
+      displayName = userData.username;
     } else if (user?.displayName) {
       displayName = user.displayName;
     } else if (user?.email) {
@@ -219,6 +168,22 @@ const EditProfile = () => {
 
   const handleBackToProfile = () => {
     navigate('/client/profile');
+  };
+
+  const handleDeleteProfile = async () => {
+    if (window.confirm('¿Estás seguro de que deseas eliminar tu perfil? Esta acción no se puede deshacer.')) {
+      setIsLoading(true);
+      try {
+        const userRef = doc(db, 'usuarios', user.uid);
+        await updateDoc(userRef, { isDeleted: true });
+        await auth.currentUser.delete();
+        navigate('/login');
+      } catch (err) {
+        setError('Error al eliminar el perfil: ' + err.message);
+      } finally {
+        setIsLoading(false);
+      }
+    }
   };
 
   if (!userData && !user) {
